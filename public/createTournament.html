@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+    <title>Create Tournament</title>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="index.html">🏠 Inicio</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    </nav>
+    <h1>Torneo</h1>
+    <form id="tournamentForm" class="p-4">
+  <div class="mb-3">
+    <label for="nombre" class="form-label">Nombre del Torneo</label>
+    <input type="text" class="form-control" id="nombre" required>
+  </div>
+
+  <div class="mb-3">
+    <label for="usuarioOrganizadorId" class="form-label">ID del Organizador</label>
+    <input type="text" class="form-control" id="usuarioOrganizadorId" required>
+  </div>
+
+  <div class="mb-3">
+    <label for="ubicacion" class="form-label">Ubicación</label>
+    <input type="text" class="form-control" id="ubicacion" required>
+  </div>
+
+  <div class="mb-3">
+    <label for="latitud" class="form-label">Latitud</label>
+    <input type="text" class="form-control" id="latitud">
+  </div>
+
+  <div class="mb-3">
+    <label for="longitud" class="form-label">Longitud</label>
+    <input type="text" class="form-control" id="longitud">
+  </div>
+
+  <div class="mb-3">
+    <label for="minimoParticipantes" class="form-label">Mínimo Participantes</label>
+    <input type="number" class="form-control" id="minimoParticipantes" required>
+  </div>
+
+  <div class="mb-3">
+    <label for="maximoParticipantes" class="form-label">Máximo Participantes</label>
+    <input type="number" class="form-control" id="maximoParticipantes" required>
+  </div>
+
+  <div class="mb-3">
+    <label for="fechaInicio" class="form-label">Fecha de Inicio</label>
+    <input type="datetime-local" class="form-control" id="fechaInicio" required>
+  </div>
+
+  <div class="mb-3">
+    <label for="modalidadId" class="form-label">ID de Modalidad</label>
+    <input type="text" class="form-control" id="modalidadId" required>
+  </div>
+
+  <div class="form-check mb-3">
+    <input type="checkbox" class="form-check-input" id="permitirEmpates">
+    <label class="form-check-label" for="permitirEmpates">Permitir Empates</label>
+  </div>
+
+  <div class="mb-3">
+    <label for="puntosPorVictoria" class="form-label">Puntos por Victoria</label>
+    <input type="number" class="form-control" id="puntosPorVictoria" required>
+  </div>
+
+  <div class="mb-3">
+    <label for="puntosPorEmpate" class="form-label">Puntos por Empate</label>
+    <input type="number" class="form-control" id="puntosPorEmpate" required>
+  </div>
+
+  <div class="mb-3">
+    <label for="puntosPorDerrota" class="form-label">Puntos por Derrota</label>
+    <input type="number" class="form-control" id="puntosPorDerrota" required>
+  </div>
+
+  <button type="submit" class="btn btn-primary">Crear Torneo</button>
+</form>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
+    <script src="../src/views/createTournament.js" type="module"></script>
+</body>
+</html>
