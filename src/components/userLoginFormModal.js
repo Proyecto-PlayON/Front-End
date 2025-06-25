@@ -9,15 +9,16 @@ export default function setupLoginFormHandler() {
     return;
   }
 
-  form.addEventListener("submit", async (e) => {
+  const button = document.querySelector("#loginForm button[type=submit]");
+button.addEventListener("click", async (e) => {
     e.preventDefault();
  console.log("Submit del formulario capturado");
-    const email = document.getElementById("usuario").value.trim();
-    const password = document.getElementById("contrasenia").value;
-
+   
+   const usernameInput = document.getElementById("usuario");
+    const passwordInput = document.getElementById("contrasenia");
     const user = {
-      email,
-      password,
+      userName: usernameInput.value,
+      password: passwordInput.value,
     };
 
     const result = await userApi.Post(user);
@@ -32,6 +33,7 @@ modal.hide();
 
       // Opcional: redirigir o mostrar contenido protegido
       // window.location.href = "/dashboard.html";
+      window.location.href = "../public/homepagelogged.html";
 
     } else {
       console.error("Login fallido:", result.message);
