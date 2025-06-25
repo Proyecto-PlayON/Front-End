@@ -1,0 +1,96 @@
+.login-container {
+  background-color: #101d2c;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-family: 'Segoe UI', sans-serif;
+  padding: 2rem;
+}
+
+.logo-container {
+  position: relative;
+  display: inline-block;
+  text-align: center;
+}
+
+.logo {
+  width: 300px;
+  margin-bottom: 0.5rem;
+  display: block;
+}
+
+.titulo-app {
+  position: absolute;
+  top: 33.5%;
+  left: 50%;
+  transform: translate(-50%, -10%); 
+  color: white;
+  font-size: 4rem;
+  font-weight: bold;
+  text-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
+}
+
+.titulo-form {
+  font-size: 1.7rem;
+  margin: -4rem 0 0.5rem;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  width: 100%;
+  max-width: 320px;
+}
+
+.login-form label {
+  font-size: 0.9rem;
+}
+
+.login-form input[type="email"],
+.login-form input[type="password"] {
+  padding: 0.5rem;
+  border-radius: 5px;
+  border: none;
+  font-size: 1rem;
+}
+
+.recordarme {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.85rem;
+}
+
+.link-secundario {
+  font-size: 0.85rem;
+  color: #5ebfff;
+  text-decoration: none;
+  align-self: flex-start;
+}
+
+.login-form button {
+  margin-top: 1rem;
+  padding: 0.6rem;
+  background-color: #0097a7;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.registrarse {
+  margin-top: 1rem;
+  font-size: 0.85rem;
+  text-align: center;
+}
+
+.registrarse a {
+  color: #5ebfff;
+  text-decoration: none;
+}

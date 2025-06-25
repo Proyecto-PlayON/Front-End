@@ -1,0 +1,106 @@
+.iniciar-sesion-view {
+  max-width: 640px;
+  margin: 100px auto;
+  padding: 2rem;
+  background-color: #111827;
+  border: 2px solid #22c55e;
+  border-radius: 14px;
+  box-shadow:
+    0 10px 30px rgba(34, 197, 94, 0.3),
+    inset 0 0 16px rgba(0, 0, 0, 0.4);
+  color: #ffffff;
+  animation: fadeIn 0.4s ease-out;
+   
+}
+
+.iniciar-sesion-view h2 {
+  text-align: center;
+  font-size: 2.4rem;
+  color: #22c55e;
+  margin-bottom: 2rem;
+  
+}
+
+.login-form .input-group {
+  margin-bottom: 1.5rem;
+}
+
+.login-form label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+  color: #ffffff;
+  
+}
+
+.login-form input {
+  width: 100%;
+  padding: 0.75rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  background-color: #ffffff;
+  color: #000000;
+   width: 96%; /* 👈 achicamos el ancho original */
+ 
+}
+
+.login-form input:focus {
+  outline: none;
+  border: 1px solid #22c55e;
+  box-shadow: 0 0 6px rgba(34, 197, 94, 0.4);
+}
+
+.user-list {
+  list-style: none;
+  padding: 0;
+  margin: 0.3rem 0 0;
+  border: 1px solid #22c55e;
+  background-color: #1f2937;
+  border-radius: 6px;
+  max-height: 180px;
+  overflow-y: auto;
+  box-shadow: 0 4px 12px rgba(34, 197, 94, 0.3);
+}
+
+.user-list-item {
+  padding: 0.75rem 1rem;
+  cursor: pointer;
+  color: #ffffff;
+}
+
+.user-list-item:hover {
+  background-color: #22c55e;
+  color: #000000;
+}
+
+.login-form button[type="submit"] {
+  width: 100%;
+  padding: 1rem;
+  background-color: #22c55e;
+  color: #000000;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: 0 6px 14px rgba(34, 197, 94, 0.3);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.login-form button[type="submit"]:hover {
+  background-color: #16a34a;
+  box-shadow: 0 10px 20px rgba(34, 197, 94, 0.4);
+}
+
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

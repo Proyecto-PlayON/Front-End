@@ -1,0 +1,155 @@
+
+.modificar-view {
+  padding: 2rem;
+  max-width: 900px;
+  margin: 120px auto 40px;
+  background-color: #111827;
+  border-radius: 12px;
+  box-shadow: 0 8px 20px rgba(34, 197, 94, 0.2);
+  font-family: sans-serif;
+  color: #e5e7eb;
+}
+
+
+.modificar-view h2 {
+  text-align: center;
+  font-size: 2.7rem;
+  margin-bottom: 2rem;
+  color: #22c55e;
+}
+
+
+.modificar-layout {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.modificar-listado {
+  flex: 1;
+}
+
+.modificar-formulario {
+  flex: 2;
+}
+
+
+.btn-proyecto-observado {
+  width: 100%;
+  margin-bottom: 0.7rem;
+  padding: 0.7rem 1rem;
+  background-color: #1f2937;
+  color: #ffffff;
+  font-weight: 600;
+  border: none;
+  border-left: 4px solid #22c55e;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  text-align: left;
+}
+
+.btn-proyecto-observado:hover {
+  background-color: #2d3748;
+}
+
+
+#form-modificar-proyecto {
+  background-color: #1e293b;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 16px rgba(34, 197, 94, 0.1);
+}
+
+#form-modificar-proyecto label {
+  font-weight: 600;
+  display: block;
+  margin-top: 1rem;
+  color: #ffffff;
+}
+
+#form-modificar-proyecto input,
+#form-modificar-proyecto textarea {
+  width: 100%;
+  padding: 0.7rem;
+  font-size: 1rem;
+  border-radius: 6px;
+  margin-top: 0.3rem;
+  border: 1px solid #ccc;
+  background-color: #ffffff;
+  color: #000;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+#form-modificar-proyecto input:focus,
+#form-modificar-proyecto textarea:focus {
+  outline: none;
+  border-color: #22c55e;
+  box-shadow: 0 0 8px rgba(34, 197, 94, 0.4);
+}
+
+
+#form-modificar-proyecto button[type="submit"] {
+  margin-top: 1.5rem;
+  padding: 1rem 2rem;
+  background-color: #22c55e;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 6px 12px rgba(34, 197, 94, 0.3);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+#form-modificar-proyecto button[type="submit"]:hover {
+  background-color: #004494;
+  box-shadow: 0 8px 20px rgba(34, 197, 94, 0.4);
+}
+
+
+#mensaje-resultado-mod {
+  margin-top: 1rem;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+#mensaje-resultado-mod.exito {
+  color: #22c55e;
+}
+
+
+#mensaje-resultado-mod.error {
+  color: #f87171;
+}
+
+
+#mensaje-resultado-mod.animado {
+  animation: fadeIn 0.6s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+#lista-proyectos-modificables p {
+  color: #f87171;
+  font-weight: bold;
+  margin-top: 1rem;
+  background-color: #1f2937;
+  padding: 1rem;
+  border-radius: 6px;
+  text-align: center;
+}
+
+.btn-proyecto-observado.sin-titulo {
+  background-color: #4b5563;
+  color: #facc15;
+  font-style: italic;
+}
