@@ -1,16 +1,12 @@
 import CrearForm from "../components/CrearForm.js";
-import { getAreas } from "../services/areaApi.js";
-import { getProjectTypes } from "../services/typeApi.js";
 import { getLoggedUser } from "../components/loginWidget.js";
-import { postProyecto } from "../components/services/crearApi.js";
+
 
 function renderCrearView() {
   return {
     html: `<section class="crear-view"><p>Cargando formulario...</p></section>`,
     addListeners: async container => {
-      const areas = await getAreas();
-      const tipos = await getProjectTypes();
-
+   
       const { html, addListeners } = CrearForm({
         areas,
         tipos,

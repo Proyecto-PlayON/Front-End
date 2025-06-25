@@ -12,8 +12,8 @@ export default function renderHomeView() {
           <p>Registrá un nuevo torneo con modalidad, cantidad de participantes y reglas personalizadas.</p>
         </div>
 
-        <div class="home-card">
-          <h3>🔍 Buscar</h3>
+        <div class="home-card" id="ver-torneos-card" style="cursor:pointer;">
+          <h3>🔍Ver Torneos</h3>
           <p>Explorá torneos existentes, filtrá por disciplina, buscá ganadores y consultá los puntos de cada partido.</p>
         </div>
 
@@ -22,11 +22,7 @@ export default function renderHomeView() {
           <p>Generá automáticamente los enfrentamientos, armá el fixture y seguí la evolución del ranking en tiempo real.</p>
         </div>
 
-        <div class="home-card">
-          <h3>🚪 Iniciar Sesión</h3>
-          <p>Accedé a tu cuenta para gestionar tus torneos, editar datos, registrar resultados y mantener el control completo.</p>
-        </div>
-      </div>
+       
 
       
     </section>

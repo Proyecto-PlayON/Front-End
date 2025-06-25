@@ -19,7 +19,7 @@
 
 .playon-title {
   background: var(--gradiente-tutifruti);
-  
+   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   font-weight: 800;
   letter-spacing: 1px;
@@ -63,7 +63,7 @@
   margin-bottom: 0.8rem;
   font-weight: 700;
   background: var(--gradiente-tutifruti);
-
+ -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
