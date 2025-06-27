@@ -1,3 +1,5 @@
+import { mostrarModalPartido } from '../partidoModal/partidoModalComponent.js';
+
 export async function fixtureComponent(fixture) {
     const container = document.createElement('section');
     container.classList.add('content');
@@ -80,10 +82,13 @@ export async function fixtureComponent(fixture) {
 
         if (partidos.length === 0) {
             tableBody.innerHTML = '<tr><td colspan="5" class="text-center text-white">No hay partidos para esta ronda.</td></tr>';
-        } else {
-            partidos.forEach(partido => {
+        } 
+        else {
+            for (const partido of partidos) {
                 const row = document.createElement("tr");
                 row.classList.add("partido");
+                row.style.cursor = "pointer";
+
 
                 row.innerHTML = `
                     <td class="participante1">${partido.usuario1Nombre}</td>
@@ -93,8 +98,12 @@ export async function fixtureComponent(fixture) {
                     <td class="participante2">${partido.usuario2Nombre}</td>
                 `;
 
+                row.addEventListener("click", async () => {
+                    await mostrarModalPartido(partido);
+                });
+
                 tableBody.appendChild(row);
-            });
+            }
         }
     }
 

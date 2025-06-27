@@ -11,6 +11,7 @@
   --gradiente-hover: linear-gradient(to right, var(--azul), var(--violeta));
 }
 
+
 body {
   margin: 0;
   color: #ffffff;
@@ -193,3 +194,4 @@ body {
   0% { background-position: 0% 0%; }
   100% { background-position: 400% 0%; }
 }
+
