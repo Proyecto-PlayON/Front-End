@@ -17,7 +17,7 @@ export const UserLoginForm = () => {
             if (result.success) {
                 alert("Login successful!");
                 // Redirect or perform further actions
-                window.location.href = "index.html";
+                window.location.href = "tournamentFigma.html";
             } else {
                 alert("Login failed: " + result.message);
             }

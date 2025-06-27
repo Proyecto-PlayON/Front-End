@@ -1,0 +1,65 @@
+body {
+  background-color: #1E2A38;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.tournament-window {
+  background-color: #2e2f3e;
+  width: 90%;
+  max-width: 1150px;
+  margin: 40px auto;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  padding: 20px;
+}
+.tournament-window-top {
+  position: relative;
+  height: 50px; /* ajustá según necesites */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-background {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 150px; /* ajustá según tamaño deseado */
+  opacity: 0.75; /* para que no tape el texto */
+  z-index: 1;
+}
+
+.tournament-window-top h1 {
+  z-index: 2;
+  font-size: 2.5rem;
+}
+
+.tournament-container {
+  max-height: 450px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.tournament-header {
+  background-color: #444652;
+  border-radius: 10px;
+  font-weight: bold;
+}
+
+.tournament-card {
+  background-color: #767676;
+  color: white;
+  transition: transform 0.2s;
+}
+
+.tournament-card:hover {
+  transform: scale(1.01);
+  box-shadow: 0 0 10px rgba(255,255,255,0.2);
+}
+
+button.btn {
+  font-size: 0.8rem;
+  padding: 4px 10px;
+  border-radius: 10px;
+}
