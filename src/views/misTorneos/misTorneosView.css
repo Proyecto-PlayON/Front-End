@@ -77,3 +77,12 @@ button.btn {
   color: #198754; /* verde tipo success */
   font-weight: bold;
 }
+.tournament-card p {
+  flex: 1;
+  text-align: left;
+  margin: 0;
+}
+.tournament-header strong {
+  flex: 1;
+  text-align: left;
+}
