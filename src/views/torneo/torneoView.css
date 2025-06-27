@@ -1,0 +1,21 @@
+.torneo-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 20px;
+    background-color: #162230;
+    border-radius: 20px;
+    margin-top: 20px;
+}
+.torneo-container h2{
+    margin: auto;
+}
+.torneo-container-content{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 20px;
+}
+.torneo-container-content > *{
+    margin: 20px;
+}

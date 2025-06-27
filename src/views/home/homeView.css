@@ -1,0 +1,93 @@
+.home-view {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0rem 0rem;
+  max-width: 1300px;
+  margin:  auto;
+}
+
+.home-intro-box {
+  text-align: center;
+  margin-bottom: 5rem;
+}
+
+.home-intro-box h2 {
+  font-size: 3.0rem;
+  margin: 0;
+}
+
+.playon-title {
+  background: var(--gradiente-tutifruti);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+.home-sub {
+  font-size: 1.15rem;
+  color: #cccccc;
+  max-width: 800px;
+  margin: 1rem auto 0;
+  line-height: 1.6;
+}
+
+/* === GRID === */
+.home-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 1.8rem;
+  width: 100%;
+  margin-bottom: 3rem;
+  padding: 0 1rem;
+  transform: scale(1.4);
+}
+
+/* === TARJETAS === */
+.home-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 2px solid transparent;
+  border-radius: 16px;
+  padding: 1.5rem;
+  color: #ffffff;
+  text-align: center;
+  transition: all 0.4s ease;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.05);
+  gap: .8rem;
+}
+
+.home-card h3 {
+  margin-top: 0;
+  font-size: 1.4rem;
+  margin-bottom: 0.8rem;
+  font-weight: 700;
+  background: var(--gradiente-tutifruti);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.home-card p {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: #dddddd;
+}
+
+.home-card:hover {
+  border-color: var(--violeta);
+  transform: translateY(-5px) scale(1.02);
+  box-shadow: 0 0 18px rgba(155, 93, 229, 0.25);
+}
+
+/* === IMAGEN FINAL === */
+.home-image-wrapper {
+  text-align: center;
+}
+
+.home-image-wrapper img {
+  max-width: 400px;
+  width: 100%;
+  height: auto;
+  filter: drop-shadow(0 0 12px rgba(255, 255, 255, 0.08));
+  opacity: 0.95;
+}

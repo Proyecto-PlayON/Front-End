@@ -1,0 +1,23 @@
+<!-- loginModalComponent.html -->
+<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form id="loginForm" class="modal-body">
+        <h5 class="modal-title mb-3" id="loginModalLabel">Iniciar sesión</h5>
+
+        <div class="mb-3">
+          <label for="username" class="form-label">Nombre de usuario</label>
+          <input type="text" class="form-control" id="username" placeholder="Ingrese su nombre de usuario" />
+        </div>
+        <div class="mb-3">
+          <label for="password" class="form-label">Contraseña</label>
+          <input type="password" class="form-control" id="password" placeholder="Ingrese su contraseña" />
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100">Iniciar sesión</button>
+
+        <div id="loginError" class="text-danger mt-2" style="display: none;"></div>
+      </form>
+    </div>
+  </div>
+</div>
