@@ -8,7 +8,7 @@ export class TorneoService{
 
     async inscribirParticipantes(participantes) {
 
-        for(participante in participantes){
+        for(let participante of participantes){
             await this.repository.inscribirParticipante(participante);
         }
     }

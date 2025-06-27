@@ -1,0 +1,207 @@
+body {
+  background-color: #1E2A38;
+  font-family: 'Segoe UI', sans-serif;
+}
+.inscription-window {
+  background-color: #2e2f3e;
+  width: 90%;
+  max-width: 1150px;
+  margin: 40px auto;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+  padding: 20px;
+  
+}
+.inscription-window-top {
+  position: relative;
+  height: 50px; /* ajustá según necesites */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-background {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 150px; /* ajustá según tamaño deseado */
+  opacity: 0.75; /* para que no tape el texto */
+  z-index: 1;
+}
+
+.inscription-window-top h1 {
+  z-index: 2;
+  font-size: 2.5rem;
+}
+.players-container {
+  border: solid black 3px;
+  margin: 10px;
+  max-height: 450px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  background-color: white;
+  border-start-start-radius: 5px;
+  border-bottom-left-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 5px;
+  justify-content: flex-start; /* Cambiado */
+  scrollbar-color: black gray;
+  scrollbar-width: auto;
+  scroll-behavior: auto;
+}
+
+.players-card{
+  width: 100%;
+  max-width: 300px;
+  background: linear-gradient(to right, #FFFFFF, #999999);
+  text-align: center;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  border: black solid 1px;
+ 
+}
+.players-card p{
+  color: black;
+  text-align: center;
+  align-items: center;
+  
+}
+
+.players-card i {
+  font-size: 1.3rem;
+  color: black; /* para la estrella */
+  user-select: none;
+}
+.players-card i.bi-person-plus {
+  color: black; /* distinto color para el + persona */
+}
+.players-card p {
+  margin: 0;
+  font-weight: 600;
+  
+}
+#botton-window{
+ border:solid black 2px;
+  background-color: #2f2f3c;
+  padding: 5px;
+  border-radius: 5px;
+}
+#players-ongame {
+  
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  /* resto igual */
+}
+
+.player-card {
+  background-color: black;
+  color: gray;
+  padding: 10px 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  font-weight: 600;
+  cursor: default;
+  user-select: none;
+  transition: background-color 0.3s ease;
+  
+  flex: 0 1 150px;
+  text-align: center;
+  margin: 0;
+}
+
+.player-card:hover {
+  background-color: #343b46;
+  color: white;
+}
+
+.players-card i {
+  font-size: 1.5rem; /* Tamaño más grande */
+  cursor: pointer;   /* Cursor de mano */
+  transition: color 0.3s, transform 0.2s;
+}
+
+.players-card i.bi-star {
+  color: #ffc107; /* Dorado tipo estrella */
+}
+
+.players-card i.bi-person-plus {
+  color: #0dcaf0; /* Celeste tipo botón */
+}
+
+.players-card i:hover {
+  transform: scale(1.2); /* Animación leve al pasar el mouse */
+  color: #fff;           /* Se vuelve blanco al hacer hover */
+}
+.inscription-content {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.players-container {
+  flex: 1;
+  max-width: 400px;
+  min-width: 280px;
+  height: 450px;
+  overflow-y: auto;
+  background-color: white;
+  border: solid black 3px;
+  border-radius: 10px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#botton-window {
+  flex: 1;
+  max-width: 400px;
+  min-width: 280px;
+  background-color: #2f2f3c;
+  padding: 10px;
+  border-radius: 10px;
+  border: solid black 2px;
+  color: white;
+}
+
+#players-ongame {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 10px;
+}
+#botton-window {
+  flex: 1;
+  max-width: 400px;
+  min-width: 280px;
+  background-color: #2f2f3c;
+  padding: 20px;
+  border-radius: 10px;
+  border: solid black 2px;
+  color: white;
+}
+
+#botton-window h2 {
+  font-size: 1.8rem;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+#tabla-inscriptos {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+#tabla-inscriptos th,
+#tabla-inscriptos td {
+  padding: 10px;
+  text-align: center;
+  vertical-align: middle;
+}

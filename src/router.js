@@ -1,6 +1,6 @@
 import { misTorneosView } from './views/misTorneos/misTorneosView.js';
 import { homeView } from './views/home/homeView.js';
-import { incripcionesView } from './views/inscripciones/inscripcionesView.js';
+import { inscripcionesView } from './views/inscripciones/inscripcionesView.js';
 import { welcomeView } from './views/welcome/welcomeView.js';
 import { crearTorneoView } from './views/crearTorneo/crearTorneoView.js';
 import { torneoView } from './views/torneo/torneoView.js';
@@ -9,7 +9,7 @@ const routes = {
   '/welcome': welcomeView,
   '/home': homeView,
   '/torneos': misTorneosView,
-  '/incripciones': incripcionesView,
+  '/incripciones': inscripcionesView,
   '/crearTorneo': crearTorneoView,
   '/torneo': torneoView
 };
