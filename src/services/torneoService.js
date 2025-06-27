@@ -6,19 +6,20 @@ export class TorneoService{
         this.repository = new TorneoApi();
     }
 
-    async inscribirParticipantes(participantes) {
+    async inscribir(participante) {
+        return await this.repository.inscribir(participante);   
+    }
 
-        for(let participante of participantes){
-            await this.repository.inscribirParticipante(participante);
-        }
+    async eliminarInscripcion(idIncripicion) {
+        return await this.repository.eliminarInscripcion(idIncripicion);   
     }
 
     async crearTorneo(torneo){
         return await this.repository.crearTorneo(torneo);
     }
 
-    async iniciarTorneo(idTorneo, torneo){
-        return await this.repository.iniciarTorneo(idTorneo, torneo);
+    async iniciarTorneo(idTorneo){
+        return await this.repository.iniciarTorneo(idTorneo);
     }
 
     async getTorneos(){

@@ -1,7 +1,10 @@
 import { UsuarioService } from "../../services/usuarioService.js";
 import { TorneoService } from "../../services/torneoService.js";
 
-export async function inscripcionesView() {
+
+
+export async function inscripcionesView(torneo) {
+
     const container = document.createElement('section');
     container.classList.add('content');
 
@@ -25,19 +28,60 @@ export async function inscripcionesView() {
     const searchInput = container.querySelector('input[placeholder="Buscar participantes..."]');
     const searchButton = container.querySelector('button[type="button"]');
     const tablaBody = container.querySelector('#tabla-inscriptos tbody');
-    const btnInscribir = container.querySelector('#btn-inscribir');
+    const btnIniciar = container.querySelector('#btn-inscribir');
 
-    // ID del torneo actual (puede venir de contexto, URL o variable global)
-    const torneoId = 4; // <-- MODIFICAR según cómo obtengas el torneo actual
+    const torneoId = torneo.id;
 
-    function actualizarNumeracionYBoton() {
+    const contenedorInfo = document.createElement('div');
+    contenedorInfo.className = 'torneo-info  p-3 rounded';
+    contenedorInfo.innerHTML = `
+        <h4 class="text-center">Información del Torneo</h4>
+        <p><strong>Nombre:</strong> ${torneo.nombre}</p>
+        <p><strong>Ubicación:</strong> ${torneo.ubicacion}</p>
+        <p><strong>Participantes:</strong> ${torneo.inscripciones.length} / ${torneo.maximoParticipantes}</p>
+        <p><strong>Estado:</strong> ${torneo.estado.nombre}</p>
+        <p><strong>Modalidad:</strong> ${torneo.modalidad.nombre}</p>
+        <p><strong>Inicio:</strong> ${new Date(torneo.fechaInicio).toLocaleDateString()}</p>
+    `;
+    // Insertar info del torneo entre los dos bloques
+    const containerFlex = container.querySelector('.inscription-content');
+    containerFlex.insertBefore(contenedorInfo, container.querySelector('#botton-window'));
+
+    function actualizarNumeracion() {
         const filas = tablaBody.querySelectorAll('tr');
         filas.forEach((fila, index) => {
             const celdaNumero = fila.querySelector('td:first-child');
             if (celdaNumero) celdaNumero.textContent = index + 1;
         });
+    }
 
-        btnInscribir.disabled = filas.length === 0;
+    async function cargarInscriptosDesdeTorneo() {
+        const torneoActualizado = await torneoService.getTorneoById(torneoId);
+        tablaBody.innerHTML = '';
+
+        for (const insc of torneoActualizado.inscripciones) {
+            const fila = document.createElement('tr');
+            fila.dataset.userid = insc.usuarioId;
+            fila.dataset.inscripcionid = insc.id;
+
+            fila.innerHTML = `
+                <td class="text-center"></td>
+                <td class="text-center">${insc.nombre}</td>
+                <td class="text-center">
+                    <i class="bi bi-dash-circle text-danger" style="cursor: pointer;"></i>
+                </td>
+            `;
+
+            fila.querySelector('.bi-dash-circle').addEventListener('click', async () => {
+                await torneoService.eliminarInscripcion(insc.id);
+                await cargarInscriptosDesdeTorneo();
+            });
+
+            tablaBody.appendChild(fila);
+        }
+
+        actualizarNumeracion();
+        btnIniciar.disabled = torneoActualizado.inscripciones.length === 0;
     }
 
     async function renderUsuarios(filtro = "") {
@@ -54,74 +98,40 @@ export async function inscripcionesView() {
                 <i class="bi bi-person-plus" style="cursor: pointer;"></i>
             `;
 
-            div.querySelector('.bi-person-plus').addEventListener('click', () => {
-                const yaExiste = Array.from(tablaBody.children)
-                    .some(row => row.dataset.userid === String(user.id));
-
-                if (!yaExiste) {
-                    const fila = document.createElement('tr');
-                    fila.dataset.userid = user.id;
-
-                    fila.innerHTML = `
-                        <td class="text-center"></td>
-                        <td class="text-center">${user.name}</td>
-                        <td class="text-center">
-                            <i class="bi bi-dash-circle text-danger" style="cursor: pointer;"></i>
-                        </td>
-                    `;
-
-                    fila.querySelector('.bi-dash-circle').addEventListener('click', () => {
-                        fila.remove();
-                        actualizarNumeracionYBoton();
-                    });
-
-                    tablaBody.appendChild(fila);
-                    actualizarNumeracionYBoton();
-                }
+            div.querySelector('.bi-person-plus').addEventListener('click', async () => {
+                const payload = {
+                    usuarioId: user.id,
+                    nombre: user.name,
+                    torneoId: torneoId
+                };
+                await torneoService.inscribir(payload);
+                await cargarInscriptosDesdeTorneo();
             });
 
             playersContainer.appendChild(div);
         }
     }
 
-    // Buscar con botón o Enter
     searchButton.addEventListener('click', async (e) => {
         e.preventDefault();
-        const texto = searchInput.value.trim();
-        await renderUsuarios(texto);
+        await renderUsuarios(searchInput.value.trim());
     });
 
     searchInput.addEventListener('keypress', async (e) => {
         if (e.key === 'Enter') {
             e.preventDefault();
-            const texto = searchInput.value.trim();
-            await renderUsuarios(texto);
+            await renderUsuarios(searchInput.value.trim());
         }
     });
 
-    // Botón inscribir → Llama al servicio
-    btnInscribir.addEventListener('click', async () => {
-        const usuariosInscriptos = Array.from(tablaBody.querySelectorAll('tr'))
-            .map(row => ({
-                usuarioId: parseInt(row.dataset.userid),
-                nombre: row.querySelectorAll('td')[1].textContent,
-                torneoId: torneoId
-            }));
-
-        try {
-            await torneoService.inscribirParticipantes(usuariosInscriptos);
-            alert("Participantes inscritos correctamente ✅");
-            // limpiar tabla si querés
-            tablaBody.innerHTML = '';
-            actualizarNumeracionYBoton();
-        } catch (error) {
-            console.error("Error al inscribir:", error);
-            alert("❌ Ocurrió un error al inscribir los participantes");
-        }
+    btnIniciar.textContent = "Iniciar Torneo";
+    btnIniciar.addEventListener('click', async () => {
+        await torneoService.iniciarTorneo(torneoId);
+        alert("Torneo iniciado ✅");
     });
 
     await renderUsuarios();
-    actualizarNumeracionYBoton();
+    await cargarInscriptosDesdeTorneo();
 
     return container;
 }

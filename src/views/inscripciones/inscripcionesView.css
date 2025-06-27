@@ -205,3 +205,43 @@ body {
   text-align: center;
   vertical-align: middle;
 }
+.torneo-info {
+  background-color: #2f2f3c;
+  color: #f1f1f1;
+  border-radius: 12px;
+  padding: 20px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 0 12px rgba(0, 0, 0, 0.4);
+  font-size: 0.95rem;
+}
+
+.torneo-info h3 {
+  text-align: center;
+  color: #0dcaf0;
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+
+.torneo-info .torneo-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  border-bottom: 1px solid #444;
+  padding-bottom: 4px;
+}
+
+.torneo-info .torneo-item:last-child {
+  border-bottom: none;
+}
+
+.torneo-info .torneo-label {
+  font-weight: 600;
+  color: #ccc;
+}
+
+.torneo-info .torneo-value {
+  font-style: italic;
+  color: #eee;
+}
+

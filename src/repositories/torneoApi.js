@@ -7,7 +7,7 @@ export class TorneoApi{
         this.URL = API_TORNEOS;
     }
 
-    async inscribirParticipante(participante) {
+    async inscribir(participante) {
         try {
             const data = await fetchConToken(this.URL.URI_INSCRIPCION, {
                 method: 'POST',
@@ -17,6 +17,22 @@ export class TorneoApi{
                 body: JSON.stringify(participante)
             });
             alert('La inscripción fue creada con éxito');
+            return data;
+        } 
+        catch (error) {
+            console.error('Error:', error);
+            alert(error.message || 'Error de conexión con el servidor');
+            return null;
+        }
+    }
+
+    async eliminarInscripcion(idInscripcion) {
+        try {
+            const data = await fetchConToken(`${this.URL.URI_INSCRIPCION}/${idInscripcion}`, {
+                method: 'DELETE'
+            });
+
+            alert('La inscripción fue eliminada con éxito');
             return data;
         } 
         catch (error) {
@@ -45,7 +61,7 @@ export class TorneoApi{
         }
     }
 
-    async iniciarTorneo(idTorneo, torneo) {
+    async iniciarTorneo(idTorneo) {
         try {
             const url = `${this.URL.URI_INICIAR_MOTOR}/${idTorneo}`;
             const data = await fetchConToken(url, {
@@ -53,7 +69,7 @@ export class TorneoApi{
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(torneo)
+                body: JSON.stringify()
             });
             alert('El torneo fue iniciado con éxito');
             return data;
