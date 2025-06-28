@@ -21,14 +21,6 @@ export async function torneoView() {
     const htmlContent = await htmlResponse.text();
     container.innerHTML = htmlContent;
 
-    // Cargar CSS si no está cargado aún
-    const cssHref = './views/torneo/torneoView.css';
-    if (!document.querySelector(`link[href="${cssHref}"]`)) {
-        const link = document.createElement('link');
-        link.rel = 'stylesheet';
-        link.href = cssHref;
-        document.head.appendChild(link);
-    }
 
     const motorService = new MotorService();
     let ranking = [];

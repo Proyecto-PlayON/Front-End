@@ -9,14 +9,6 @@ export async function welcomeView() {
     const htmlContent = await htmlResponse.text();
     container.innerHTML = htmlContent;
 
-    // Cargar y aplicar el CSS solo si no se ha cargado antes
-    const cssHref = './views/welcome/welcomeView.css';
-    if (!document.querySelector(`link[href="${cssHref}"]`)) {
-        const link = document.createElement('link');
-        link.rel = 'stylesheet';
-        link.href = cssHref;
-        document.head.appendChild(link);
-    }
 
     renderLoginWidget();
 

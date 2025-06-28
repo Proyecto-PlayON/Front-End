@@ -10,14 +10,6 @@ export async function crearTorneoView() {
     const htmlContent = await htmlResponse.text();
     container.innerHTML = htmlContent;
 
-    // Cargar el CSS si no está cargado
-    const cssHref = './views/crearTorneo/crearTorneoView.css';
-    if (!document.querySelector(`link[href="${cssHref}"]`)) {
-        const link = document.createElement('link');
-        link.rel = 'stylesheet';
-        link.href = cssHref;
-        document.head.appendChild(link);
-    }
 
     const form = container.querySelector('#tournamentForm');
 

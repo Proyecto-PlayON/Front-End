@@ -1,67 +1,70 @@
-<div class="formHeader">
-    <h2 class="text-white fs-3 mt-3">Crear Torneo</h2>
-</div>
-
-<form id="tournamentForm" class="container mt-2">
-
-    <div class="row">
-        <div class="mb-3 col-md-4">
-            <label for="nombre" class="form-label">Nombre del Torneo</label>
-            <input type="text" class="form-control" id="nombre" required />
-        </div>
-        <div class="mb-3 col-md-4">
-            <label for="fechaInicio" class="form-label">Fecha de Inicio</label>
-            <input type="datetime-local" class="form-control" id="fechaInicio" required />
-        </div>
-        <div class="mb-3 col-md-4">
-            <label for="ubicacion" class="form-label">Ubicación</label>
-            <input type="text" class="form-control" id="ubicacion" required />
-        </div>
+<div class="container-crear-torneo">
+    <div class="formHeader">
+        <h2 class="text-white fs-3 mt-3">Crear Torneo</h2>
     </div>
 
-    <div class="row">
-        <div class="mb-3 col-md-4">
-            <label for="modalidad" class="form-label">Modalidad</label>
-            <select class="form-select" id="modalidad" required>
-                <option value="">Seleccionar modalidad</option>
-                <option value="puntos">Por puntos</option>
-                <option value="eliminacion">Eliminación directa</option>
-            </select>
-        </div>
-        <div class="mb-3 col-md-4">
-            <label for="minimoParticipantes" class="form-label">Mínimo Participantes</label>
-            <input type="number" class="form-control" id="minimoParticipantes" required />
-        </div>
-        <div class="mb-3 col-md-4">
-            <label for="maximoParticipantes" class="form-label">Máximo Participantes</label>
-            <input type="number" class="form-control" id="maximoParticipantes" required />
-        </div>
-    </div>
+    <form id="tournamentForm" class="container mt-2">
 
-    <div class="row">
-        <div class="mb-3 col-md-3">
-            <label for="puntosPorVictoria" class="form-label">Puntos por Victoria</label>
-            <input type="number" class="form-control" id="puntosPorVictoria" required />
-        </div>
-        <div class="mb-3 col-md-3">
-            <label for="puntosPorEmpate" class="form-label">Puntos por Empate</label>
-            <input type="number" class="form-control" id="puntosPorEmpate" required />
-        </div>
-        <div class="mb-3 col-md-3">
-            <label for="puntosPorDerrota" class="form-label">Puntos por Derrota</label>
-            <input type="number" class="form-control" id="puntosPorDerrota" required />
-        </div>
-        <div class="mb-3 col-md-3 switch-container">
-            <label for="permitirEmpates" class="form-check-label switch-label d-block">Permitir Empates</label>
-            <div class="form-switch">
-                <input type="checkbox" class="form-check-input" id="permitirEmpates" />
+        <div class="row">
+            <div class="mb-3 col-md-4">
+                <label for="nombre" class="form-label">Nombre del Torneo</label>
+                <input type="text" class="form-control" id="nombre" required />
+            </div>
+            <div class="mb-3 col-md-4">
+                <label for="fechaInicio" class="form-label">Fecha de Inicio</label>
+                <input type="datetime-local" class="form-control" id="fechaInicio" required />
+            </div>
+            <div class="mb-3 col-md-4">
+                <label for="ubicacion" class="form-label">Ubicación</label>
+                <input type="text" class="form-control" id="ubicacion" required />
             </div>
         </div>
-    </div>
 
-    <div class="row">
-        <div class="col-12">
-            <button type="submit" class="btn btn-primary d-block mx-auto">Crear Torneo</button>
+        <div class="row">
+            <div class="mb-3 col-md-4">
+                <label for="modalidad" class="form-label">Modalidad</label>
+                <select class="form-select" id="modalidad" required>
+                    <option value="">Seleccionar modalidad</option>
+                    <option value="puntos">Por puntos</option>
+                    <option value="eliminacion">Eliminación directa</option>
+                </select>
+            </div>
+            <div class="mb-3 col-md-4">
+                <label for="minimoParticipantes" class="form-label">Mínimo Participantes</label>
+                <input type="number" class="form-control" id="minimoParticipantes" required />
+            </div>
+            <div class="mb-3 col-md-4">
+                <label for="maximoParticipantes" class="form-label">Máximo Participantes</label>
+                <input type="number" class="form-control" id="maximoParticipantes" required />
+            </div>
         </div>
-    </div>
-</form>
+
+        <div class="row">
+            <div class="mb-3 col-md-3">
+                <label for="puntosPorVictoria" class="form-label">Puntos por Victoria</label>
+                <input type="number" class="form-control" id="puntosPorVictoria" required />
+            </div>
+            <div class="mb-3 col-md-3">
+                <label for="puntosPorEmpate" class="form-label">Puntos por Empate</label>
+                <input type="number" class="form-control" id="puntosPorEmpate" required />
+            </div>
+            <div class="mb-3 col-md-3">
+                <label for="puntosPorDerrota" class="form-label">Puntos por Derrota</label>
+                <input type="number" class="form-control" id="puntosPorDerrota" required />
+            </div>
+            <div class="mb-3 col-md-3 switch-container">
+                <label for="permitirEmpates" class="form-check-label switch-label d-block">Permitir Empates</label>
+                <div class="form-switch">
+                    <input type="checkbox" class="form-check-input" id="permitirEmpates" />
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12">
+                <button type="submit" class="btn btn-primary d-block mx-auto">Crear Torneo</button>
+            </div>
+        </div>
+    </form>
+
+</div>

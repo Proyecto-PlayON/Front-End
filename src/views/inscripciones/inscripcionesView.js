@@ -19,13 +19,6 @@ export async function inscripcionesView() {
     const htmlContent = await htmlResponse.text();
     container.innerHTML = htmlContent;
 
-    const cssHref = './views/inscripciones/inscripcionesView.css';
-    if (!document.querySelector(`link[href="${cssHref}"]`)) {
-        const link = document.createElement('link');
-        link.rel = 'stylesheet';
-        link.href = cssHref;
-        document.head.appendChild(link);
-    }
 
     const usuarioService = new UsuarioService();
     const torneoService = new TorneoService();

@@ -7,14 +7,6 @@ export async function rankingComponent(ranking) {
     const htmlContent = await htmlResponse.text();
     container.innerHTML = htmlContent;
 
-    // Cargar y aplicar el CSS si no está cargado
-    const cssHref = './components/ranking/rankingComponent.css';
-    if (!document.querySelector(`link[href="${cssHref}"]`)) {
-        const link = document.createElement('link');
-        link.rel = 'stylesheet';
-        link.href = cssHref;
-        document.head.appendChild(link);
-    }
 
     // Seleccionar el tbody donde se insertarán los datos
     const tableBody = container.querySelector('tbody');

@@ -1,7 +1,6 @@
-.login-container {
+#loginModal .login-container {
   background-color: #101d2c;
   min-height: 80vh;
- 
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -11,35 +10,35 @@
   padding: 2rem;
 }
 
-.logo-container {
+#loginModal .logo-container {
   position: relative;
   display: inline-block;
   text-align: center;
 }
 
-.logo {
+#loginModal .logo {
   width: 400px;
   margin-bottom: 0.5rem;
   display: block;
 }
 
-.titulo-app {
+#loginModal .titulo-app {
   position: absolute;
   top: 33.5%;
   left: 50%;
-  transform: translate(-50%, -10%); 
+  transform: translate(-50%, -10%);
   color: white;
   font-size: 4rem;
   font-weight: bold;
   text-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
 }
 
-.titulo-form {
+#loginModal .titulo-form {
   font-size: 1.7rem;
   margin: -4rem 0 0.5rem;
 }
 
-#loginForm {
+#loginModal #loginForm {
   display: flex;
   flex-direction: column;
   gap: 0.8rem;
@@ -51,34 +50,33 @@
   margin-bottom: 20px;
 }
 
-.login-form label {
+#loginModal .login-form label {
   font-size: 0.9rem;
-
 }
 
-.login-form input[type="email"],
-.login-form input[type="password"] {
+#loginModal .login-form input[type="email"],
+#loginModal .login-form input[type="password"] {
   padding: 0.5rem;
   border-radius: 5px;
   border: none;
   font-size: 1rem;
 }
 
-.recordarme {
+#loginModal .recordarme {
   display: flex;
   align-items: center;
   gap: 0.5rem;
   font-size: 0.85rem;
 }
 
-.link-secundario {
+#loginModal .link-secundario {
   font-size: 0.85rem;
   color: #5ebfff;
   text-decoration: none;
   align-self: flex-start;
 }
 
-.login-form button {
+#loginModal .login-form button {
   margin-top: 1rem;
   padding: 0.6rem;
   background-color: #0097a7;
@@ -90,31 +88,35 @@
   font-size: 1rem;
 }
 
-.registrarse {
+#loginModal .registrarse {
   margin-top: 1rem;
   font-size: 0.85rem;
   text-align: center;
 }
 
-.registrarse a {
+#loginModal .registrarse a {
   color: #5ebfff;
   text-decoration: none;
 }
-.modal-content {
-  background-color: #1e2a38;
+
+#loginModal .modal-content {
+  background-color: #111827;
+  color: white;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0,0,0,0.4);
   border: none;
 }
 
-.modal-body.container {
+#loginModal .modal-body.container {
   padding: 40px 30px;
   color: #ffffff;
 }
+
 body.modal-open {
   background-color: #111827;
 }
-.btn-primary {
+
+#loginModal .btn-primary {
   background-color: #007b8a;
   border: none;
   border-radius: 6px;
@@ -123,21 +125,15 @@ body.modal-open {
   font-weight: bold;
 }
 
-.btn-primary:hover {
+#loginModal .btn-primary:hover {
   background-color: #4da5c7;
 }
-#loginError {
+
+#loginModal #loginError {
   color: #ff4d4d;
   font-weight: bold;
 }
-/* Aplica a todo el contenido del modal */
-#loginModal .modal-content {
-  background-color: #111827;
-  color: white;
-  border-radius: 10px;
-}
 
-/* Forzamos blanco en headers, labels y texto */
 #loginModal h1,
 #loginModal h2,
 #loginModal h3,
@@ -146,53 +142,60 @@ body.modal-open {
 #loginModal .modal-title {
   color: white !important;
 }
-.logo-overlay-container {
+
+#loginModal .logo-overlay-container {
   position: relative;
   text-align: center;
   margin-top: 1rem;
 }
 
-.logo-overlay-container img {
+#loginModal .logo-overlay-container img {
   position: absolute;
-  top: -30px; /* Ajustá según necesidad */
+  top: -30px;
   left: 50%;
   transform: translateX(-50%);
   width: 180px;
-  opacity: 0.2; /* Para un efecto más sutil */
+  opacity: 0.2;
   z-index: 1;
 }
 
-.logo-overlay-container h1 {
+#loginModal .logo-overlay-container h1 {
   position: relative;
   z-index: 2;
   font-size: 3rem;
   font-weight: bold;
-  margin-top: 60px; /* Ajustá para dejar espacio visual al logo */
+  margin-top: 60px;
 }
-.formHeader {
+
+#loginModal .formHeader {
   position: relative;
   margin-bottom: 0.5rem;
   z-index: 1;
 }
 
-/* Logo detrás */
-.logo-background {
+#loginModal .logo-background {
   position: absolute;
   top: 50%;
   left: 50%;
   width: 180px;
   transform: translate(-50%, -50%);
-  opacity: 0.80; /* Ajustá si querés más o menos visibilidad */
+  opacity: 0.80;
   z-index: 1;
   margin-top: -30px;
 }
 
-/* Texto por encima del logo */
-.titulo-logo {
+#loginModal .titulo-logo {
   position: relative;
   z-index: 2;
   font-size: 3rem;
   color: white;
   font-weight: bold;
   margin-top: 60px;
+}
+#loginModal button.btn {
+    font-size: 1rem;
+}
+#loginModal .container .text-center {
+    margin-top: 0;
+    margin-bottom: 0 !important;
 }

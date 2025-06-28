@@ -18,6 +18,7 @@ body {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-size: 18px;
   background-color: var(--fondo);
+  background-color: #111827;
 }
 
 /* === VIDEO DE FONDO === */

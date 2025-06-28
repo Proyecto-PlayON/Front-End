@@ -9,14 +9,6 @@ export async function fixtureComponent(fixture) {
     const htmlContent = await htmlResponse.text();
     container.innerHTML = htmlContent;
 
-    // Cargar CSS si no está aplicado
-    const cssHref = './components/fixture/fixtureComponent.css';
-    if (!document.querySelector(`link[href="${cssHref}"]`)) {
-        const link = document.createElement('link');
-        link.rel = 'stylesheet';
-        link.href = cssHref;
-        document.head.appendChild(link);
-    }
 
     const toggleButton = container.querySelector(".dropdown-toggle");
     const menu = container.querySelector("#dropdownMenu");

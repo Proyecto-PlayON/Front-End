@@ -16,14 +16,6 @@ export async function misTorneosView() {
         return container;
     }
 
-    // Cargar el CSS si no está ya insertado
-    const cssHref = './views/misTorneos/misTorneosView.css';
-    if (!document.querySelector(`link[href="${cssHref}"]`)) {
-        const link = document.createElement('link');
-        link.rel = 'stylesheet';
-        link.href = cssHref;
-        document.head.appendChild(link);
-    }
 
     const contenedor = container.querySelector("#tournament-container");
     contenedor.innerHTML = ""; // limpiamos contenido anterior si hay

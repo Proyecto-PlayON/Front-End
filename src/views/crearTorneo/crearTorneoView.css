@@ -1,24 +1,17 @@
-body {
-  background-color: #111827;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  color: #ffffff;
-  margin: 20px;
-  padding: 0;
-}
-
-.container {
+.container-crear-torneo {
   background-color: #1e2a38;
   padding: 40px 30px;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0,0,0,0.4);
-  margin-top: 100px;
+  margin-top: 30px;
   margin-bottom: 60px;
   max-width: 1000px;
   margin-left: auto;
   margin-right: auto;
+  font-family: 'Segoe UI', sans-serif;
 }
 
-.container input.form-control {
+.container-crear-torneo input.form-control {
   background-color: #f4f4f5;
   border: none;
   border-radius: 8px;
@@ -26,11 +19,11 @@ body {
   margin-bottom: 10px;
 }
 
-.container .form-check-label {
+.container-crear-torneo .form-check-label {
   color: gray;
 }
 
-.container .btn-primary {
+.container-crear-torneo .btn-primary {
   background-color: #007b8a;
   border: none;
   border-radius: 6px;
@@ -39,51 +32,56 @@ body {
   font-weight: bold;
 }
 
-.container .btn-primary:hover {
+.container-crear-torneo .btn-primary:hover {
   background-color: #4da5c7;
 }
 
-.container a {
+.container-crear-torneo button.btn {
+  font-size: 1rem;
+}
+
+.container-crear-torneo a {
   color: #4da5c7;
   text-decoration: none;
 }
 
-.container a:hover {
+.container-crear-torneo a:hover {
   text-decoration: underline;
 }
 
-.container .text-center {
+.container-crear-torneo .text-center {
   margin-top: 15px;
 }
 
-.formHeader {
+.container-crear-torneo .formHeader {
   text-align: center;
   margin-bottom: 20px;
+  position: relative;
+  z-index: 1;
 }
 
-.formHeader img {
+.container-crear-torneo .formHeader img {
   margin-top: 20px;
   width: 180px;
 }
 
-.formHeader h1 {
+.container-crear-torneo .formHeader h1 {
   font-size: 50px;
   margin-bottom: 40px;
   color: white;
 }
 
-.form-check.form-switch{
+.container-crear-torneo .form-check.form-switch {
   margin-top: 0.2rem;
 }
 
-
-.switch-container {
+.container-crear-torneo .switch-container {
   display: flex;
   align-items: center;
   height: 100px;
 }
 
-.switch-label {
+.container-crear-torneo .switch-label {
   display: flex;
   flex-direction: column;
   line-height: 1;

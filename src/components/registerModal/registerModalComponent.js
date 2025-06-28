@@ -17,13 +17,6 @@ export async function setupRegisterFormHandler() {
   const htmlContent = await htmlResponse.text();
   container.innerHTML = htmlContent;
 
-  const cssHref = './components/registerModal/registerModalComponent.css';
-  if (!document.querySelector(`link[href="${cssHref}"]`)) {
-    const link = document.createElement('link');
-    link.rel = 'stylesheet';
-    link.href = cssHref;
-    document.head.appendChild(link);
-  }
 
   document.body.appendChild(container);
   // Mostrar el modal correctamente

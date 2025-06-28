@@ -18,13 +18,6 @@ export async function setupLoginFormHandler() {
   const htmlContent = await htmlResponse.text();
   container.innerHTML = htmlContent;
 
-  const cssHref = './components/loginModal/loginModalComponent.css';
-  if (!document.querySelector(`link[href="${cssHref}"]`)) {
-    const link = document.createElement('link');
-    link.rel = 'stylesheet';
-    link.href = cssHref;
-    document.head.appendChild(link);
-  }
 
   document.body.appendChild(container);
 
