@@ -1,9 +1,11 @@
 import { UsuarioApi } from "../repositories/usuarioApi.js";
+import { UsuarioApiFalso } from "../repositories/usuarioApiFalso.js";
 
 export class UsuarioService{
 
     constructor(){
-        this.repository = new UsuarioApi();
+        //this.repository = new UsuarioApi();
+        this.repository = new UsuarioApiFalso();
     }
 
     async login(json){

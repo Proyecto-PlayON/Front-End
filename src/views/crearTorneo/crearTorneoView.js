@@ -63,8 +63,10 @@ export async function crearTorneoView() {
         // Crear torneo
         const torneoService = new TorneoService();
         try {
-            await torneoService.crearTorneo(torneo);
+            let torneoCreado = await torneoService.crearTorneo(torneo);
             alert("Torneo creado con éxito");
+            location.hash = `#/inscripciones?id=${torneoCreado.id}`;
+
             // redirigir o limpiar formulario si querés
         } catch (error) {
             console.error("Error al crear torneo:", error);

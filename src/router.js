@@ -9,13 +9,15 @@ const routes = {
   '/welcome': welcomeView,
   '/home': homeView,
   '/torneos': misTorneosView,
-  '/incripciones': inscripcionesView,
-  '/crearTorneo': crearTorneoView,
+  '/inscripciones': inscripcionesView,
+  '/crear-torneo': crearTorneoView,
   '/torneo': torneoView
 };
 
 export async function router() {
-  const path = location.hash.slice(1) || '/';
+  const fullHash = location.hash.slice(1) || '/';
+  const [rawPath, queryString] = fullHash.split('?');
+  const path = rawPath.toLowerCase(); // para asegurar coincidencias
   const app = document.querySelector('.main');
 
   const user = JSON.parse(localStorage.getItem('user'));
@@ -32,8 +34,12 @@ export async function router() {
 
   const render = routes[path] || NotFound;
 
+  // Parsear parámetros
+  const params = new URLSearchParams(queryString);
+  const props = Object.fromEntries(params.entries()); // ejemplo: { id: "4" }
+
   app.innerHTML = '';
-  const content = await render();
+  const content = await render(props);
   app.appendChild(content);
 }
 
@@ -50,5 +56,3 @@ document.addEventListener('click', async (event) => {
     await router();              
   }
 });
-
-

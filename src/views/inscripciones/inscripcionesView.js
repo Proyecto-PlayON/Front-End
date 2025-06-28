@@ -1,9 +1,16 @@
 import { UsuarioService } from "../../services/usuarioService.js";
 import { TorneoService } from "../../services/torneoService.js";
 
+export async function inscripcionesView() {
+    const params = new URLSearchParams(location.hash.split('?')[1]);
+    const torneoId = params.get('id');
 
+    if (!torneoId) {
+        const div = document.createElement('div');
+        div.innerHTML = `<p class="text-white">No se proporcionó un ID de torneo.</p>`;
+        return div;
+    }
 
-export async function inscripcionesView(torneo) {
 
     const container = document.createElement('section');
     container.classList.add('content');
@@ -24,13 +31,14 @@ export async function inscripcionesView(torneo) {
     // Instancias y elementos
     const usuarioService = new UsuarioService();
     const torneoService = new TorneoService();
+    const torneo = await torneoService.getTorneoById(torneoId);
+    
     const playersContainer = container.querySelector('#players-container');
     const searchInput = container.querySelector('input[placeholder="Buscar participantes..."]');
     const searchButton = container.querySelector('button[type="button"]');
     const tablaBody = container.querySelector('#tabla-inscriptos tbody');
     const btnIniciar = container.querySelector('#btn-inscribir');
 
-    const torneoId = torneo.id;
 
     const contenedorInfo = document.createElement('div');
     contenedorInfo.className = 'torneo-info  p-3 rounded';
@@ -128,6 +136,7 @@ export async function inscripcionesView(torneo) {
     btnIniciar.addEventListener('click', async () => {
         await torneoService.iniciarTorneo(torneoId);
         alert("Torneo iniciado ✅");
+        location.hash = `#/torneo?id=${torneoId}`;
     });
 
     await renderUsuarios();
