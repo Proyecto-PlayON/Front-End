@@ -1,4 +1,5 @@
 import { setupLoginFormHandler } from "../loginModal/loginModalComponent.js";
+import { setupRegisterFormHandler } from "../registerModal/registerModalComponent.js";
 
 let loggedUser = JSON.parse(localStorage.getItem('user')) || null;
 let navigateFn = () => {};
@@ -42,7 +43,7 @@ function renderLoginWidget() {
     button.textContent = "Login";
     button.className = "btn-login";
     button.onclick = () => {
-      setupLoginFormHandler(); // Se abre el modal
+      setupRegisterFormHandler(); // Se abre el modal
     };
   }
 

@@ -1,0 +1,39 @@
+<div class="modal fade" id="registerModal" tabindex="-1" aria-labelledby="registerModalLabel" aria-hidden="true">
+  <div class="modal-dialog" style="max-width: 600px;">
+    <div class="modal-content">
+        <!-- Header personalizado con logo y título -->
+        <div class="formHeader text-center position-relative">
+            <img src="./assets/img/logo.png" alt="logo PlayOn" class="logo-background">
+            <h1 class="titulo-logo">PlayOn</h1>
+            <h2 class="text-white fs-3 mt-3">Registrate</h2>
+        </div>
+        <form class="container mt-2" style="max-width: 500px;" id="registerForm">
+            <div class="mb-3">
+                <label for="name" class="form-label">Nombre</label>
+                <input type="text" class="form-control" id="name" placeholder="Ingrese su nombre">
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Correo electrónico</label>
+                <input type="email" class="form-control" id="email" placeholder="Ingrese su correo electrónico">
+            </div>
+            <div class="mb-3">
+                <label for="username" class="form-label">Usuario</label>
+                <input type="text" class="form-control" id="username" placeholder="Ingrese su nombre de usuario">
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Contraseña</label>
+                <input type="password" class="form-control" id="password" placeholder="Ingrese su contraseña">
+            </div>
+            <div class="mb-3 text-center">
+                <button type="submit" class="btn btn-primary">Registrar</button>
+                <div id="registerError" class="text-danger mt-2" style="display: none;">
+                    Error: El nombre de usuario o el correo electrónico ya están en uso.
+                </div>
+            </div>
+            <div class="mb-3 text-center">
+                <a href="#" id="goToLogin">¿Ya tienes una cuenta? Inicia sesión</a>
+            </div>
+        </form>
+    </div>
+  </div>
+</div>

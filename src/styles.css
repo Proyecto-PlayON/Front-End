@@ -163,7 +163,7 @@ body {
 .main {
   display: flex;
   justify-content: center;
-  min-height: calc(90vh - 270px);
+  min-height: 110vh;
   max-height: calc(900vh - 2700px);
 }
 

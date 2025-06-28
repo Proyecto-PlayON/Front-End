@@ -39,7 +39,7 @@
   margin: -4rem 0 0.5rem;
 }
 
-#loginForm {
+#registerForm {
   display: flex;
   flex-direction: column;
   gap: 0.8rem;
@@ -131,7 +131,7 @@ body.modal-open {
   font-weight: bold;
 }
 /* Aplica a todo el contenido del modal */
-#loginModal .modal-content {
+#registerModal .modal-content {
   background-color: #111827;
   color: white;
   border-radius: 10px;
@@ -195,4 +195,7 @@ body.modal-open {
   color: white;
   font-weight: bold;
   margin-top: 60px;
+}
+#registerModal label {
+  color: white !important;
 }

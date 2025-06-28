@@ -1,6 +1,16 @@
 import { UsuarioService } from "../../services/usuarioService.js";
+import { setupRegisterFormHandler } from "../registerModal/registerModalComponent.js";
 
 export async function setupLoginFormHandler() {
+
+  // ✅ Si ya existe el modal login, mostrarlo directamente
+  const existingModal = document.querySelector('#loginModal');
+  if (existingModal) {
+    const modalInstance = bootstrap.Modal.getInstance(existingModal) || new bootstrap.Modal(existingModal);
+    modalInstance.show();
+    return;
+  }
+
   const container = document.createElement('section');
   container.classList.add('content');
 
@@ -51,4 +61,15 @@ export async function setupLoginFormHandler() {
       errorDiv.style.display = "block";
     }
   });
+
+  const registerLink = form.querySelector('a[href="register.html"]');
+  if (registerLink) {
+    registerLink.addEventListener('click', async (e) => {
+      e.preventDefault();
+      modal.hide();
+      modalElement.addEventListener('hidden.bs.modal', async () => {
+         await setupRegisterFormHandler();
+      }, { once: true });
+    });
+  }
 }
