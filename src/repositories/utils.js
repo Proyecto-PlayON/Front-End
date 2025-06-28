@@ -1,3 +1,5 @@
+import { showMessage } from "../components/showMessages/showMessages.js";
+
 export async function fetchConToken(url, options = {}) {
     const token = localStorage.getItem('token');
 
@@ -8,21 +10,31 @@ export async function fetchConToken(url, options = {}) {
 
     try {
         const response = await fetch(url, { ...options, headers });
+
+        // ✅ Si no hay contenido, devolvemos null o un objeto vacío
+        if (response.status === 204) {
+            return null; // o {}
+        }
+
         const contentType = response.headers.get('content-type');
 
         let data;
         if (contentType && contentType.includes('application/json')) {
             data = await response.json();
-        } 
-        else {
+        } else {
             const text = await response.text();
-            throw new Error(text);
+            // Solo lanzar error si no fue exitoso
+            if (!response.ok) {
+                throw new Error(text || 'Ocurrió un error inesperado');
+            }
+            // Si fue exitoso, aunque no tenga JSON
+            return text;
         }
 
         if (!response.ok) {
             if (response.status === 401) {
-                alert('Sesión expirada. Volvé a iniciar sesión.');
-                window.location.href = '/login.html';
+                showMessage('Sesión expirada. Volvé a iniciar sesión.', 'danger');
+                location.hash = '#/welcome';
                 return null;
             }
             throw new Error(data.message || 'Ocurrió un error inesperado');
@@ -30,10 +42,8 @@ export async function fetchConToken(url, options = {}) {
 
         return data;
 
-    }
-    catch (error) {
+    } catch (error) {
         console.error('fetchConToken Error:', error);
-        alert(error.message || 'Error de conexión con el servidor');
-        return null;
+        throw error;
     }
 }

@@ -1,26 +1,27 @@
 import { fixtureComponent } from "../../components/fixture/fixtureComponent.js";
 import { rankingComponent } from "../../components/ranking/rankingComponent.js";
 import { MotorService } from "../../services/motorService.js";
+import { showMessage } from "../../components/showMessages/showMessages.js";
 
 export async function torneoView() {
     const params = new URLSearchParams(location.hash.split('?')[1]);
     const torneoId = params.get('id');
 
-    if (!torneoId) {
-        const div = document.createElement('div');
-        div.innerHTML = `<p class="text-white">No se proporcionó un ID de torneo.</p>`;
-        return div;
-    }
-
     const container = document.createElement('section');
     container.classList.add('content');
 
-    // Cargar el HTML de la página
+    if (!torneoId) {
+        showMessage("No se proporcionó un ID de torneo.", "danger");
+        container.innerHTML = `<p class="text-white">No se proporcionó un ID de torneo.</p>`;
+        return container;
+    }
+
+    // Cargar el HTML de la vista
     const htmlResponse = await fetch('./views/torneo/torneoView.html');
     const htmlContent = await htmlResponse.text();
     container.innerHTML = htmlContent;
 
-    // Cargar y aplicar el CSS solo si no se ha cargado antes
+    // Cargar CSS si no está cargado aún
     const cssHref = './views/torneo/torneoView.css';
     if (!document.querySelector(`link[href="${cssHref}"]`)) {
         const link = document.createElement('link');
@@ -29,16 +30,35 @@ export async function torneoView() {
         document.head.appendChild(link);
     }
 
-    let motorService = new MotorService();
-    let ranking = await motorService.getRankingByIdTorneo(torneoId);
-    let fixture = await motorService.getPartidosByIdTorneo(torneoId);
+    const motorService = new MotorService();
+    let ranking = [];
+    let fixture = [];
 
-    let fixtureElement = await fixtureComponent(fixture);
-    let rankingElement = await rankingComponent(ranking);
+    try {
+        ranking = await motorService.getRankingByIdTorneo(torneoId);
+    } catch (error) {
+        console.error("Error al obtener ranking:", error);
+        showMessage("Error al obtener el ranking del torneo.", "danger");
+    }
 
-    let torneoContainer = container.querySelector('.torneo-container-content');
-    torneoContainer.appendChild(rankingElement);
-    torneoContainer.appendChild(fixtureElement);
+    try {
+        fixture = await motorService.getPartidosByIdTorneo(torneoId);
+    } catch (error) {
+        console.error("Error al obtener el fixture:", error);
+        showMessage("Error al obtener el fixture del torneo.", "danger");
+    }
+
+    try {
+        const fixtureElement = await fixtureComponent(fixture);
+        const rankingElement = await rankingComponent(ranking);
+
+        const torneoContainer = container.querySelector('.torneo-container-content');
+        torneoContainer.appendChild(rankingElement);
+        torneoContainer.appendChild(fixtureElement);
+    } catch (error) {
+        console.error("Error al renderizar componentes:", error);
+        showMessage("Error al mostrar la información del torneo.", "danger");
+    }
 
     return container;
 }

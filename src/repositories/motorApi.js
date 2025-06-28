@@ -17,13 +17,11 @@ export class MotorApi{
                 },
                 body: JSON.stringify(json)
             });
-            alert('El partido fue actualizado con éxito');
             return data;
         } 
         catch (error) {
             console.error('Error:', error);
-            alert(error.message || 'Error de conexión con el servidor');
-            return null;
+            throw error;
         }
     }
 
@@ -35,8 +33,7 @@ export class MotorApi{
         } 
         catch (error) {
             console.error('Error:', error);
-            alert(error.message || 'Error de conexión con el servidor');
-            return null;
+            throw error;
         }
     }
 
@@ -49,8 +46,7 @@ export class MotorApi{
         } 
         catch (error) {
             console.error('Error:', error);
-            alert(error.message || 'Error de conexión con el servidor');
-            return null;
+            throw error;
         }
     }
 
@@ -62,8 +58,7 @@ export class MotorApi{
         } 
         catch (error) {
             console.error('Error:', error);
-            alert(error.message || 'Error de conexión con el servidor');
-            return null;
+            throw error;
         }
     }
 
@@ -74,8 +69,7 @@ export class MotorApi{
             return data;
         } catch (error) {
             console.error('Error:', error);
-            alert(error.message || 'Error de conexión con el servidor');
-            return null;
+            throw error;
         }
     }
 

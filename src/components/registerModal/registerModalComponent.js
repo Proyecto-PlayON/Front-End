@@ -1,5 +1,6 @@
 import { UsuarioService } from "../../services/usuarioService.js";
 import { setupLoginFormHandler } from "../loginModal/loginModalComponent.js";
+import { showMessage } from "../showMessages/showMessages.js";
 
 export async function setupRegisterFormHandler() {
 
@@ -55,8 +56,8 @@ export async function setupRegisterFormHandler() {
     const usuarioService = new UsuarioService();
     try {
         await usuarioService.register(usuario);
-        alert('¡Registro exitoso! Ahora podés iniciar sesión.');
-        errorDiv.style.display = 'none';
+        showMessage('¡Registro exitoso! Ahora podés iniciar sesión.', 'success');
+ 
 
         // Cerrar el modal de registro y abrir el de login
         modalInstance.hide();
@@ -75,8 +76,7 @@ export async function setupRegisterFormHandler() {
     } 
     catch (error) {
         console.error('Error al registrar usuario:', error);
-        errorDiv.textContent = 'Error: El nombre de usuario o el correo electrónico ya están en uso.';
-        errorDiv.style.display = 'block';
+        showMessage(error.message || 'Ocurrió un error al registrarse.', 'danger');
     }
 
   });

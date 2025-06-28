@@ -16,13 +16,11 @@ export class TorneoApi{
                 },
                 body: JSON.stringify(participante)
             });
-            alert('La inscripción fue creada con éxito');
             return data;
         } 
         catch (error) {
             console.error('Error:', error);
-            alert(error.message || 'Error de conexión con el servidor');
-            return null;
+            throw error;
         }
     }
 
@@ -31,14 +29,11 @@ export class TorneoApi{
             const data = await fetchConToken(`${this.URL.URI_INSCRIPCION}/${idInscripcion}`, {
                 method: 'DELETE'
             });
-
-            alert('La inscripción fue eliminada con éxito');
             return data;
         } 
         catch (error) {
             console.error('Error:', error);
-            alert(error.message || 'Error de conexión con el servidor');
-            return null;
+            throw error;
         }
     }
 
@@ -51,13 +46,11 @@ export class TorneoApi{
                 },
                 body: JSON.stringify(torneo)
             });
-            alert('El torneo fue creado con éxito');
             return data;
         } 
         catch (error) {
             console.error('Error:', error);
-            alert(error.message || 'Error de conexión con el servidor');
-            return null;
+            throw error;
         }
     }
 
@@ -71,13 +64,11 @@ export class TorneoApi{
                 },
                 body: JSON.stringify()
             });
-            alert('El torneo fue iniciado con éxito');
             return data;
         } 
         catch (error) {
             console.error('Error:', error);
-            alert(error.message || 'Error de conexión con el servidor');
-            return null;
+            throw error;
         }
     }
 
@@ -88,8 +79,7 @@ export class TorneoApi{
         } 
         catch (error) {
             console.error('Error:', error);
-            alert(error.message || 'Error de conexión con el servidor');
-            return null;
+            throw error;
         }
     }
 
@@ -101,8 +91,7 @@ export class TorneoApi{
         } 
         catch (error) {
             console.error('Error:', error);
-            alert(error.message || 'Error de conexión con el servidor');
-            return null;
+            throw error;
         }
     }
 
@@ -116,13 +105,11 @@ export class TorneoApi{
                 },
                 body: JSON.stringify(torneo) 
             });
-            alert('El torneo fue actualizado con éxito');
             return data;
         } 
         catch (error) {
             console.error('Error:', error);
-            alert(error.message || 'Error de conexión con el servidor');
-            return null;
+            throw error;
         }
     }
 }

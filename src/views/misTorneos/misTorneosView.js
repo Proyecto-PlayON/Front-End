@@ -1,16 +1,22 @@
 import { TorneoService } from "../../services/torneoService.js";
-import { inscripcionesView } from "../inscripciones/inscripcionesView.js";
+import { showMessage } from "../../components/showMessages/showMessages.js";
 
-export async function misTorneosView(){
+export async function misTorneosView() {
     const container = document.createElement('section');
     container.classList.add('content');
 
-    // Cargar el HTML de la página
-    const htmlResponse = await fetch('./views/misTorneos/misTorneosView.html');
-    const htmlContent = await htmlResponse.text();
-    container.innerHTML = htmlContent;
+    // Cargar el HTML de la vista
+    try {
+        const htmlResponse = await fetch('./views/misTorneos/misTorneosView.html');
+        const htmlContent = await htmlResponse.text();
+        container.innerHTML = htmlContent;
+    } catch (error) {
+        console.error("Error al cargar HTML de la vista:", error);
+        showMessage("Error al cargar la vista de torneos.", "danger");
+        return container;
+    }
 
-    // Cargar y aplicar el CSS solo si no se ha cargado antes
+    // Cargar el CSS si no está ya insertado
     const cssHref = './views/misTorneos/misTorneosView.css';
     if (!document.querySelector(`link[href="${cssHref}"]`)) {
         const link = document.createElement('link');
@@ -19,11 +25,25 @@ export async function misTorneosView(){
         document.head.appendChild(link);
     }
 
-    let torneoService = new TorneoService();
-    let torneos = await torneoService.getTorneos();
-
     const contenedor = container.querySelector("#tournament-container");
-    contenedor.innerHTML = ""; // limpio por si hay contenido previo
+    contenedor.innerHTML = ""; // limpiamos contenido anterior si hay
+
+    let torneoService = new TorneoService();
+    let torneos = [];
+
+    try {
+        torneos = await torneoService.getTorneos();
+
+        if (!torneos || torneos.length === 0) {
+            showMessage("No tenés torneos creados aún.", "info");
+            return container;
+        }
+    } 
+    catch (error) {
+        console.error("Error al obtener torneos:", error);
+        showMessage("Error al cargar tus torneos.", "danger");
+        return container;
+    }
 
     for (let torneo of torneos) {
         const div = document.createElement("div");
@@ -59,22 +79,15 @@ export async function misTorneosView(){
 
         const btnInscripciones = div.querySelector(".inscripciones-btn");
         const btnVer = div.querySelector(".ver-btn");
-        // Deshabilitar según estado
-        if (torneo.estado.id === 1) {
-            btnVer.disabled = true;
-        }
-        if (torneo.estado.id === 2) {
-            btnInscripciones.disabled = true;
-        }
-        if (torneo.estado.id === 3) {
-            btnInscripciones.disabled = true;
-        }
-        // Botón "Inscripciones"
+
+        // Deshabilitar botones según estado
+        if (torneo.estado.id === 1) btnVer.disabled = true; // en espera
+        if (torneo.estado.id === 2 || torneo.estado.id === 3) btnInscripciones.disabled = true; // en proceso o terminado
+
         btnInscripciones.addEventListener("click", () => {
             location.hash = `#/inscripciones?id=${torneo.id}`;
         });
 
-        // Botón "Ver"
         btnVer.addEventListener("click", () => {
             location.hash = `#/torneo?id=${torneo.id}`;
         });
@@ -83,4 +96,4 @@ export async function misTorneosView(){
     }
 
     return container;
-} 
+}

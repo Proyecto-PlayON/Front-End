@@ -29,19 +29,15 @@ export class UsuarioApi{
             }
 
             if (!response.ok) {
-                alert(data.message || 'Ocurrió un error inesperado');
-                return null;
+                throw new Error(data.message || 'Ocurrió un error inesperado');
             }
-
-            alert('Te logueaste con éxito');
             return data;
         } 
         catch (error) {
             console.error('Error: ', error);
-            alert(error.message || 'Error de conexión con el servidor');
-            return null;
+            throw error;
         }
-        }
+    }
 
     async register(json) {
         try {
@@ -65,17 +61,13 @@ export class UsuarioApi{
             }
 
             if (!response.ok) {
-                alert(data.message || 'Ocurrió un error inesperado');
-                return null;
+                throw new Error(data.message || 'Ocurrió un error inesperado');
             }
-
-            alert('Te registraste con éxito');
             return data;
         } 
         catch (error) {
             console.error('Error:', error);
-            alert(error.message || 'Error de conexión con el servidor');
-            return null;
+            throw error;
         }
     }
 
@@ -93,8 +85,7 @@ export class UsuarioApi{
         }
         catch (error) {
             console.error('Error:', error);
-            alert(error.message || 'Error de conexión con el servidor');
-            return null;
+            throw error;
         }
     }
 }

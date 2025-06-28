@@ -1,5 +1,6 @@
 import { setupLoginFormHandler } from "../loginModal/loginModalComponent.js";
 import { setupRegisterFormHandler } from "../registerModal/registerModalComponent.js";
+import { showMessage } from "../showMessages/showMessages.js"; // Asegurate de importar correctamente
 
 let loggedUser = JSON.parse(localStorage.getItem('user')) || null;
 let navigateFn = () => {};
@@ -38,12 +39,13 @@ function renderLoginWidget() {
       localStorage.removeItem('token');
       renderLoginWidget();
       location.hash = "#/welcome";
+      showMessage("Sesión cerrada correctamente", "info"); // 👈 Mensaje al cerrar sesión
     };
   } else {
     button.textContent = "Login";
     button.className = "btn-login";
     button.onclick = () => {
-      setupRegisterFormHandler(); // Se abre el modal
+      setupLoginFormHandler(); // Se abre el modal
     };
   }
 

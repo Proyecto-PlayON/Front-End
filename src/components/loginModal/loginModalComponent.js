@@ -1,9 +1,9 @@
 import { UsuarioService } from "../../services/usuarioService.js";
 import { setupRegisterFormHandler } from "../registerModal/registerModalComponent.js";
+import { showMessage } from "../showMessages/showMessages.js"; // asegurate de tenerlo exportado
 
 export async function setupLoginFormHandler() {
 
-  // ✅ Si ya existe el modal login, mostrarlo directamente
   const existingModal = document.querySelector('#loginModal');
   if (existingModal) {
     const modalInstance = bootstrap.Modal.getInstance(existingModal) || new bootstrap.Modal(existingModal);
@@ -34,7 +34,7 @@ export async function setupLoginFormHandler() {
 
   const form = container.querySelector("#loginForm");
   if (!form) {
-    console.warn("No se encontró el formulario de login");
+    showMessage("No se encontró el formulario de login", "danger");
     return;
   }
 
@@ -50,15 +50,22 @@ export async function setupLoginFormHandler() {
     };
 
     const userService = new UsuarioService();
-    const loggedUser = await userService.login(userData);
 
-    if (loggedUser) {
-      modal.hide(); // Cerrar el modal
-      location.hash = '#/home'; // Redirigir
-    } else {
-      const errorDiv = form.querySelector("#loginError");
-      errorDiv.textContent = "Usuario o contraseña incorrectos.";
-      errorDiv.style.display = "block";
+    try {
+      const loggedUser = await userService.login(userData);
+
+      if (loggedUser) {
+        showMessage("¡Inicio de sesión exitoso!", "success");
+        modal.hide();
+        location.hash = '#/home';
+      } 
+      else {
+        showMessage("Usuario o contraseña incorrectos.", "danger");
+      }
+    } 
+    catch (error) {
+      console.error("Error en login:", error);
+      showMessage(error.message || "Ocurrió un error al intentar iniciar sesión.", "danger");
     }
   });
 
@@ -68,7 +75,7 @@ export async function setupLoginFormHandler() {
       e.preventDefault();
       modal.hide();
       modalElement.addEventListener('hidden.bs.modal', async () => {
-         await setupRegisterFormHandler();
+        await setupRegisterFormHandler();
       }, { once: true });
     });
   }

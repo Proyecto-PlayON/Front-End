@@ -1,4 +1,5 @@
 import { TorneoService } from "../../services/torneoService.js";
+import { showMessage } from "../../components/showMessages/showMessages.js";
 
 export async function crearTorneoView() {
     const container = document.createElement('section');
@@ -64,13 +65,13 @@ export async function crearTorneoView() {
         const torneoService = new TorneoService();
         try {
             let torneoCreado = await torneoService.crearTorneo(torneo);
-            alert("Torneo creado con éxito");
+            showMessage("Torneo creado con éxito!!", "success");
             location.hash = `#/inscripciones?id=${torneoCreado.id}`;
 
             // redirigir o limpiar formulario si querés
         } catch (error) {
             console.error("Error al crear torneo:", error);
-            alert("Error al crear torneo");
+            showMessage("Error al crear torneo...", "danger");
         }
     });
 
