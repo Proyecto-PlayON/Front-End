@@ -1,6 +1,6 @@
 import { mostrarModalPartido } from '../partidoModal/partidoModalComponent.js';
 
-export async function fixtureComponent(fixture) {
+export async function fixtureComponent(fixture, torneo) {
     const container = document.createElement('section');
     container.classList.add('content');
 
@@ -19,7 +19,17 @@ export async function fixtureComponent(fixture) {
 
     // Agrupar por ronda
     const rondasUnicas = [...new Set(fixture.map(f => f.ronda))].sort((a, b) => a - b);
-    let rondaActualIndex = rondasUnicas.length - 1;
+    
+    // Buscar la primera ronda con partidos pendientes
+    let rondaActualIndex = rondasUnicas.findIndex(ronda => {
+        const partidosDeRonda = fixture.filter(p => p.ronda === ronda);
+        return partidosDeRonda.some(p => p.estadoId === 1);
+    });
+
+    // Si no se encontró ninguna con estadoId === 1, usar la última ronda
+    if (rondaActualIndex === -1) {
+        rondaActualIndex = rondasUnicas.length - 1;
+    }
 
     // Llenar dropdown
     menu.innerHTML = '';
@@ -81,17 +91,26 @@ export async function fixtureComponent(fixture) {
                 row.classList.add("partido");
                 row.style.cursor = "pointer";
 
-
+                let resultado1Text;
+                let resultado2Text;
+                if(partido.resultadoUsuario1 === null) {
+                    resultado1Text = "-";
+                    resultado2Text = "-";
+                } else{
+                    resultado1Text = partido.resultadoUsuario1;
+                    resultado2Text = partido.resultadoUsuario2;
+                }
                 row.innerHTML = `
                     <td class="participante1">${partido.usuario1Nombre}</td>
-                    <td class="goles1">${partido.resultadoUsuario1}</td>
-                    <td>-</td>
-                    <td class="goles2">${partido.resultadoUsuario2}</td>
+                    <td class="goles1">${resultado1Text}</td>
+                    <td>─</td>
+                    <td class="goles2">${resultado2Text}</td>
                     <td class="participante2">${partido.usuario2Nombre}</td>
                 `;
 
                 row.addEventListener("click", async () => {
-                    await mostrarModalPartido(partido);
+                    const maxRonda = Math.max(...fixture.map(p => p.ronda));
+                    await mostrarModalPartido(partido, torneo, maxRonda);
                 });
 
                 tableBody.appendChild(row);

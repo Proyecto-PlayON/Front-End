@@ -17,7 +17,7 @@ export const API_TORNEOS = {
 };
     
 export const API_MOTOR = {
-    URI_ACTUALIZAR_PARTIDO: URL_MOTOR + 'actualizar-partido',
+    URI_ACTUALIZAR_PARTIDO: URL_MOTOR + 'MotorTorneo/actualizar-partido',
     URI_PARTIDO: URL_MOTOR + 'Partido',
     URI_PARTIDO_TORNEO: URL_MOTOR + 'Partido/torneo',
     URI_PARTIDO_USUARIO: URL_MOTOR + 'Partido/usuario',

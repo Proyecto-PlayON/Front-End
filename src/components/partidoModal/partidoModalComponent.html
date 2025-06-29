@@ -9,14 +9,16 @@
       <div class="modal-body">
         <!-- Marcador principal -->
         <div class="marcador text-center my-4">
-        <div class="resultado-fecha d-flex justify-content-between align-items-center mb-2">
-          <div class="equipo-nombre h4 fw-bold" id="nombreEquipo1"></div>
-          <div class="resultado h1 fw-bold text-center mx-3" id="resultadoCentral">-</div>
-          <div class="equipo-nombre h4 fw-bold" id="nombreEquipo2"></div>
+          <div class="resultado-fecha d-flex justify-content-between align-items-center mb-2">
+            <div class="equipo-nombre h4 fw-bold" id="nombreEquipo1"></div>
+            <input type="number" class="form-control mx-2 text-center" id="inputResultado1" style="width: 60px;" min="0" />
+            <span class="fw-bold mx-2">-</span>
+            <input type="number" class="form-control mx-2 text-center" id="inputResultado2" style="width: 60px;" min="0" />
+            <div class="equipo-nombre h4 fw-bold" id="nombreEquipo2"></div>
+          </div>
+          <div class="fecha text-white-50" id="fechaCentral"></div>
+          <div class="estado text-success" id="estado"></div>
         </div>
-        <div class="fecha text-white-50" id="fechaCentral"></div>
-        <div class="estado text-success" id="estado"></div>
-      </div>
 
 
         <!-- Detalles adicionales -->
@@ -31,6 +33,8 @@
       </div>
 
       <div class="modal-footer border-0">
+        <!-- Botón para actualizar resultado -->
+        <button id="btnActualizarResultado" class="btn btn-primary mt-3">Actualizar</button>
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
       </div>
     </div>

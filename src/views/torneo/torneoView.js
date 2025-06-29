@@ -1,6 +1,7 @@
 import { fixtureComponent } from "../../components/fixture/fixtureComponent.js";
 import { rankingComponent } from "../../components/ranking/rankingComponent.js";
 import { MotorService } from "../../services/motorService.js";
+import { TorneoService } from "../../services/torneoService.js";
 import { showMessage } from "../../components/showMessages/showMessages.js";
 
 export async function torneoView() {
@@ -23,8 +24,20 @@ export async function torneoView() {
 
 
     const motorService = new MotorService();
+    const torneoService = new TorneoService();
+
+    
+    
     let ranking = [];
     let fixture = [];
+    let torneo = {};
+
+    try {
+        torneo = await torneoService.getTorneoById(torneoId);
+    } catch (error) {
+        console.error("Error al obtener el torneo:", error);
+        showMessage("Error al obtener el torneo.", "danger");
+    }
 
     try {
         ranking = await motorService.getRankingByIdTorneo(torneoId);
@@ -40,17 +53,14 @@ export async function torneoView() {
         showMessage("Error al obtener el fixture del torneo.", "danger");
     }
 
-    try {
-        const fixtureElement = await fixtureComponent(fixture);
-        const rankingElement = await rankingComponent(ranking);
+    container.querySelector('.titulo-torneo-view').textContent = torneo.nombre;
+    const fixtureElement = await fixtureComponent(fixture, torneo);
+    const rankingElement = await rankingComponent(ranking);
 
-        const torneoContainer = container.querySelector('.torneo-container-content');
-        torneoContainer.appendChild(rankingElement);
-        torneoContainer.appendChild(fixtureElement);
-    } catch (error) {
-        console.error("Error al renderizar componentes:", error);
-        showMessage("Error al mostrar la información del torneo.", "danger");
-    }
+    const torneoContainer = container.querySelector('.torneo-container-content');
+    torneoContainer.appendChild(rankingElement);
+    torneoContainer.appendChild(fixtureElement);
+
 
     return container;
 }

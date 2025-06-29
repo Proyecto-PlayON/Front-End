@@ -1,4 +1,8 @@
-export async function mostrarModalPartido(partido) {
+import { MotorService } from "../../services/motorService.js";
+import { showMessage } from "../showMessages/showMessages.js";
+import { router } from "../../router.js";
+
+export async function mostrarModalPartido(partido, torneo, numeroRondas) {
   const container = document.createElement('section');
   container.classList.add('content');
 
@@ -10,28 +14,42 @@ export async function mostrarModalPartido(partido) {
 
   const modalElement = container.querySelector('#partidoModal');
 
+  // Título del modal con nombre del torneo
+  container.querySelector('#partidoModalLabel').textContent = torneo.nombre;
+
   // Participantes
   container.querySelector('#usuario1Nombre').textContent = partido.usuario1Nombre;
   container.querySelector('#usuario2Nombre').textContent = partido.usuario2Nombre;
   container.querySelector('#nombreEquipo1').textContent = partido.usuario1Nombre;
   container.querySelector('#nombreEquipo2').textContent = partido.usuario2Nombre;
 
-  // Resultado central (tipo "1 - 1")
-  const resultado = (partido.resultadoUsuario1 !== null && partido.resultadoUsuario2 !== null)
-    ? `${partido.resultadoUsuario1} - ${partido.resultadoUsuario2}`
-    : '-';
-  container.querySelector('#resultadoCentral').textContent = resultado;
+  // Inputs de resultado
+  const inputResultado1 = container.querySelector('#inputResultado1');
+  const inputResultado2 = container.querySelector('#inputResultado2');
 
-  // Ganador
-  const ganador =
-    partido.empate ? 'Empate' :
-    partido.ganadorUsuario1 ? partido.usuario1Nombre :
-    partido.ganadorUsuario2 ? partido.usuario2Nombre :
-    'Sin definir';
-  container.querySelector('#ganador').textContent = ganador;
+  const btnActualizar = container.querySelector('#btnActualizarResultado');
+  btnActualizar.disabled = true;
 
-  // Empate
-  container.querySelector('#empate').textContent = partido.empate ? 'Sí' : 'No';
+  // Habilitar el botón solo si ambos inputs son válidos
+  function verificarInputs() {
+    const r1 = inputResultado1.value;
+    const r2 = inputResultado2.value;
+    btnActualizar.disabled = !(r1 !== '' && r2 !== '' && !isNaN(r1) && !isNaN(r2));
+  }
+
+  // Si el partido ya no está en estado "Pendiente", deshabilitar inputs y ocultar botón
+  if (partido.estadoId !== 1) {
+    inputResultado1.disabled = true;
+    inputResultado2.disabled = true;
+    btnActualizar.classList.add('d-none'); // Oculta el botón
+  }
+
+  inputResultado1.addEventListener('input', verificarInputs);
+  inputResultado2.addEventListener('input', verificarInputs);
+
+  if (partido.resultadoUsuario1 !== null) inputResultado1.value = partido.resultadoUsuario1;
+  if (partido.resultadoUsuario2 !== null) inputResultado2.value = partido.resultadoUsuario2;
+  verificarInputs(); // Por si ya vienen cargados
 
   // Fecha y estado
   const fecha = new Date(partido.fecha);
@@ -42,10 +60,60 @@ export async function mostrarModalPartido(partido) {
 
   container.querySelector('#fecha').textContent = `${dia}/${mes} ${hora}:${minutos}`;
   container.querySelector('#fechaCentral').textContent = `${dia}/${mes}`;
-  container.querySelector('#estado').textContent = partido.estadoId === 1 ? 'Finalizado' : 'Pendiente';
+  container.querySelector('#estado').textContent = partido.estadoId === 1 ? 'Pendiente' : 'Finalizado';
 
-  // Ronda y siguiente partido
-  container.querySelector('#ronda').textContent = partido.ronda;
+  // Ronda
+  let textoRonda = '';
+  if (torneo.modalidad.id === 2) {
+    textoRonda = `Fecha ${partido.ronda}`;
+  } else {
+    const diferencia = numeroRondas - partido.ronda;
+    switch (diferencia) {
+      case 0: textoRonda = 'Final'; break;
+      case 1: textoRonda = 'Semifinal'; break;
+      case 2: textoRonda = 'Cuartos de final'; break;
+      case 3: textoRonda = 'Octavos de final'; break;
+      case 4: textoRonda = 'Dieciseisavos de final'; break;
+      default: textoRonda = `Ronda ${partido.ronda}`; break;
+    }
+  }
+  container.querySelector('#ronda').textContent = textoRonda;
+
+  // Ganador y empate iniciales
+  const ganador =
+    partido.empate ? 'Empate' :
+    partido.ganadorUsuario1 ? partido.usuario1Nombre :
+    partido.ganadorUsuario2 ? partido.usuario2Nombre :
+    'Sin definir';
+  container.querySelector('#ganador').textContent = ganador;
+  container.querySelector('#empate').textContent = partido.empate ? 'Sí' : 'No';
+
+  // Evento actualizar
+  btnActualizar.addEventListener('click', async () => {
+    const resultado1 = parseInt(inputResultado1.value);
+    const resultado2 = parseInt(inputResultado2.value);
+
+    const json = {
+      resultadoUsuario1: resultado1,
+      resultadoUsuario2: resultado2
+    };
+
+    try {
+      const motorService = new MotorService();
+      await motorService.actualizarPartido(partido.id, json);
+      router();
+      // Cerrar el modal
+      const bootstrapModal = bootstrap.Modal.getInstance(modalElement);
+      bootstrapModal.hide();
+  
+      // Mostrar mensaje de éxito
+      showMessage("Resultado actualizado correctamente", "success");
+
+    } catch (error) {
+      console.error("Error al actualizar el resultado:", error);
+      showMessage("Hubo un error al actualizar el resultado.", "danger");
+    }
+  });
 
   // Mostrar modal
   const bootstrapModal = new bootstrap.Modal(modalElement);

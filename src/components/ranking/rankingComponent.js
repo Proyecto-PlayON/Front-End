@@ -25,9 +25,9 @@ export async function rankingComponent(ranking) {
         } = item;
 
         const jugados = 3; // asumido (podés calcularlo si tenés más datos)
-        const ganados = puntos / 3;
+        const ganados = 3;
         const empates = 0; // si no hay empates registrados
-        const perdidos = jugados - ganados - empates;
+        const perdidos = 0;
         const diferencia = anotacionesAFavor - anotacionesEnContra;
 
         const fila = document.createElement('tr');
