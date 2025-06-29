@@ -1,0 +1,39 @@
+.marcador {
+  background-color: #0d1a26;
+  border-radius: 10px;
+  padding: 1rem 2rem;
+}
+
+.resultado-fecha {
+  margin: 1rem 0;
+}
+
+.resultado {
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.equipo-nombre {
+  font-size: 1.25rem;
+  font-weight: bold;
+  color: white;
+}
+.resultado-fecha {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+#nombreEquipo1, #nombreEquipo2 {
+  width: 30%;
+  font-weight: bold;
+  font-size: 1.5rem;
+}
+
+#resultadoCentral {
+  width: 40%;
+  font-weight: bold;
+  font-size: 2.5rem;
+  text-align: center;
+}
