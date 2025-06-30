@@ -52,14 +52,26 @@ export async function mostrarModalPartido(partido, torneo, numeroRondas) {
   verificarInputs(); // Por si ya vienen cargados
 
   // Fecha y estado
-  const fecha = new Date(partido.fecha);
-  const dia = String(fecha.getDate()).padStart(2, '0');
-  const mes = String(fecha.getMonth() + 1).padStart(2, '0');
-  const hora = String(fecha.getHours()).padStart(2, '0');
-  const minutos = String(fecha.getMinutes()).padStart(2, '0');
+  let fechaText = 'Sin definir';
+  let fechaCentralText = 'Sin definir';
+  let dia = '', mes = '', hora = '', minutos = '';
 
-  container.querySelector('#fecha').textContent = `${dia}/${mes} ${hora}:${minutos}`;
-  container.querySelector('#fechaCentral').textContent = `${dia}/${mes}`;
+  if (partido.fecha) {
+    const fecha = new Date(partido.fecha);
+
+    if (!isNaN(fecha)) { // Verifica que sea una fecha válida
+      dia = String(fecha.getDate()).padStart(2, '0');
+      mes = String(fecha.getMonth() + 1).padStart(2, '0');
+      hora = String(fecha.getHours()).padStart(2, '0');
+      minutos = String(fecha.getMinutes()).padStart(2, '0');
+      fechaText = `${dia}/${mes} ${hora}:${minutos}`;
+      fechaCentralText = `${dia}/${mes}`;
+    }
+  }
+
+
+  container.querySelector('#fecha').textContent = fechaText;
+  container.querySelector('#fechaCentral').textContent = fechaCentralText;
   container.querySelector('#estado').textContent = partido.estadoId === 1 ? 'Pendiente' : 'Finalizado';
 
   // Ronda

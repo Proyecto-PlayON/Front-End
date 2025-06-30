@@ -7,44 +7,31 @@ export async function rankingComponent(ranking) {
     const htmlContent = await htmlResponse.text();
     container.innerHTML = htmlContent;
 
-
     // Seleccionar el tbody donde se insertarán los datos
     const tableBody = container.querySelector('tbody');
     tableBody.innerHTML = ""; // limpiar contenido previo
 
-    // Ordenar por puntos descendente
-    const rankingOrdenado = [...ranking].sort((a, b) => b.puntos - a.puntos);
-
+    let index = 0;
     // Generar filas para cada participante
-    rankingOrdenado.forEach((item, index) => {
-        const {
-            participante: { nombre },
-            puntos,
-            anotacionesAFavor,
-            anotacionesEnContra
-        } = item;
-
-        const jugados = 3; // asumido (podés calcularlo si tenés más datos)
-        const ganados = 3;
-        const empates = 0; // si no hay empates registrados
-        const perdidos = 0;
-        const diferencia = anotacionesAFavor - anotacionesEnContra;
+    for(let participante of ranking) {
+        const diferencia = participante.anotacionesAFavor - participante.anotacionesEnContra;
 
         const fila = document.createElement('tr');
         fila.innerHTML = `
             <td>${index + 1}</td>
-            <td>${nombre}</td>
-            <td>${puntos}</td>
-            <td>${jugados}</td>
-            <td>${ganados}</td>
-            <td>${empates}</td>
-            <td>${perdidos}</td>
+            <td>${participante.participante.nombre}</td>
+            <td>${participante.puntos}</td>
+            <td>${participante.partidosJugados}</td>
+            <td>${participante.partidosGanados}</td>
+            <td>${participante.partidosEmpatados}</td>
+            <td>${participante.partidosPerdidos}</td>
             <td>${diferencia}</td>
-            <td>${anotacionesAFavor}:${anotacionesEnContra}</td>
+            <td>${participante.anotacionesAFavor}:${participante.anotacionesEnContra}</td>
         `;
 
         tableBody.appendChild(fila);
-    });
+        index++;
+    }
 
     return container;
 }
