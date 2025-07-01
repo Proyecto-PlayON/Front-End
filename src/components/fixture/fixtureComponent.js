@@ -36,7 +36,25 @@ export async function fixtureComponent(fixture, torneo) {
     rondasUnicas.forEach(ronda => {
         const item = document.createElement("div");
         item.className = "dropdown-item";
-        item.textContent = `FECHA ${ronda}`;
+
+        // Ronda
+        const numeroRondas = Math.max(...fixture.map(p => p.ronda));
+        let textoRonda = '';
+        if (torneo.modalidad.id === 2) {
+            textoRonda = `Ronda ${ronda}`;
+        } else {
+            const diferencia = numeroRondas - ronda;
+            switch (diferencia) {
+            case 0: textoRonda = 'Final'; break;
+            case 1: textoRonda = 'Semifinal'; break;
+            case 2: textoRonda = 'Cuartos de final'; break;
+            case 3: textoRonda = 'Octavos de final'; break;
+            case 4: textoRonda = 'Dieciseisavos de final'; break;
+            default: textoRonda = `Ronda ${ronda}`; break;
+            }
+        }
+        
+        item.textContent = textoRonda;
         item.addEventListener("click", () => {
             rondaActualIndex = rondasUnicas.indexOf(ronda);
             actualizarRonda();
@@ -74,7 +92,23 @@ export async function fixtureComponent(fixture, torneo) {
 
     function actualizarRonda() {
         const ronda = rondasUnicas[rondaActualIndex];
-        toggleButton.textContent = `FECHA ${ronda} `;
+        // Ronda
+        const numeroRondas = Math.max(...fixture.map(p => p.ronda));
+        let textoRonda = '';
+        if (torneo.modalidad.id === 2) {
+            textoRonda = `Ronda ${ronda}`;
+        } else {
+            const diferencia = numeroRondas - ronda;
+            switch (diferencia) {
+            case 0: textoRonda = 'Final'; break;
+            case 1: textoRonda = 'Semifinal'; break;
+            case 2: textoRonda = 'Cuartos de final'; break;
+            case 3: textoRonda = 'Octavos de final'; break;
+            case 4: textoRonda = 'Dieciseisavos de final'; break;
+            default: textoRonda = `Ronda ${ronda}`; break;
+            }
+        }
+        toggleButton.textContent = textoRonda;
         renderPartidos(ronda);
     }
 
@@ -101,11 +135,11 @@ export async function fixtureComponent(fixture, torneo) {
                     resultado2Text = partido.resultadoUsuario2;
                 }
                 row.innerHTML = `
-                    <td class="participante1">${partido.usuario1Nombre}</td>
+                    <td class="participante1">${partido.usuario1Nombre?? 'sin asignar'}</td>
                     <td class="goles1">${resultado1Text}</td>
                     <td>─</td>
                     <td class="goles2">${resultado2Text}</td>
-                    <td class="participante2">${partido.usuario2Nombre}</td>
+                    <td class="participante2">${partido.usuario2Nombre?? 'sin asignar'}</td>
                 `;
 
                 row.addEventListener("click", async () => {

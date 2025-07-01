@@ -77,7 +77,7 @@ export async function mostrarModalPartido(partido, torneo, numeroRondas) {
   // Ronda
   let textoRonda = '';
   if (torneo.modalidad.id === 2) {
-    textoRonda = `Fecha ${partido.ronda}`;
+    textoRonda = `Ronda ${partido.ronda}`;
   } else {
     const diferencia = numeroRondas - partido.ronda;
     switch (diferencia) {
