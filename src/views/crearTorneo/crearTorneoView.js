@@ -10,6 +10,54 @@ export async function crearTorneoView() {
     const htmlContent = await htmlResponse.text();
     container.innerHTML = htmlContent;
 
+    const modalidadSelect = container.querySelector('#modalidad');
+    const permitirEmpatesCheckbox = container.querySelector('#permitirEmpates');
+    let puntosEmpate = container.querySelector('#puntosPorEmpate');
+
+    permitirEmpatesCheckbox.addEventListener('change', () => {
+        // Si se desactiva el checkbox, desactivar el checkbox de permitir empates
+        if (!permitirEmpatesCheckbox.checked) {
+            puntosEmpate.disabled = true;
+            puntosEmpate.value = '0';
+        }
+        else {
+            puntosEmpate.disabled = false;
+            puntosEmpate.value = '1'; // Valor por defecto si se activa
+        }
+    });
+
+    // Evento que desactiva o activa el checkbox según la modalidad
+    modalidadSelect.addEventListener('change', () => {
+        const esEliminacion = modalidadSelect.value === 'eliminacion';
+
+        permitirEmpatesCheckbox.checked = false;
+        permitirEmpatesCheckbox.disabled = esEliminacion;
+
+        // Referencias a los inputs de puntos
+        const puntosPorVictoriaInput = container.querySelector('#puntosPorVictoria');
+        const puntosPorEmpateInput = container.querySelector('#puntosPorEmpate');
+        const puntosPorDerrotaInput = container.querySelector('#puntosPorDerrota');
+
+        if (esEliminacion) {
+            puntosPorVictoriaInput.value = '3';
+            puntosPorEmpateInput.value = '0';
+            puntosPorDerrotaInput.value = '0';
+
+            puntosPorVictoriaInput.disabled = true;
+            puntosPorEmpateInput.disabled = true;
+            puntosPorDerrotaInput.disabled = true;
+        } else {
+            puntosPorVictoriaInput.disabled = false;
+            puntosPorEmpateInput.disabled = false;
+            puntosPorDerrotaInput.disabled = false;
+
+            puntosPorVictoriaInput.value = '3';
+            puntosPorEmpateInput.value = '1';
+            puntosPorDerrotaInput.value = '0';
+            permitirEmpatesCheckbox.checked = true;
+        }
+    });
+
 
     const form = container.querySelector('#tournamentForm');
 
