@@ -4,6 +4,7 @@ import { inscripcionesView } from './views/inscripciones/inscripcionesView.js';
 import { welcomeView } from './views/welcome/welcomeView.js';
 import { crearTorneoView } from './views/crearTorneo/crearTorneoView.js';
 import { torneoView } from './views/torneo/torneoView.js';
+import { mapaComponent } from './components/mapa/mapaComponent.js';
 
 const routes = {
   '/welcome': welcomeView,
@@ -11,7 +12,8 @@ const routes = {
   '/torneos': misTorneosView,
   '/inscripciones': inscripcionesView,
   '/crear-torneo': crearTorneoView,
-  '/torneo': torneoView
+  '/torneo': torneoView,
+  '/mapa': mapaComponent,
 };
 
 export async function router() {

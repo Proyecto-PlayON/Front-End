@@ -1,5 +1,6 @@
 import { TorneoService } from "../../services/torneoService.js";
 import { showMessage } from "../../components/showMessages/showMessages.js";
+import { mapaComponent } from "../../components/mapa/mapaComponent.js";
 
 export async function crearTorneoView() {
     const container = document.createElement('section');
@@ -58,6 +59,32 @@ export async function crearTorneoView() {
         }
     });
 
+    let mapaDefecto = await mapaComponent(-34.7750277, -58.267808, "UNAJ, Florencio Varela");
+    let mapInstance = null;
+    let botonBuscar = container.querySelector(".buscar-ubicacion");
+    let input = container.querySelector("#ubicacion"); // te faltaba esta línea
+    let mapaTarget = container.querySelector(".mapa-container"); // lugar donde irá el mapa
+    mapaTarget.innerHTML = ''; // limpiar contenido previo
+    mapaTarget.appendChild(mapaDefecto); // insertar mapa por defecto
+
+    botonBuscar.addEventListener("click", async () => {
+        const texto = input.value.trim();
+        if (!texto) return showMessage("Escribí una dirección.", "warning");
+
+        const ubicacion = await buscarUbicacion(texto);
+        if (!ubicacion) return;
+
+        const { latitud, longitud, nombre } = ubicacion;
+        console.log("Ubicación seleccionada:", ubicacion);
+
+        // Cargar nuevo mapa
+        const mapa = await mapaComponent(latitud, longitud, nombre);
+
+        // Reemplazar contenido de mapa-container
+        mapaTarget.innerHTML = '';        // limpiar contenido anterior
+        mapaTarget.appendChild(mapa);     // insertar nuevo mapa
+    });
+
 
     const form = container.querySelector('#tournamentForm');
 
@@ -76,6 +103,18 @@ export async function crearTorneoView() {
         const puntosPorDerrota = container.querySelector('#puntosPorDerrota').value;
         const permitirEmpates = container.querySelector('#permitirEmpates').checked;
 
+        let ubicacionSeleccionada = await buscarUbicacion(ubicacion);
+
+
+        if (minimoParticipantes < 1 || maximoParticipantes < 1) {
+            showMessage("Los valores mínimo y máximo de participantes deben ser al menos 1.", "warning");
+            return;
+        }
+        if (minimoParticipantes >= maximoParticipantes) {
+            showMessage("El mínimo de participantes no puede ser mayor o igual al máximo.", "warning");
+            return;
+        }
+
         // Mapear modalidad a un ID (reemplazalo si es necesario)
         let modalidadId;
         if (modalidad === 'eliminacion') modalidadId = '1';
@@ -89,8 +128,8 @@ export async function crearTorneoView() {
             nombre,
             usuarioOrganizadorId,
             ubicacion,
-            latitud: "0", // Podés dejar fijo o agregar campos si querés capturarlo después
-            longitud: "0",
+            latitud: ubicacionSeleccionada.latitud.toString(), 
+            longitud: ubicacionSeleccionada.longitud.toString(),
             minimoParticipantes,
             maximoParticipantes,
             fechaInicio,
@@ -116,4 +155,30 @@ export async function crearTorneoView() {
     });
 
     return container;
+}
+
+async function buscarUbicacion(texto) {
+  const url = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(texto)}`;
+
+  try {
+    const response = await fetch(url);
+    const data = await response.json();
+
+    if (data.length === 0) {
+      showMessage("No se encontró esa ubicación.", "danger");
+      return null;
+    }
+
+    const lugar = data[0];
+    return {
+      latitud: parseFloat(lugar.lat),
+      longitud: parseFloat(lugar.lon),
+      nombre: lugar.display_name
+    };
+
+  } catch (err) {
+    console.error(err);
+    showMessage("Error buscando ubicación.", "danger");
+    return null;
+  }
 }
