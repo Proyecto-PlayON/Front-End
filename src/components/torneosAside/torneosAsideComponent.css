@@ -1,0 +1,109 @@
+.torneos-aside {
+  
+  padding: 20px;
+  width: 100%;
+  max-width: 400px;
+  border-radius: 8px;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.titulo-aside .titulo-aside {
+  font-size: 1.3rem;
+  font-weight: bold;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.torneos-aside .lista-torneos {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.titulo-aside .lista-torneos li {
+  background-color: #ffffff;
+  border-left: 5px solid #007b8a;
+  padding: 10px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+}
+
+.torneos-aside .lista-torneos li .nombre {
+  font-weight: 600;
+}
+
+.torneos-aside .lista-torneos li .estado {
+  font-size: 0.85rem;
+  color: #555;
+}
+.torneos-aside .torneo-item {
+  cursor: pointer;
+  transition: background-color 0.2s;
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  background-color: rgba(145, 133, 133, 0.24);  /* celeste con 30% opacidad */
+  background: linear-gradient(to top, rgba(30, 139, 143, 0.205), rgba(0, 0, 0, 0));
+
+  
+}
+
+.titulo-aside .torneo-item:hover {
+  background-color: #e0f7fa;
+}
+/* Contenedor superior nombre + estado */
+.torneos-aside .torneo-item .torneo-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Nombre del torneo */
+.torneos-aside .torneo-item .nombre {
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+/* Puntito de estado */
+.torneos-aside .estado-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+/* Colores por estado */
+.torneos-aside .estado-1 {
+  background-color: yellow;
+}
+
+.torneos-aside .estado-2 {
+  background-color: #00bcd4; /* celeste */
+}
+
+.torneos-aside .estado-3 {
+  background-color: #4caf50; /* verde */
+}
+
+/* .torneos-aside .titulo-aside{
+  cursor: pointer;;
+}
+.torneos-aside .titulo-aside:hover {
+  color: #007b8a;
+} */
+
+.torneos-aside .lista-torneos.oculto{
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease, padding 0.3s ease;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+/* Cuando está visible */
+.torneos-aside .lista-torneos.visible {
+  max-height: 1000px; /* lo suficientemente alto para mostrar la lista completa */
+  padding-top: 0.5rem;
+}

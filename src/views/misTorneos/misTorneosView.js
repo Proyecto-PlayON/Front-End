@@ -80,7 +80,7 @@ export async function misTorneosView() {
             location.hash = `#/inscripciones?id=${torneo.id}`;
         });
 
-        btnVer.addEventListener("click", () => {
+        btnVer.addEventListener("click", async () => {
             location.hash = `#/torneo?id=${torneo.id}`;
         });
 

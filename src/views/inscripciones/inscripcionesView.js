@@ -38,20 +38,7 @@ export async function inscripcionesView() {
     const tablaBody = container.querySelector('#tabla-inscriptos tbody');
     const btnIniciar = container.querySelector('#btn-inscribir');
 
-    const contenedorInfo = document.createElement('div');
-    contenedorInfo.className = 'torneo-info p-3 rounded';
-    contenedorInfo.innerHTML = `
-        <h4 class="text-center">Información del Torneo</h4>
-        <p><strong>Nombre:</strong> ${torneo.nombre}</p>
-        <p><strong>Ubicación:</strong> ${torneo.ubicacion}</p>
-        <p><strong>Participantes:</strong> ${torneo.inscripciones.length} / ${torneo.maximoParticipantes}</p>
-        <p><strong>Estado:</strong> ${torneo.estado.nombre}</p>
-        <p><strong>Modalidad:</strong> ${torneo.modalidad.nombre}</p>
-        <p><strong>Inicio:</strong> ${new Date(torneo.fechaInicio).toLocaleDateString()}</p>
-    `;
-    const containerFlex = container.querySelector('.inscription-content');
-    containerFlex.insertBefore(contenedorInfo, container.querySelector('#botton-window'));
-
+    
     function actualizarNumeracion() {
         const filas = tablaBody.querySelectorAll('tr');
         filas.forEach((fila, index) => {

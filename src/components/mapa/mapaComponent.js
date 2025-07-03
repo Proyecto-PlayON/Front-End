@@ -1,6 +1,6 @@
 export async function mapaComponent(latitud, longitud, nombre = "") {
   const container = document.createElement('section');
-  container.classList.add('content');
+  container.classList.add('mapa-container');
 
   // Cargar el HTML del mapa (que contiene <div id="map">)
   const htmlResponse = await fetch('./components/mapa/mapaComponent.html');
@@ -22,11 +22,17 @@ export async function mapaComponent(latitud, longitud, nombre = "") {
     }).addTo(map);
 
     const marcador = L.marker([latitud, longitud]).addTo(map);
-
     if (nombre) {
       marcador.bindPopup(`<strong>${nombre}</strong>`).openPopup();
     }
+
+    // 👇 Forzar recalculo del tamaño
+    setTimeout(() => {
+      map.invalidateSize();
+    }, 300);
+
   }, 0);
+
 
   return container;
 }
