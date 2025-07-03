@@ -60,11 +60,10 @@ export async function crearTorneoView() {
     });
 
     let mapaDefecto = await mapaComponent(-34.7750277, -58.267808, "UNAJ, Florencio Varela");
-    let mapInstance = null;
     let botonBuscar = container.querySelector(".buscar-ubicacion");
-    let input = container.querySelector("#ubicacion"); // te faltaba esta línea
-    let mapaTarget = container.querySelector(".mapa-container"); // lugar donde irá el mapa
-    mapaTarget.innerHTML = ''; // limpiar contenido previo
+    let input = container.querySelector("#ubicacion"); 
+    let mapaTarget = container.querySelector(".mapa-container"); 
+    mapaTarget.innerHTML = ''; 
     mapaTarget.appendChild(mapaDefecto); // insertar mapa por defecto
 
     botonBuscar.addEventListener("click", async () => {
@@ -128,8 +127,8 @@ export async function crearTorneoView() {
             nombre,
             usuarioOrganizadorId,
             ubicacion,
-            latitud: ubicacionSeleccionada.latitud.toString(), 
-            longitud: ubicacionSeleccionada.longitud.toString(),
+            latitud: ubicacionSeleccionada.latitud.toString().replace('.', ','),
+            longitud: ubicacionSeleccionada.longitud.toString().replace('.', ','),
             minimoParticipantes,
             maximoParticipantes,
             fechaInicio,

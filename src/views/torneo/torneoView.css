@@ -1,6 +1,6 @@
 .torneo-container{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     justify-content: center;
     padding: 20px;
     background-color: #162230;
@@ -18,4 +18,24 @@
 }
 .torneo-container-content > *{
     margin: 20px;
+}
+.torneo-informacion-header-view{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    color: white;
+    border-bottom: 2px solid #ddd;
+}
+.torneo-informacion-header-view h2{
+    font-size: 2rem;
+    font-weight: 600;
+    text-align: center;
+}
+.torneo-informacion-header-view h4{
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: #aaa;
+    text-align: center;
 }
