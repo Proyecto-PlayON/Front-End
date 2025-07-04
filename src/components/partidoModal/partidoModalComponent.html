@@ -1,8 +1,8 @@
 <div class="modal fade" id="partidoModal" tabindex="-1" aria-labelledby="partidoModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered modal-lg">
-    <div class="modal-content bg-dark text-white">
+    <div id="modal-resultado" class="modal-content"> <!--class="modal-content bg-dark text-white"-->
       <div class="modal-header border-0">
-        <h5 class="modal-title" id="partidoModalLabel">Detalle del Partido</h5>
+        <h2 class="modal-title" id="partidoModalLabel">Resultado</h2>
         <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Cerrar"></button>
       </div>
 
@@ -11,20 +11,26 @@
         <div class="marcador text-center my-4">
           <div class="resultado-fecha d-flex justify-content-between align-items-center mb-2">
             <div class="equipo-nombre h4 fw-bold" id="nombreEquipo1"></div>
-            <input type="number" class="form-control mx-2 text-center" id="inputResultado1" style="width: 60px;" min="0" />
+            <input type="number" class="form-control mx-2 text-center" id="inputResultado1" style="width: 6rem;" min="0" />
             <span class="fw-bold mx-2">-</span>
-            <input type="number" class="form-control mx-2 text-center" id="inputResultado2" style="width: 60px;" min="0" />
+            <input type="number" class="form-control mx-2 text-center" id="inputResultado2" style="width: 6rem;" min="0" />
             <div class="equipo-nombre h4 fw-bold" id="nombreEquipo2"></div>
           </div>
           <div class="fecha text-white-50" id="fechaCentral"></div>
-          <div class="estado text-success" id="estado"></div>
+          <div class="estado-icono"><!--
+            <div class="estado" id="estado"></div>
+            <i class="fa-solid fa-flag-checkered"></i>
+            -->
+          </div>
         </div>
 
 
         <!-- Detalles adicionales -->
-        <div class="row text-start px-4">
+        <div class="row text-center px-4">
+          <!--
           <div class="col-md-6 mb-2"><strong>Participante 1:</strong> <span id="usuario1Nombre"></span></div>
           <div class="col-md-6 mb-2"><strong>Participante 2:</strong> <span id="usuario2Nombre"></span></div>
+          -->
           <div class="col-md-6 mb-2"><strong>Ganador:</strong> <span id="ganador"></span></div>
           <div class="col-md-6 mb-2"><strong>Empate:</strong> <span id="empate"></span></div>
           <div class="col-md-6 mb-2"><strong>Ronda:</strong> <span id="ronda"></span></div>
@@ -32,10 +38,14 @@
         </div>
       </div>
 
-      <div class="modal-footer border-0">
+      <div class="row modal-footer border-0">
         <!-- Botón para actualizar resultado -->
-        <button id="btnActualizarResultado" class="btn btn-primary mt-3">Actualizar</button>
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        <div id=  "actualizar" class="col-md-12 d-flex justify-content-center">
+          <button id="btnActualizarResultado" class="btn btn-primary mt-3">Actualizar</button>
+        </div>
+        <!--<div class="col-md-2">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+        </div>-->
       </div>
     </div>
   </div>

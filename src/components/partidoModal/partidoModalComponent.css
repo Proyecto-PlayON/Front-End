@@ -37,3 +37,67 @@
   font-size: 2.5rem;
   text-align: center;
 }
+#actualizar{
+  display: flex;
+  justify-content: center ;
+  align-items: center;
+
+
+}
+
+#btnActualizarResultado{
+  background-color: #ff5e00;
+  border-color: #ff5e00;
+  align-items: center;
+  color: rgb(255, 255, 255);
+  height: 3rem;
+  width: 7rem;
+  font-size: 1.3rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+#btnActualizarResultado:hover{
+  background-color: #ff5e00;
+  border-color: #ff5e00;
+  box-shadow: 0 8px 32px rgba(255, 72, 0, 0.596);  
+  transform: scale(1.1);
+  cursor: pointer;
+
+}
+#inputResultado1, #inputResultado2{
+  font-size: 2rem;
+}
+#modal-resultado{
+  color: white;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px); /* para Safari */
+  background-color: #0d1a26e0; /* tono oscuro translúcido */
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  border-radius: 16px;
+  transition: all 0.3s ease-in-out;
+}
+
+.modal-backdrop.show {
+  backdrop-filter: blur(6px);
+  background-color: rgba(0, 0, 0, 0.1); /* opcional para oscurecer */
+}
+.estado-icono{
+  display:  flex;
+  justify-content: center;
+  align-items: center;
+  
+
+}
+.estado-icono .estado, i {
+  margin: 0.3rem;
+  color: #d46262;
+  font-size: 2rem;
+  transition: transform 0.3s ease;
+}
+.fa-clock, #estado-pendiente{
+    color: #9e9e9e;
+
+}
+
+
+
