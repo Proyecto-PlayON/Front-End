@@ -50,12 +50,17 @@ export async function router() {
   // Mostrar/ocultar aside según la vista
   if (path === '/welcome' || path === '/home') {
     aside.style.display = 'none';
+    if(path === '/home'){
+      const asideContainer = document.querySelector('#aside');
+      asideContainer.innerHTML = '';
+      const asideContent = await torneosAside();
+      asideContainer.appendChild(asideContent);
+    }
+    if (path === '/welcome') {
+      const asideContainer = document.querySelector('#aside');
+      asideContainer.innerHTML = '';
+    }
   } else {
-    let asideContainer = document.querySelector('#aside');
-    asideContainer.innerHTML = ''; // Limpiar contenido previo
-    let asideContent = await torneosAside();
-    asideContainer.appendChild(asideContent);
-
     aside.style.display = 'block';
   }
 
@@ -76,9 +81,19 @@ export async function router() {
 // Escuchar cambios de ruta
 window.addEventListener('hashchange', router);
 window.addEventListener('load', async () => {
-  
+  const fullHash = location.hash.slice(1) || '/';
+  const [rawPath] = fullHash.split('?');
+  const path = rawPath.toLowerCase();
+
+  // Cargar aside solo al inicio, si no estás en welcome
+  if (path !== '/welcome') {
+    const asideContainer = document.querySelector('#aside');
+    asideContainer.innerHTML = '';
+    const asideContent = await torneosAside();
+    asideContainer.appendChild(asideContent);
+  }
+
   await router(); 
-  
 });
 
 document.addEventListener('click', async (event) => {
