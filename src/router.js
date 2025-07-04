@@ -43,6 +43,9 @@ export async function router() {
   const params = new URLSearchParams(queryString);
   const props = Object.fromEntries(params.entries()); // ejemplo: { id: "4" }
 
+  
+
+
   app.innerHTML = '';
   const content = await render(props);
   app.appendChild(content);

@@ -1,6 +1,7 @@
 import { TorneoService } from "../../services/torneoService.js";
 import { showMessage } from "../../components/showMessages/showMessages.js";
 import { mapaComponent } from "../../components/mapa/mapaComponent.js";
+import { torneosAside } from "../../components/torneosAside/torneosAsideComponent.js";
 
 export async function crearTorneoView() {
     const container = document.createElement('section');
@@ -143,8 +144,13 @@ export async function crearTorneoView() {
         const torneoService = new TorneoService();
         try {
             let torneoCreado = await torneoService.crearTorneo(torneo);
+            let asideContainer = document.querySelector('#aside');
+            asideContainer.innerHTML = ''; // Limpiar el contenedor del aside
+            let asideContent = await torneosAside();
+            asideContainer.appendChild(asideContent);
             showMessage("Torneo creado con éxito!!", "success");
-            location.hash = `#/inscripciones?id=${torneoCreado.id}`;
+            location.hash = `#/torneo?id=${torneoCreado.id}`;
+            
 
             // redirigir o limpiar formulario si querés
         } catch (error) {

@@ -1,6 +1,7 @@
 import { UsuarioService } from "../../services/usuarioService.js";
 import { TorneoService } from "../../services/torneoService.js";
 import { showMessage } from "../../components/showMessages/showMessages.js";
+import { router } from "../../router.js";
 
 export async function inscripcionesView() {
     const params = new URLSearchParams(location.hash.split('?')[1]);
@@ -145,6 +146,7 @@ export async function inscripcionesView() {
             await torneoService.iniciarTorneo(torneoId);
             showMessage("Torneo iniciado ✅", "success");
             location.hash = `#/torneo?id=${torneoId}`;
+            router(); // Actualizar la vista
         } catch (error) {
             console.error(error);
             showMessage("Error al iniciar el torneo", "danger");
