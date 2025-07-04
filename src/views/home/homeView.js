@@ -1,4 +1,5 @@
 import { renderLoginWidget } from "../../components/loginWidget/loginWidgetComponent.js";
+import { torneosAside } from "../../components/torneosAside/torneosAsideComponent.js";
 
 export async function homeView(){
     
@@ -10,8 +11,12 @@ export async function homeView(){
     const htmlContent = await htmlResponse.text();
     container.innerHTML = htmlContent;
 
-
+    renderLoginWidget();
     
+    let asideContainer = document.querySelector('#aside');
+    asideContainer.innerHTML = ''; // Limpiar contenido previo
+    let asideContent = await torneosAside();
+    asideContainer.appendChild(asideContent);
 
     return container;
 } 

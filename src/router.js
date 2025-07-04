@@ -37,6 +37,12 @@ export async function router() {
     return;
   }
 
+   // Mostrar/ocultar aside según la vista
+  if (path === '/welcome' || path === '/home') {
+    aside.style.display = 'none';
+  } else {
+    aside.style.display = 'block';
+  }
   const render = routes[path] || NotFound;
 
   // Parsear parámetros
