@@ -1,4 +1,3 @@
-import { renderLoginWidget } from "../../components/loginWidget/loginWidgetComponent.js";
 
 export async function welcomeView(){
     
@@ -9,9 +8,6 @@ export async function welcomeView(){
     const htmlResponse = await fetch('./views/welcome/welcomeView.html');
     const htmlContent = await htmlResponse.text();
     container.innerHTML = htmlContent;
-
-    renderLoginWidget();
-
 
     return container;
 } 
