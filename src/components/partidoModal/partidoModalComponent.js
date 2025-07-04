@@ -15,11 +15,11 @@ export async function mostrarModalPartido(partido, torneo, numeroRondas) {
   const modalElement = container.querySelector('#partidoModal');
 
   // Título del modal con nombre del torneo
-  container.querySelector('#partidoModalLabel').textContent = torneo.nombre;
+  //container.querySelector('#partidoModalLabel').textContent = torneo.nombre;
 
   // Participantes
-  container.querySelector('#usuario1Nombre').textContent = partido.usuario1Nombre;
-  container.querySelector('#usuario2Nombre').textContent = partido.usuario2Nombre;
+  //container.querySelector('#usuario1Nombre').textContent = partido.usuario1Nombre;
+  //container.querySelector('#usuario2Nombre').textContent = partido.usuario2Nombre;
   container.querySelector('#nombreEquipo1').textContent = partido.usuario1Nombre;
   container.querySelector('#nombreEquipo2').textContent = partido.usuario2Nombre;
 
@@ -72,8 +72,19 @@ export async function mostrarModalPartido(partido, torneo, numeroRondas) {
 
   container.querySelector('#fecha').textContent = fechaText;
   container.querySelector('#fechaCentral').textContent = fechaCentralText;
-  container.querySelector('#estado').textContent = partido.estadoId === 1 ? 'Pendiente' : 'Finalizado';
+  
+  //container.querySelector('#estado').textContent = partido.estadoId === 1 ? 'Pendiente' : 'Finalizado';
+  const estadoElemento = container.querySelector('.estado-icono');
+  if(partido.estadoId===1){
 
+    estadoElemento.innerHTML = `<div class="estado" id="estado-pendiente">Pendiente</div>
+            <i class="fa-solid fa-clock"></i>`;
+
+  }
+  else{
+    estadoElemento.innerHTML = `<div class="estado" id="estado-finalizado">Finalizado</div>
+            <i id="icono-fin" class="fa-solid fa-flag-checkered"></i>`;
+  }
   // Ronda
   let textoRonda = '';
   if (torneo.modalidad.id === 2) {

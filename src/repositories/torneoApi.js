@@ -38,6 +38,8 @@ export class TorneoApi{
     }
 
     async crearTorneo(torneo) {
+                    console.log(torneo);
+
         try {
             const data = await fetchConToken(this.URL.URI_TORNEO, {
                 method: 'POST',
@@ -46,6 +48,7 @@ export class TorneoApi{
                 },
                 body: JSON.stringify(torneo)
             });
+
             return data;
         } 
         catch (error) {
