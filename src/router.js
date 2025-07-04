@@ -6,6 +6,7 @@ import { crearTorneoView } from './views/crearTorneo/crearTorneoView.js';
 import { torneoView } from './views/torneo/torneoView.js';
 import { mapaComponent } from './components/mapa/mapaComponent.js';
 import { torneosAside } from './components/torneosAside/torneosAsideComponent.js';
+import { renderLoginWidget } from './components/loginWidget/loginWidgetComponent.js';
 
 const routes = {
   '/welcome': welcomeView,
@@ -27,6 +28,7 @@ export async function router() {
 
   const user = JSON.parse(localStorage.getItem('user'));
 
+  renderLoginWidget();
   if (!user && path !== '/welcome') {
     location.hash = '#/welcome';
     return;
