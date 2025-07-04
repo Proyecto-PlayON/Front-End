@@ -41,6 +41,11 @@ export async function router() {
   if (path === '/welcome' || path === '/home') {
     aside.style.display = 'none';
   } else {
+    let asideContainer = document.querySelector('#aside');
+    asideContainer.innerHTML = ''; // Limpiar contenido previo
+    let asideContent = await torneosAside();
+    asideContainer.appendChild(asideContent);
+
     aside.style.display = 'block';
   }
   const render = routes[path] || NotFound;
@@ -48,9 +53,6 @@ export async function router() {
   // Parsear parámetros
   const params = new URLSearchParams(queryString);
   const props = Object.fromEntries(params.entries()); // ejemplo: { id: "4" }
-
-  
-
 
   app.innerHTML = '';
   const content = await render(props);
@@ -60,7 +62,9 @@ export async function router() {
 // Escuchar cambios de ruta
 window.addEventListener('hashchange', router);
 window.addEventListener('load', async () => {
+  
   await router(); 
+  
 });
 
 document.addEventListener('click', async (event) => {

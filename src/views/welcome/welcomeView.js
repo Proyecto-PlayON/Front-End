@@ -1,5 +1,4 @@
 import { renderLoginWidget } from "../../components/loginWidget/loginWidgetComponent.js";
-import { torneosAside } from "../../components/torneosAside/torneosAsideComponent.js";
 
 export async function welcomeView(){
     
