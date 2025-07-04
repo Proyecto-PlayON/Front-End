@@ -20,26 +20,34 @@ const routes = {
   '/': homeView, // Redirigir a home si no hay hash
 };
 
+let isRouting = false;
+
 export async function router() {
+  if (isRouting) return;
+  isRouting = true;
+
   const fullHash = location.hash.slice(1) || '/';
   const [rawPath, queryString] = fullHash.split('?');
-  const path = rawPath.toLowerCase(); // para asegurar coincidencias
+  const path = rawPath.toLowerCase();
   const app = document.querySelector('.main');
 
   const user = JSON.parse(localStorage.getItem('user'));
 
   renderLoginWidget();
+
   if (!user && path !== '/welcome') {
     location.hash = '#/welcome';
+    isRouting = false;
     return;
   }
 
   if (user && (path === '/' || path === '/welcome')) {
     location.hash = '#/home';
+    isRouting = false;
     return;
   }
 
-   // Mostrar/ocultar aside según la vista
+  // Mostrar/ocultar aside según la vista
   if (path === '/welcome' || path === '/home') {
     aside.style.display = 'none';
   } else {
@@ -50,16 +58,20 @@ export async function router() {
 
     aside.style.display = 'block';
   }
+
   const render = routes[path] || NotFound;
 
   // Parsear parámetros
   const params = new URLSearchParams(queryString);
-  const props = Object.fromEntries(params.entries()); // ejemplo: { id: "4" }
+  const props = Object.fromEntries(params.entries());
 
   app.innerHTML = '';
   const content = await render(props);
   app.appendChild(content);
+
+  isRouting = false;
 }
+
 
 // Escuchar cambios de ruta
 window.addEventListener('hashchange', router);
