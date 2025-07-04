@@ -1,14 +1,13 @@
-import { MotorApi } from "./repositories/motorApi.js";
-import { TorneoApi } from "./repositories/torneoApi.js";
-import { UsuarioApi } from "./repositories/usuarioApi.js";
-import { UsuarioService } from "./services/usuarioService.js";
+import { torneosAside } from "./components/torneosAside/torneosAsideComponent.js";
+import { renderLoginWidget } from "./components/loginWidget/loginWidgetComponent.js";
+import { router } from "./router.js";
+
+let asideContainer = document.querySelector('#aside');
+let asideContent = await torneosAside();
+asideContainer.appendChild(asideContent);
+
+renderLoginWidget();
 
 
-let userService = new UsuarioService();
-
-let token = await userService.login(
-        {
-            "userName": "nicolass",
-            "password": "Dfdd2-dds"
-        }
-);
+// Inicializar el router
+await router();

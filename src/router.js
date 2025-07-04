@@ -5,6 +5,7 @@ import { welcomeView } from './views/welcome/welcomeView.js';
 import { crearTorneoView } from './views/crearTorneo/crearTorneoView.js';
 import { torneoView } from './views/torneo/torneoView.js';
 import { mapaComponent } from './components/mapa/mapaComponent.js';
+import { torneosAside } from './components/torneosAside/torneosAsideComponent.js';
 
 const routes = {
   '/welcome': welcomeView,
@@ -14,6 +15,8 @@ const routes = {
   '/crear-torneo': crearTorneoView,
   '/torneo': torneoView,
   '/mapa': mapaComponent,
+  '/torneos-aside': torneosAside,
+  '/': homeView, // Redirigir a home si no hay hash
 };
 
 export async function router() {
@@ -39,6 +42,9 @@ export async function router() {
   // Parsear parámetros
   const params = new URLSearchParams(queryString);
   const props = Object.fromEntries(params.entries()); // ejemplo: { id: "4" }
+
+  
+
 
   app.innerHTML = '';
   const content = await render(props);

@@ -22,8 +22,10 @@
     <link rel="stylesheet" href="./views/inscripciones/inscripcionesView.css" />
     <link rel="stylesheet" href="./views/misTorneos/misTorneosView.css" />
     <link rel="stylesheet" href="./views/torneo/torneoView.css" />
-    <link rel="stylesheet" href="./views/welcome/welcomeView.css" />
+    <!-- <link rel="stylesheet" href="./views/welcome/welcomeView.css" /> -->
     <link rel="stylesheet" href="./components/mapa/mapaComponent.css">
+    <link rel="stylesheet" href="./components/torneosAside/torneosAsideComponent.css" />
+    <link rel="stylesheet" href="./components/informacion/informacionComponent.css" />
 
     <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
     
@@ -43,14 +45,18 @@
         <li><a href="#/home" class="nav-link" data-view="home"><span>🏠 Inicio</span></a></li>
         <li><a href="#/crear-torneo" class="nav-link" data-view="crear"><span>➕ Crear Torneo</span></a></li>
         <li><a href="#/torneos" class="nav-link" data-view="iniciar-torneo"><span>🚪 Mis Torneos</span></a></li>
-        <li><a href="#/not" class="nav-link" data-view="buscar"><span>🔍 Buscar</span></a></li>
+        <li><a href="#/torneos-aside" class="nav-link" data-view="buscar"><span>🔍 Buscar</span></a></li>
       </ul>
     </nav>
 
-    <main class="main">
-      <section id="main-content" class="content"></section>
-    </main>
-
+    <div class="container-principal row">
+      <aside id="aside" class="col-md-2"></aside>
+      <main class="main col-md-10">
+        <section id="main-content" class="content"></section>
+      </main>
+    </div>
+    
+    
     <footer class="footer">
       <p class="footer__text">&copy; 2025 PlayOn — Todos los derechos reservados</p>
     </footer>
@@ -58,6 +64,6 @@
 
   <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js" integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q" crossorigin="anonymous"></script>
-  <script src="./router.js" type="module"></script>
+  <script src="./main.js" type="module"></script>
   </body>
 </html>

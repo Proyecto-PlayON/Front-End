@@ -64,7 +64,6 @@ body {
   font-family: 'Unispace', sans-serif;
   font-size: 6.6rem;
   font-weight: 600;
-  text-transform: uppercase;
   letter-spacing: 4px;
   margin: 0;
   margin-right : 105px;
@@ -160,6 +159,18 @@ body {
   z-index: 2;
 }
 
+/* === CONTAINER PRINCIPAL === */
+.container-principal {
+  margin: auto;
+  width: 1990px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 0 1rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
 /* === MAIN === */
 .main {
   display: flex;
@@ -169,7 +180,7 @@ body {
 }
 
 .content {
-  max-width: 1300px;
+  max-width: 100%;
   width: 100%;
   animation: fadeIn 0.4s ease;
 }
@@ -195,4 +206,3 @@ body {
   0% { background-position: 0% 0%; }
   100% { background-position: 400% 0%; }
 }
-

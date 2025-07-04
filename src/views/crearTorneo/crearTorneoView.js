@@ -1,6 +1,7 @@
 import { TorneoService } from "../../services/torneoService.js";
 import { showMessage } from "../../components/showMessages/showMessages.js";
 import { mapaComponent } from "../../components/mapa/mapaComponent.js";
+import { torneosAside } from "../../components/torneosAside/torneosAsideComponent.js";
 
 export async function crearTorneoView() {
     const container = document.createElement('section');
@@ -60,11 +61,10 @@ export async function crearTorneoView() {
     });
 
     let mapaDefecto = await mapaComponent(-34.7750277, -58.267808, "UNAJ, Florencio Varela");
-    let mapInstance = null;
     let botonBuscar = container.querySelector(".buscar-ubicacion");
-    let input = container.querySelector("#ubicacion"); // te faltaba esta línea
-    let mapaTarget = container.querySelector(".mapa-container"); // lugar donde irá el mapa
-    mapaTarget.innerHTML = ''; // limpiar contenido previo
+    let input = container.querySelector("#ubicacion"); 
+    let mapaTarget = container.querySelector(".mapa-container"); 
+    mapaTarget.innerHTML = ''; 
     mapaTarget.appendChild(mapaDefecto); // insertar mapa por defecto
 
     botonBuscar.addEventListener("click", async () => {
@@ -128,8 +128,8 @@ export async function crearTorneoView() {
             nombre,
             usuarioOrganizadorId,
             ubicacion,
-            latitud: ubicacionSeleccionada.latitud.toString(), 
-            longitud: ubicacionSeleccionada.longitud.toString(),
+            latitud: ubicacionSeleccionada.latitud.toString().replace('.', ','),
+            longitud: ubicacionSeleccionada.longitud.toString().replace('.', ','),
             minimoParticipantes,
             maximoParticipantes,
             fechaInicio,
@@ -144,8 +144,13 @@ export async function crearTorneoView() {
         const torneoService = new TorneoService();
         try {
             let torneoCreado = await torneoService.crearTorneo(torneo);
+            let asideContainer = document.querySelector('#aside');
+            asideContainer.innerHTML = ''; // Limpiar el contenedor del aside
+            let asideContent = await torneosAside();
+            asideContainer.appendChild(asideContent);
             showMessage("Torneo creado con éxito!!", "success");
-            location.hash = `#/inscripciones?id=${torneoCreado.id}`;
+            location.hash = `#/torneo?id=${torneoCreado.id}`;
+            
 
             // redirigir o limpiar formulario si querés
         } catch (error) {
