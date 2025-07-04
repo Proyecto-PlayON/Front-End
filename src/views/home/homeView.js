@@ -11,7 +11,7 @@ export async function homeView(){
     container.innerHTML = htmlContent;
 
 
-    renderLoginWidget();
+    
 
     return container;
 } 

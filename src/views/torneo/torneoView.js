@@ -5,6 +5,8 @@ import { inscripcionesView } from "../inscripciones/inscripcionesView.js";
 import { MotorService } from "../../services/motorService.js";
 import { TorneoService } from "../../services/torneoService.js";
 import { showMessage } from "../../components/showMessages/showMessages.js";
+import { torneosAside } from "../../components/torneosAside/torneosAsideComponent.js";
+import { avisoGanadorComponent } from "../../components/avisoGanador/avisoGanadorComponent.js";
 
 export async function torneoView() {
     const params = new URLSearchParams(location.hash.split('?')[1]);
@@ -41,13 +43,41 @@ export async function torneoView() {
         showMessage("Error al obtener el torneo.", "danger");
     }
 
-    
+    const storedTorneoJSON = sessionStorage.getItem(`torneo_${torneoId}`);
+    const storedTorneo = storedTorneoJSON ? JSON.parse(storedTorneoJSON) : null;
+
+    if (storedTorneo && storedTorneo.estado.id !== torneo.estado.id) {
+        
+
+        // El estado cambió => refrescar el aside
+        let asideContainer = document.querySelector('#aside');
+        asideContainer.innerHTML = ''; // Limpiar el contenedor del aside
+        let asideContent = await torneosAside();
+        asideContainer.appendChild(asideContent);
+
+        if (torneo.estado.id === 3 && torneo.nombreGanador) {
+            await avisoGanadorComponent(torneo.nombreGanador);
+        }
+
+    }
+
+    // Actualizar sessionStorage
+    sessionStorage.setItem(`torneo_${torneoId}`, JSON.stringify(torneo));
+
 
     const informacionElement = await informacionComponent(torneo);
 
     const torneoHeader = container.querySelector('.torneo-informacion-header-view');
     torneoHeader.querySelector('h2').textContent = torneo.nombre;
-    torneoHeader.querySelector('h4').textContent = torneo.nombreGanador || 'Aún no hay ganador';
+    
+    if(torneo.estado.id === 3) {
+        torneoHeader.querySelector('h4').classList.add('campeon');
+        torneoHeader.querySelector('h4').textContent = `Campeón: ${torneo.nombreGanador} 🏆`;
+    }
+    else {
+        torneoHeader.querySelector('h4').classList.remove('campeon');
+        torneoHeader.querySelector('h4').textContent = 'Aún no hay ganador';
+    }
     const torneoContainer = container.querySelector('.torneo-container-content-view');
     const torneoAside = container.querySelector('.torneo-informacion-aside-view');
     torneoAside.appendChild(informacionElement);

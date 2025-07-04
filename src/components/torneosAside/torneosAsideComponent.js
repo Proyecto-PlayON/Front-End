@@ -19,6 +19,10 @@ export async function torneosAside() {
   
   const torneoService = new TorneoService();
   const torneos = await torneoService.getTorneos();
+  if (torneos.length === 0) {
+    lista.innerHTML = '<li class="torneo-item">No hay torneos disponibles</li>';
+    return container;
+  }
 
   for (let torneo of torneos) {
     const li = document.createElement('li');
