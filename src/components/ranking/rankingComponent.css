@@ -11,6 +11,9 @@
   --color-win: #007B8A;
   --color-draw: #009CA8;
   --color-loss: #D46E8C;
+
+  --color-fila-par: #1e2733;
+  --color-fila-impar: #26313f;
 }
 
 .tabla-container {
@@ -47,6 +50,14 @@ th {
   font-weight: bold;
 }
 
+tbody tr:nth-child(odd) {
+  background-color: var(--color-fila-impar);
+}
+
+tbody tr:nth-child(even) {
+  background-color: var(--color-fila-par);
+}
+
 tbody tr:hover {
   background-color: var(--color-hover-row);
 }
@@ -74,3 +85,4 @@ tbody tr:hover {
 .L {
   background-color: var(--color-loss);
 }
+
