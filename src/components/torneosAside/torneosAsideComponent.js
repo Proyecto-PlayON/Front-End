@@ -28,12 +28,25 @@ export async function torneosAside() {
     const li = document.createElement('li');
     li.classList.add('torneo-item'); // para estilo si querés
 
+    
     li.innerHTML = `
     <div class="torneo-header">
         <span class="nombre">${torneo.nombre}</span>
-        <span class="estado-dot estado-${torneo.estado?.id || '0'}"></span>
     </div>
     `;
+  const torneoHeader = li.querySelector('.torneo-header');
+  console.log(torneo.estado.id);
+   if(torneo.estado.id===2){
+      //torneoHeader.innerHTML(`<span class="estado-dot estado-${torneo.estado?.id || '0'}"></span>`);
+    torneoHeader.innerHTML+= `<i class="fas fa-spinner slow-spin"></i>`;
+   }
+   else if(torneo.estado.id===3){
+    torneoHeader.innerHTML+= `<i id="icono-fin" class="fa-solid fa-flag-checkered">`;
+   }
+   else{
+    torneoHeader.innerHTML += `<i class="fa-solid fa-clock">`;
+   }
+   
 
 
     li.addEventListener('click', async () => {

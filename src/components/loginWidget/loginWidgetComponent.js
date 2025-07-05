@@ -17,7 +17,6 @@ function setLoggedUser(user) {
 function getLoggedUser() {
   return loggedUser;
 }
-
 function renderLoginWidget() {
   // Refrescar estado por si cambió el localStorage
   loggedUser = JSON.parse(localStorage.getItem('user')) || null;

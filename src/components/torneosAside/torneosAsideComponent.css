@@ -107,3 +107,15 @@
   max-height: 1000px; /* lo suficientemente alto para mostrar la lista completa */
   padding-top: 0.5rem;
 }
+.fa-spinner {
+  color: #ffc107; /* Azul Bootstrap */
+  font-size: 24px;
+}
+@keyframes fa-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.slow-spin {
+  animation: fa-spin 4s infinite linear; /* 4 segundos por vuelta */
+}
