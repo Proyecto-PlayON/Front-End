@@ -6,6 +6,7 @@ import { crearTorneoView } from './views/crearTorneo/crearTorneoView.js';
 import { torneoView } from './views/torneo/torneoView.js';
 import { mapaComponent } from './components/mapa/mapaComponent.js';
 import { torneosAside } from './components/torneosAside/torneosAsideComponent.js';
+import { renderLoginWidget } from './components/loginWidget/loginWidgetComponent.js';
 
 const routes = {
   '/welcome': welcomeView,
@@ -19,41 +20,79 @@ const routes = {
   '/': homeView, // Redirigir a home si no hay hash
 };
 
+let isRouting = false;
+
 export async function router() {
+  if (isRouting) return;
+  isRouting = true;
+
   const fullHash = location.hash.slice(1) || '/';
   const [rawPath, queryString] = fullHash.split('?');
-  const path = rawPath.toLowerCase(); // para asegurar coincidencias
+  const path = rawPath.toLowerCase();
   const app = document.querySelector('.main');
 
   const user = JSON.parse(localStorage.getItem('user'));
 
+  renderLoginWidget();
+
   if (!user && path !== '/welcome') {
     location.hash = '#/welcome';
+    isRouting = false;
     return;
   }
 
   if (user && (path === '/' || path === '/welcome')) {
     location.hash = '#/home';
+    isRouting = false;
     return;
+  }
+
+  // Mostrar/ocultar aside según la vista
+  if (path === '/welcome' || path === '/home') {
+    aside.style.display = 'none';
+    if(path === '/home'){
+      const asideContainer = document.querySelector('#aside');
+      asideContainer.innerHTML = '';
+      const asideContent = await torneosAside();
+      asideContainer.appendChild(asideContent);
+    }
+    if (path === '/welcome') {
+      const asideContainer = document.querySelector('#aside');
+      asideContainer.innerHTML = '';
+    }
+  } else {
+    aside.style.display = 'block';
   }
 
   const render = routes[path] || NotFound;
 
   // Parsear parámetros
   const params = new URLSearchParams(queryString);
-  const props = Object.fromEntries(params.entries()); // ejemplo: { id: "4" }
-
-  
-
+  const props = Object.fromEntries(params.entries());
 
   app.innerHTML = '';
   const content = await render(props);
   app.appendChild(content);
+
+  isRouting = false;
 }
+
 
 // Escuchar cambios de ruta
 window.addEventListener('hashchange', router);
 window.addEventListener('load', async () => {
+  const fullHash = location.hash.slice(1) || '/';
+  const [rawPath] = fullHash.split('?');
+  const path = rawPath.toLowerCase();
+
+  // Cargar aside solo al inicio, si no estás en welcome
+  if (path !== '/welcome') {
+    const asideContainer = document.querySelector('#aside');
+    asideContainer.innerHTML = '';
+    const asideContent = await torneosAside();
+    asideContainer.appendChild(asideContent);
+  }
+
   await router(); 
 });
 

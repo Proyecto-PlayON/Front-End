@@ -1,4 +1,3 @@
-import { renderLoginWidget } from "../../components/loginWidget/loginWidgetComponent.js";
 
 export async function homeView(){
     
@@ -9,9 +8,6 @@ export async function homeView(){
     const htmlResponse = await fetch('./views/home/homeView.html');
     const htmlContent = await htmlResponse.text();
     container.innerHTML = htmlContent;
-
-
-    
 
     return container;
 } 

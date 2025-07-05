@@ -1,6 +1,6 @@
-import { renderLoginWidget } from "../../components/loginWidget/loginWidgetComponent.js";
 
-export async function welcomeView() {
+export async function welcomeView(){
+    
     const container = document.createElement('section');
     container.classList.add('content');
 
@@ -9,10 +9,5 @@ export async function welcomeView() {
     const htmlContent = await htmlResponse.text();
     container.innerHTML = htmlContent;
 
-
-    renderLoginWidget();
-
-    
-
     return container;
-}
+} 

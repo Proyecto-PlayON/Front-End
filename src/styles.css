@@ -185,7 +185,7 @@ body {
 .main {
   display: flex;
   justify-content: center;
-  min-height: 110vh;
+  min-height: 100vh;
   max-height: calc(900vh - 2700px);
 }
 
