@@ -11,6 +11,16 @@
   --gradiente-hover: linear-gradient(to right, var(--azul), var(--violeta));
 }
 
+*{
+  margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+  font-family: 'Poppins', sans-serif;
+}
+
+
+
 
 body {
   margin: 0;
@@ -61,14 +71,14 @@ body {
 }
 
 .header h1 {
-  font-family: 'Unispace', sans-serif;
+  /*font-family: 'Unispace', sans-serif;*/
   font-size: 6.6rem;
   font-weight: 600;
   letter-spacing: 4px;
   margin: 0;
   margin-right : 105px;
   background: var(--gradiente-tutifruti);
- -webkit-background-clip: text;
+   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   text-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
 }
