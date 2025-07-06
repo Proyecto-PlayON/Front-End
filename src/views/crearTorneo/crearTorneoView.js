@@ -106,11 +106,11 @@ export async function crearTorneoView() {
         let ubicacionSeleccionada = await buscarUbicacion(ubicacion);
 
 
-        if (minimoParticipantes < 1 || maximoParticipantes < 1) {
+        if (parseInt(minimoParticipantes) < 1 || parseInt(maximoParticipantes < 1)) {
             showMessage("Los valores mínimo y máximo de participantes deben ser al menos 1.", "warning");
             return;
         }
-        if (minimoParticipantes >= maximoParticipantes) {
+        if (parseInt(minimoParticipantes) >= parseInt(maximoParticipantes)) {
             showMessage("El mínimo de participantes no puede ser mayor o igual al máximo.", "warning");
             return;
         }
