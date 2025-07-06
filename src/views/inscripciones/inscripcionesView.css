@@ -232,3 +232,10 @@ tabla 1 iconos y botones
 
   border-color: transparent;
 }
+
+#botton-window {
+    min-height: 450px; /* altura mínima para que el contenedor tenga un tamaño adecuado */
+    max-height: 450px; /* o lo que consideres adecuado */
+    overflow-y: auto;
+    padding-right: 10px; /* espacio para que no tape el scrollbar */
+}
