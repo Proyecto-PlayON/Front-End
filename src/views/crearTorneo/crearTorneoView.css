@@ -1,58 +1,57 @@
+/* Fuente general */
+@import url('https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');
+
+/* -----------------------------------
+   Variables raíz para colores
+------------------------------------- */
+:root {
+  --azul: #007b8a;
+  --azul-hover: #4da5c7;
+  --gris-claro: #f4f4f5;
+  --gris-oscuro: #6c757d;
+  --fondo: #1e2a38;
+  --amarillo: #ffe600;
+  --naranja: #ff7a00;
+  --gradiente-tutifruti: linear-gradient(135deg, var(--amarillo), var(--naranja), var(--rosado), var(--violeta), var(--azul));
+}
+.container-crear-torneo .formHeader h2 {
+  font-family: 'Open Sans', sans-serif;
+  font-size: 3rem !important;
+  font-weight: bold;
+  letter-spacing: 4px;
+  text-align: center;
+  margin-top: 20px;
+  margin-bottom: 30px;
+  text-transform: uppercase;
+
+background: var(--gradiente-tutifruti);
+
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+
+  
+}
+/* -----------------------------------
+   CONTENEDOR PRINCIPAL DEL FORMULARIO
+------------------------------------- */
 .container-crear-torneo {
   background-color: #1e2a38;
+  font-family: 'Segoe UI', sans-serif;
   padding: 40px 30px;
+  margin: 30px auto 60px;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0,0,0,0.4);
-  margin-top: 30px;
-  margin-bottom: 60px;
   max-width: 1400px;
-  margin-left: auto;
-  margin-right: auto;
-  font-family: 'Segoe UI', sans-serif;
+  color: white;
 }
 
-.container-crear-torneo input.form-control {
-  background-color: #f4f4f5;
-  border: none;
-  border-radius: 8px;
-  padding: 10px;
-  margin-bottom: 10px;
-}
 
-.container-crear-torneo .form-check-label {
-  color: gray;
-}
-
-.container-crear-torneo .btn-primary {
-  background-color: #007b8a;
-  border: none;
-  border-radius: 6px;
-  padding: 10px 20px;
-  width: 40%;
-  font-weight: bold;
-}
-
-.container-crear-torneo .btn-primary:hover {
-  background-color: #4da5c7;
-}
-
-.container-crear-torneo button.btn {
-  font-size: 1rem;
-}
-
-.container-crear-torneo a {
-  color: #4da5c7;
-  text-decoration: none;
-}
-
-.container-crear-torneo a:hover {
-  text-decoration: underline;
-}
-
-.container-crear-torneo .text-center {
-  margin-top: 15px;
-}
-
+/* -----------------------------------
+   HEADER DEL FORMULARIO (Título e imagen)
+------------------------------------- */
 .container-crear-torneo .formHeader {
   text-align: center;
   margin-bottom: 20px;
@@ -68,13 +67,38 @@
 .container-crear-torneo .formHeader h1 {
   font-size: 50px;
   margin-bottom: 40px;
-  color: white;
+  color: var(--azul); /* <- este color se puede cambiar */
+}
+
+/* -----------------------------------
+   CAMPOS DE ENTRADA Y ESTADOS
+------------------------------------- */
+.container-crear-torneo input.form-control {
+  background-color: var(--gris-claro);
+  border: none;
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.container-crear-torneo input:disabled {
+  background-color: #d1d4d8;
+  color: var(--gris-oscuro);
+  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1);
+  cursor: not-allowed;
+}
+
+.container-crear-torneo .form-check-label {
+  color: gray;
 }
 
 .container-crear-torneo .form-check.form-switch {
   margin-top: 0.2rem;
 }
 
+/* -----------------------------------
+   SWITCH de opciones
+------------------------------------- */
 .container-crear-torneo .switch-container {
   display: flex;
   align-items: center;
@@ -87,19 +111,69 @@
   line-height: 1;
   margin-right: 0.5rem;
 }
-.container-crear-torneo input:disabled {
-  background-color: #d1d4d8; /* gris claro */
-  color: #6c757d;            /* gris oscuro */
-  box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.1); /* sombreado interno */
-  cursor: not-allowed;
+
+/* -----------------------------------
+   BOTONES GENERALES
+------------------------------------- */
+.container-crear-torneo .btn-primary,
+.ubicacion-container .btn-secondary {
+   background: #007b8a;
+  padding: 0.8rem 1.8rem;
+  font-weight: 600;
+  font-size: 1.05rem;
+  color: #ffffff;
+  border-radius: 10px;
+ background: #007b8a;
+  border: 2px solid transparent;
+
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s ease, border-color 0.3s ease;
 }
-/* Para asegurar que el layout interno no se desborde */
+
+.container-crear-torneo .btn-primary {
+  width: 20%;
+}
+
+.ubicacion-container .btn-secondary {
+  width: 40%;
+  margin-bottom: 10px;
+}
+
+.container-crear-torneo .btn-primary:hover,
+.ubicacion-container .btn-secondary:hover {
+  
+  transform: scale(1.03);
+}
+
+.container-crear-torneo button.btn {
+  font-size: 1rem;
+}
+
+/* -----------------------------------
+   ENLACES
+------------------------------------- */
+.container-crear-torneo a {
+  color: var(--azul-hover);
+  text-decoration: none;
+}
+
+.container-crear-torneo a:hover {
+  text-decoration: underline;
+}
+
+/* -----------------------------------
+   ESTRUCTURA Y DISTRIBUCIÓN
+------------------------------------- */
+.container-crear-torneo .text-center {
+  margin-top: 15px;
+}
+
 .container-crear-torneo .row {
   margin-left: 0;
   margin-right: 0;
 }
 
-/* Asegura que las columnas no se pasen de sus contenedores */
 .container-crear-torneo .col-md-4,
 .container-crear-torneo .col-md-8 {
   padding-left: 0.5rem;
@@ -107,19 +181,23 @@
   box-sizing: border-box;
 }
 
-/* Para que el mapa y la búsqueda no desborden el panel derecho */
+/* -----------------------------------
+   UBICACIÓN: buscador/mapa
+------------------------------------- */
 .ubicacion-container {
   overflow-x: hidden;
+  padding: 0 10px 20px !important;
 }
 
-/* Alinea el botón buscar con el input sin romper diseño */
 .container-crear-torneo .buscar-ubicacion {
   white-space: nowrap;
   padding-left: 10px;
   padding-right: 10px;
 }
 
-/* Corrige el botón en dispositivos pequeños */
+/* -----------------------------------
+   RESPONSIVE
+------------------------------------- */
 @media (max-width: 768px) {
   .container-crear-torneo .col-md-4,
   .container-crear-torneo .col-md-8 {
@@ -135,26 +213,4 @@
   .container-crear-torneo .formHeader h1 {
     font-size: 36px;
   }
-}
-
-.ubicacion-container{
-  padding: 0 10px !important;
-  padding-bottom: 20px !important;
-}
-.ubicacion-container .btn-secondary {
-  background-color: #007b8a;
-  border: none;
-  border-radius: 6px;
-  padding: 10px 20px;
-  width: 40%;
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-
-.ubicacion-container .btn-secondary:hover {
-  background-color: #4da5c7;
-}
-
-.ubicacion-container button.btn {
-  font-size: 1rem;
 }
