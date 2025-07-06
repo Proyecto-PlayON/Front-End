@@ -23,7 +23,10 @@ export class TorneoService{
     }
 
     async getTorneos(){
-        return await this.repository.getTorneos();
+        let usuario = JSON.parse(localStorage.getItem('user'));
+        let torneos = await this.repository.getTorneos();
+        const torneosDelUsuario = torneos.filter(t => t.usuarioOrganizadorId === usuario.id);
+        return torneosDelUsuario;
     }
 
     async getTorneoById(id){

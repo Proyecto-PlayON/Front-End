@@ -21,6 +21,8 @@ const routes = {
 };
 
 let isRouting = false;
+let asideRendered = false;
+
 
 export async function router() {
   if (isRouting) return;
@@ -47,22 +49,24 @@ export async function router() {
     return;
   }
 
-  // Mostrar/ocultar aside según la vista
-  if (path === '/welcome' || path === '/home') {
+  const asideContainer = document.querySelector('#aside');
+  // Mostrar u ocultar aside según si está logueado y en welcome
+  if (!user && path === '/welcome') {
     aside.style.display = 'none';
-    if(path === '/home'){
-      const asideContainer = document.querySelector('#aside');
+    asideContainer.innerHTML = '';
+    asideRendered = false; // reseteamos si vuelve al login
+  } else {
+    aside.style.display = 'block';
+
+    // Solo lo cargamos si no se cargó antes
+    if (!asideRendered) {
       asideContainer.innerHTML = '';
       const asideContent = await torneosAside();
       asideContainer.appendChild(asideContent);
+      asideRendered = true;
     }
-    if (path === '/welcome') {
-      const asideContainer = document.querySelector('#aside');
-      asideContainer.innerHTML = '';
-    }
-  } else {
-    aside.style.display = 'block';
   }
+
 
   const render = routes[path] || NotFound;
 
@@ -80,21 +84,8 @@ export async function router() {
 
 // Escuchar cambios de ruta
 window.addEventListener('hashchange', router);
-window.addEventListener('load', async () => {
-  const fullHash = location.hash.slice(1) || '/';
-  const [rawPath] = fullHash.split('?');
-  const path = rawPath.toLowerCase();
+window.addEventListener('load', router);
 
-  // Cargar aside solo al inicio, si no estás en welcome
-  if (path !== '/welcome') {
-    const asideContainer = document.querySelector('#aside');
-    asideContainer.innerHTML = '';
-    const asideContent = await torneosAside();
-    asideContainer.appendChild(asideContent);
-  }
-
-  await router(); 
-});
 
 document.addEventListener('click', async (event) => {
   const link = event.target.closest('a');
