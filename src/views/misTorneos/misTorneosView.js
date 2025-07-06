@@ -3,7 +3,7 @@ import { showMessage } from "../../components/showMessages/showMessages.js";
 
 export async function misTorneosView() {
     const container = document.createElement('section');
-    container.classList.add('content');
+    container.classList.add('content-mis-torneos-home');
 
     // Cargar el HTML de la vista
     try {
@@ -36,55 +36,69 @@ export async function misTorneosView() {
         showMessage("Error al cargar tus torneos.", "danger");
         return container;
     }
+    // Ordenar por ID descendente (últimos creados primero)
+    torneos.sort((a, b) => b.id - a.id);
 
-    for (let torneo of torneos) {
+    // Tomar solo los últimos 5
+    const ultimosTorneos = torneos.slice(0, 5);
+
+    for (let torneo of ultimosTorneos) {
+
         const div = document.createElement("div");
-        div.className = "tournament-card d-flex justify-content-between align-items-center px-4 py-3 my-2 rounded text-white";
+        div.className = "tournament-card row justify-content-between align-items-center px-4 py-3 my-2 rounded text-white";
 
         const fechaInicio = new Date(torneo.fechaInicio).toLocaleDateString();
         const fechaFin = new Date(torneo.fechaFinalizacion).toLocaleDateString();
 
-        let estadoClass = "";
+        let icono = "";
         switch ((torneo.estado?.nombre || "").toLowerCase()) {
             case "en espera":
-                estadoClass = "estado-en-espera";
+                icono = `<i class="col-1 iconito fa-solid fa-clock"></i>`;
                 break;
             case "en proceso":
-                estadoClass = "estado-en-proceso";
+                icono = `<i class=" iconito fas fa-spinner slow-spin"></i>`;
                 break;
             case "terminado":
-                estadoClass = "estado-terminado";
+                icono = `<i id="icono-fin" class="col-1 iconito fa-solid fa-flag-checkered"></i>`;
                 break;
         }
 
         div.innerHTML = `
-            <p class="mb-0">${torneo.nombre}</p>
-            <p class="mb-0">${torneo.ubicacion}</p>
-            <p class="mb-0">${torneo.modalidad?.nombre || 'N/A'}</p>
-            <p class="mb-0">${fechaInicio} - ${fechaFin}</p>
-            <p class="mb-0 ${estadoClass}">${torneo.estado?.nombre || 'N/A'}</p>
-            <p class="mb-0 d-flex gap-2">
-                <button class="btn btn-sm btn-primary inscripciones-btn">Inscripciones</button>
-                <button class="btn btn-sm btn-light ver-btn">Ver</button>
-            </p>
+            <p class=" col-3">${torneo.nombre}</p>
+            <p class=" col-3">${torneo.ubicacion}</p>
+            <p class=" col-3">${torneo.modalidad?.nombre || 'N/A'}</p>
+            <p class=" col-2">${fechaInicio}</p>
+            <div class="col-1 iconito"> ${icono}</div>
         `;
 
-        const btnInscripciones = div.querySelector(".inscripciones-btn");
-        const btnVer = div.querySelector(".ver-btn");
-
-        // Deshabilitar botones según estado
-        if (torneo.estado.id === 1) btnVer.disabled = true; // en espera
-        if (torneo.estado.id === 2 || torneo.estado.id === 3) btnInscripciones.disabled = true; // en proceso o terminado
-
-        btnInscripciones.addEventListener("click", () => {
-            location.hash = `#/inscripciones?id=${torneo.id}`;
+        div.addEventListener("click", () => {
+                location.hash = `#/torneo?id=${torneo.id}`;
         });
 
-        btnVer.addEventListener("click", async () => {
-            location.hash = `#/torneo?id=${torneo.id}`;
-        });
 
         contenedor.appendChild(div);
+    }
+
+    const torneosConGanador = torneos
+            .filter(t => t.idGanador && t.nombreGanador)
+            .sort((a, b) => new Date(b.fechaFinalizacion) - new Date(a.fechaFinalizacion)) // más recientes primero
+            .slice(0, 5); // mostrar solo 5
+
+    const winnersContainer = container.querySelector("#winners-container");
+
+    for (let torneo of torneosConGanador) {
+        const winnerDiv = document.createElement("div");
+        winnerDiv.className = "winner-card d-flex justify-content-between align-items-center px-4 py-2 my-2 rounded text-white ";
+
+        const fechaFin = new Date(torneo.fechaFinalizacion).toLocaleDateString();
+
+        winnerDiv.innerHTML = `
+            <p class="mb-0"><strong>${torneo.nombre}</strong></p>
+            <p class="mb-0">🏆 ${torneo.nombreGanador}</p>
+            <p class="mb-0">${fechaFin}</p>
+        `;
+
+        winnersContainer.appendChild(winnerDiv);
     }
 
     return container;
