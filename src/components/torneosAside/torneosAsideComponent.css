@@ -49,8 +49,8 @@
   
 }
 
-.titulo-aside .torneo-item:hover {
-  background-color: #e0f7fa;
+.torneos-aside .torneo-item:hover {
+  
 }
 /* Contenedor superior nombre + estado */
 .torneos-aside .torneo-item .torneo-header {
@@ -63,6 +63,11 @@
 .torneos-aside .torneo-item .nombre {
   font-weight: bold;
   font-size: 1.2rem;
+}
+.torneos-aside .torneo-item .nombre:hover {
+  background: var(--gradiente-tutifruti);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 /* Puntito de estado */

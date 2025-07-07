@@ -81,7 +81,7 @@ export async function inscripcionesView() {
             }
 
             actualizarNumeracion();
-            btnIniciar.disabled = torneoActualizado.inscripciones.length === 0;
+            btnIniciar.disabled = torneoActualizado.inscripciones.length < torneoActualizado.minimoParticipantes;
         } catch (error) {
             console.error(error);
             showMessage("Error al cargar inscriptos", "danger");
