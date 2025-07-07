@@ -146,6 +146,30 @@ export async function inscripcionesView() {
         }
     }
 
+    searchButton.addEventListener('click', async (e) => {
+        e.preventDefault();
+        await renderUsuarios(searchInput.value.trim());
+    });
+
+    searchInput.addEventListener('keypress', async (e) => {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+            await renderUsuarios(searchInput.value.trim());
+        }
+    });
+
+    btnIniciar.textContent = "Iniciar Torneo";
+    btnIniciar.addEventListener('click', async () => {
+        try {
+            await torneoService.iniciarTorneo(torneoId);
+            showMessage("Torneo iniciado ✅", "success");
+            location.hash = `#/torneo?id=${torneoId}`;
+            router(); // Actualizar la vista
+        } catch (error) {
+            console.error(error);
+            showMessage("Error al iniciar el torneo", "danger");
+        }
+    });
     // Carga inicial
     await renderUsuarios();
     await cargarInscriptosDesdeTorneo();
