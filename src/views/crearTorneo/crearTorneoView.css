@@ -39,11 +39,11 @@ background: var(--gradiente-tutifruti);
 ------------------------------------- */
 .container-crear-torneo {
   background-color: #1e2a38;
+  background: linear-gradient(to top, #1e2a38, #111827);
   font-family: 'Segoe UI', sans-serif;
   padding: 40px 30px;
-  margin: 30px auto 60px;
+  margin: 10px auto 60px;
   border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.4);
   max-width: 1400px;
   color: white;
 }

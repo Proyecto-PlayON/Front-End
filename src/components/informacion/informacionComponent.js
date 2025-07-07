@@ -27,7 +27,7 @@ export async function informacionComponent(torneo) {
     <li><strong>Fecha de Finalización:</strong> ${formatoFecha(fechaFinalizacion)}</li>
     <li><strong>Modalidad:</strong> ${torneo.modalidad?.nombre ?? 'Sin definir'}</li>
     <li><strong>Estado:</strong> ${torneo.estado?.nombre ?? 'Desconocido'}</li>
-    <li><strong>Equipos Participantes:</strong> ${torneo.inscripciones.length} equipos</li>
+    <li><strong>Cantidad:</strong> ${torneo.inscripciones.length} participantes</li>
   `;
 
   // Ubicación

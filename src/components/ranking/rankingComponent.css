@@ -20,7 +20,7 @@
   max-width: 1000px;
   margin: auto;
   background-color: var(--color-container-bg);
-  padding: 20px;
+  padding: 20px 0;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
   color: var(--color-text-main);
@@ -45,9 +45,10 @@ th, td {
 }
 
 th {
-  background-color: var(--color-header-bg);
+  background-color: #00d9ffb9;
   color: var(--color-text-light);
   font-weight: bold;
+  font-size: 1rem;
 }
 
 tbody tr:nth-child(odd) {
@@ -86,3 +87,10 @@ tbody tr:hover {
   background-color: var(--color-loss);
 }
 
+.top-rank {
+  background-color: #111827 !important;
+
+  color: #ebd61d;
+  color: white;
+  font-size: 1rem;
+}
