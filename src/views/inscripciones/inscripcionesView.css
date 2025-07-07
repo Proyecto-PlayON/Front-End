@@ -1,22 +1,54 @@
 
+@import url('https://fonts.googleapis.com/css2?family=Caveat&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik+Doodle+Shadow&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap');
+
+:root {
+  --amarillo: #ffe600;
+  --naranja: #ff7a00;
+  --rosado: #ff4fa6;
+  --violeta: #9b5de5;
+  --rojo: #ff3c38;
+  --azul: #00bbf9;
+  --blanco: #ffffff9a;
+  --celeste_claro:#2db4c670;
+    --colortablas:#007b8a;
+
+  --fondo: #0e0e0e;
+  --gradiente-tutifruti: linear-gradient(135deg, var(--naranja), var(--rosado), var(--azul));
+  --gradiente-hover: linear-gradient(to right, var(--azul), var(--violeta));
+}
+
+
+
+
+
+/* -----------------------------------
+   Contenedor principal (NO tocar posición)
+-------------------------------------*/
+
 .inscription-window {
-  background-color: #2e2f3e;
+  background-color: #2e2f3e; /* Fondo */
   width: 90%;
   max-width: 1150px;
   margin: 40px auto;
   border-radius: 20px;
   box-shadow: 0 10px 30px rgba(0,0,0,0.3);
   padding: 20px;
-  
+   
 }
+
+/* -----------------------------------
+   Header superior con logo y título (NO tocar posición)
+-------------------------------------*/
 .inscription-window-top {
   position: relative;
-  height: 50px; /* ajustá según necesites */
+  height: 50px; /* altura fija */
   display: flex;
   align-items: center;
   justify-content: center;
+  
 }
-
 .logo-background {
   position: absolute;
   top: 50%;
@@ -27,218 +59,183 @@
   z-index: 1;
 }
 
-.inscription-window-top h1 {
+
+
+.inscription-window-top h1 strong {
+  position: relative;
+ font-family: 'Open Sans', sans-serif;
+  font-size: 3.0rem;
   z-index: 2;
-  font-size: 2.5rem;
-}
-.players-container {
-  border: solid black 3px;
-  margin: 10px;
-  max-height: 450px;
-  overflow-y: scroll;
-  overflow-x: hidden;
-  background-color: white;
-  border-start-start-radius: 5px;
-  border-bottom-left-radius: 5px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 5px;
-  justify-content: flex-start; /* Cambiado */
-  scrollbar-color: black gray;
-  scrollbar-width: auto;
-  scroll-behavior: auto;
+  letter-spacing: 3px;
+background: var(--gradiente-tutifruti);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+   text-transform: uppercase;
+  text-fill-color: transparent;
 }
 
-.players-card{
-  width: 100%;
-  max-width: 300px;
-  background: linear-gradient(to right, #FFFFFF, #999999);
-  text-align: center;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-  border: black solid 1px;
- 
-}
-.players-card p{
-  color: black;
-  text-align: center;
-  align-items: center;
-  
-}
 
-.players-card i {
-  font-size: 1.3rem;
-  color: black; /* para la estrella */
-  user-select: none;
-}
-.players-card i.bi-person-plus {
-  color: black; /* distinto color para el + persona */
-}
-.players-card p {
-  margin: 0;
-  font-weight: 600;
-  
-}
-#botton-window{
- border:solid black 2px;
-  background-color: #2f2f3c;
-  padding: 5px;
-  border-radius: 5px;
-}
-#players-ongame {
-  
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  /* resto igual */
-}
 
-.player-card {
-  background-color: black;
-  color: gray;
-  padding: 10px 15px;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
-  font-weight: 600;
-  cursor: default;
-  user-select: none;
-  transition: background-color 0.3s ease;
-  
-  flex: 0 1 150px;
-  text-align: center;
-  margin: 0;
-}
-
-.player-card:hover {
-  background-color: #343b46;
-  color: white;
-}
-
-.players-card i {
-  font-size: 1.5rem; /* Tamaño más grande */
-  cursor: pointer;   /* Cursor de mano */
-  transition: color 0.3s, transform 0.2s;
-}
-
-.players-card i.bi-star {
-  color: #ffc107; /* Dorado tipo estrella */
-}
-
-.players-card i.bi-person-plus {
-  color: #0dcaf0; /* Celeste tipo botón */
-}
-
-.players-card i:hover {
-  transform: scale(1.2); /* Animación leve al pasar el mouse */
-  color: #fff;           /* Se vuelve blanco al hacer hover */
-}
+/* -----------------------------------
+   Contenedor principal contenido lateral (NO tocar flex ni gap)
+-------------------------------------*/
 .inscription-content {
   display: flex;
   justify-content: center;
   align-items: flex-start;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 20px; /* espacio entre contenedores */
   margin-top: 20px;
 }
 
+/* -----------------------------------
+   Contenedor izquierda - lista jugadores (NO tocar flex, tamaño ni scroll)
+-------------------------------------*/
 .players-container {
   flex: 1;
   max-width: 400px;
   min-width: 280px;
   height: 450px;
   overflow-y: auto;
-  background-color: white;
-  border: solid black 3px;
+  background-color: rgba(0, 0, 0, 0.514); /* fondo blanco */
+  border: 3px solid var(--colortablas);
   border-radius: 10px;
   padding: 10px;
+
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 5px;
+  justify-content: flex-start;
+
+  scrollbar-color: rgba(0, 0, 0, 0.842) var(--colortablas);
+
+  scrollbar-width: auto;
+  scroll-behavior: auto;
 }
 
-#botton-window {
-  flex: 1;
-  max-width: 400px;
-  min-width: 280px;
-  background-color: #2f2f3c;
-  padding: 10px;
-  border-radius: 10px;
-  border: solid black 2px;
-  color: white;
-}
-
-#players-ongame {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-top: 10px;
-}
-#botton-window {
-  flex: 1;
-  max-width: 400px;
-  min-width: 280px;
-  background-color: #2f2f3c;
-  padding: 20px;
-  border-radius: 10px;
-  border: solid black 2px;
-  color: white;
-}
-
-#botton-window h2 {
-  font-size: 1.8rem;
-  text-align: center;
-  margin-bottom: 10px;
-}
-
-#tabla-inscriptos {
+/* -----------------------------------
+tabla 1 iconos y botones
+-------------------------------------*/
+.players-card {
   width: 100%;
-  border-collapse: collapse;
-}
-
-#tabla-inscriptos th,
-#tabla-inscriptos td {
-  padding: 10px;
+  max-width: 300px;
+  background: linear-gradient(to right, #b9aeb5, #999999); /* degradado fondo */
   text-align: center;
-  vertical-align: middle;
-}
-.torneo-info {
-  background-color: #2f2f3c;
-  color: #f1f1f1;
-  border-radius: 12px;
-  padding: 20px;
-  width: 100%;
-  max-width: 400px;
-  box-shadow: 0 0 12px rgba(0, 0, 0, 0.4);
-  font-size: 0.95rem;
+  border-radius: 10px;
+  box-shadow: 0 10px 8px var(--colortablas);
+  border: rgba(70, 70, 62, 0.324) solid 6px;
 }
 
-.torneo-info h3 {
-  text-align: center;
-  color: #0dcaf0;
-  margin-bottom: 15px;
-  font-weight: bold;
-}
-
-.torneo-info .torneo-item {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 8px;
-  border-bottom: 1px solid #444;
-  padding-bottom: 4px;
-}
-
-.torneo-info .torneo-item:last-child {
-  border-bottom: none;
-}
-
-.torneo-info .torneo-label {
+.players-card p {
+  margin: 0;
   font-weight: 600;
-  color: #ccc;
+  color: black;
+  text-align: center;
+  align-items: center;
 }
 
-.torneo-info .torneo-value {
-  font-style: italic;
-  color: #eee;
+.players-card i {
+  font-size: 1.3rem;
+  color: black;
+  user-select: none;
+  cursor: pointer;
+  transition: color 0.3s, transform 0.2s;
 }
 
+.players-card i.bi-star {
+  color: #ef0b0b; /* dorado */
+}
+
+.players-card i.bi-person-plus {
+  color: #0df00d; /* celeste */
+}
+
+.players-card i:hover {
+  transform: scale(1.2);
+  color: #ffffffcb;
+}
+
+/* -----------------------------------
+   tabla 2
+-------------------------------------*/
+#botton-window {
+  flex: 1;
+  max-width: 400px;
+  min-width: 280px;
+  background-color: #0000007d; /* fondo oscuro */
+  padding: 20px;
+  border-radius: 10px;
+ border: 3px solid var(--colortablas);
+  color: rgb(255, 0, 0);
+}
+
+
+
+
+/* -----------------------------------
+   Botón inscribir azul brillante sin difuminado raro
+-------------------------------------*/
+
+
+
+
+
+
+#btn-inscribir {
+  position: relative;
+  display: inline-block;
+  z-index: 0;
+  padding: 0.8rem 1.8rem;
+  font-weight: 600;
+  font-size: 1.05rem;
+  color: #ffffff;
+  border-radius: 10px;
+ background: #007b8a;
+  border: 2px solid transparent;
+
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+#btn-inscribir::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+
+
+  opacity: 0;
+  transition: opacity 0.8s ease;
+  z-index: -1;
+}
+
+
+
+#btn-inscribir:hover::before {
+  opacity: 1;
+}
+
+
+#btn-inscribir:hover {
+  transform: scale(1.02);
+  border-color: var(--azul); /* borde violeta suave */
+}
+
+
+#btn-inscribir:disabled {
+  background: #ffffff;
+  box-shadow: none;
+  cursor: not-allowed;
+
+  border-color: transparent;
+}
+
+#botton-window {
+    min-height: 450px; /* altura mínima para que el contenedor tenga un tamaño adecuado */
+    max-height: 450px; /* o lo que consideres adecuado */
+    overflow-y: auto;
+    padding-right: 10px; /* espacio para que no tape el scrollbar */
+}

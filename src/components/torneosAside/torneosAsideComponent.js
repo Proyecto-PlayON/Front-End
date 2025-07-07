@@ -26,7 +26,7 @@ export async function torneosAside() {
 
   for (let torneo of torneos) {
     const li = document.createElement('li');
-    li.classList.add('torneo-item'); // para estilo si querés
+    li.classList.add('torneo-item'); 
 
     
     li.innerHTML = `

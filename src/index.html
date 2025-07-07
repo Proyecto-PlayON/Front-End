@@ -20,9 +20,9 @@
     <link rel="stylesheet" href="./views/crearTorneo/crearTorneoView.css" />
     <link rel="stylesheet" href="./views/home/homeView.css" />
     <link rel="stylesheet" href="./views/inscripciones/inscripcionesView.css" />
-    <link rel="stylesheet" href="./views/misTorneos/misTorneosView.css" />
+    <!-- <link rel="stylesheet" href="./views/misTorneos/misTorneosView.css" /> -->
     <link rel="stylesheet" href="./views/torneo/torneoView.css" />
-    <!-- <link rel="stylesheet" href="./views/welcome/welcomeView.css" /> -->
+    <link rel="stylesheet" href="./views/welcome/welcomeView.css" />
     <link rel="stylesheet" href="./components/mapa/mapaComponent.css">
     <link rel="stylesheet" href="./components/torneosAside/torneosAsideComponent.css" />
     <link rel="stylesheet" href="./components/informacion/informacionComponent.css" />
@@ -32,6 +32,7 @@
     
   </head>
   <body>
+
     <header class="header">
       <div class="header-center">
         <img src="./assets/img/logo.png" alt="Logo PlayOn" class="logo-header" />
@@ -43,9 +44,9 @@
       <div id="login-widget" class="login-widget"></div>
 
       <ul>
-        <li><a href="#/home" class="nav-link" data-view="home"><span>🏠 Inicio</span></a></li>
+        <li><a href="#/home" class="nav-link" data-view="home"><span>🏠</i> Inicio</span></a></li>
         <li><a href="#/crear-torneo" class="nav-link" data-view="crear"><span>➕ Crear Torneo</span></a></li>
-        <li><a href="#/torneos" class="nav-link" data-view="iniciar-torneo"><span>🚪 Mis Torneos</span></a></li>
+        <!-- <li><a href="#/torneos" class="nav-link" data-view="iniciar-torneo"><span>🚪 Mis Torneos</span></a></li> -->
         <li><a href="#/torneos-aside" class="nav-link" data-view="buscar"><span>🔍 Buscar</span></a></li>
       </ul>
     </nav>
@@ -59,6 +60,13 @@
     
     
     <footer class="footer">
+      <a href="#" class="footer-logo">
+        <img src="./assets/img/logo.png" alt="Logo PlayOn" >
+        
+        <p class="logo-text"><span>Play</span><br><span>On</span></p>
+          
+        
+      </a>
       <p class="footer__text">&copy; 2025 PlayOn — Todos los derechos reservados</p>
     </footer>
     <div id="alert-container" class="position-fixed bottom-0 start-50 translate-middle-x p-3" style="z-index: 9999;"></div>

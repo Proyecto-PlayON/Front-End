@@ -1,84 +1,138 @@
-
-.tournament-window {
-  background-color: #2e2f3e;
-  width: 90%;
-  max-width: 1150px;
-  margin: 40px auto;
-  border-radius: 20px;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+.content-mis-torneos-home {
+  color: white;
   padding: 20px;
-}
-.tournament-window-top {
-  position: relative;
-  height: 50px; /* ajustá según necesites */
+  border-radius: 10px;
   display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.logo-background {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  max-width: 150px; /* ajustá según tamaño deseado */
-  opacity: 0.75; /* para que no tape el texto */
-  z-index: 1;
-}
-
-.tournament-window-top h1 {
-  z-index: 2;
-  font-size: 2.5rem;
+  flex-direction: column;
+  width: 100%;
 }
 
 .tournament-container {
-  max-height: 450px;
-  overflow-y: auto;
-  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+  position: relative;
 }
 
 .tournament-header {
-  background-color: #444652;
   border-radius: 10px;
   font-weight: bold;
+  margin-top: 10px;
+  width: 80%;
+  margin: auto;
 }
 
 .tournament-card {
-  background-color: #767676;
   color: white;
-  transition: transform 0.2s;
+  width: 80%;
+  margin: auto;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  position: relative;
+  z-index: 2;
 }
 
 .tournament-card:hover {
   transform: scale(1.01);
   box-shadow: 0 0 10px rgba(255,255,255,0.2);
+  cursor: pointer;
 }
 
-button.btn {
-  font-size: 0.8rem;
-  padding: 4px 10px;
-  border-radius: 10px;
-}
-.estado-en-espera {
-  color: #ffc107; /* amarillo tipo warning */
-  font-weight: bold;
-}
 
-.estado-en-proceso {
-  color: #0dcaf0; /* azul tipo info */
-  font-weight: bold;
-}
 
-.estado-terminado {
-  color: #198754; /* verde tipo success */
-  font-weight: bold;
-}
 .tournament-card p {
-  flex: 1;
+
   text-align: left;
   margin: 0;
 }
 .tournament-header strong {
-  flex: 1;
   text-align: left;
+}
+.winner-card {
+    background-color: none;
+    color: white;
+    width: 900px;
+    margin: auto;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    position: relative;
+    z-index: 2;
+}
+.home-bienvenida {
+  text-align: left;
+  margin-bottom: 5rem;
+  font-size: 3.0rem;
+  margin: 0;
+}
+.tournament-window {
+   background-color: #1e2a38;
+   padding: 2.5rem 3rem;
+}
+.tournament-window-top h2 strong, .tournament-winners  h2 strong {
+  position: relative;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 3.0rem;
+  z-index: 2;
+  letter-spacing: 3px;
+  background: var(--gradiente-tutifruti);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-transform: uppercase;
+  text-fill-color: transparent;
+}
+.logo-background {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 90px; /* ajustá según tamaño deseado */
+  opacity: 0.65; /* para que no tape el texto */
+  z-index: 1;
+}
+.tournament-winners{
+  position: relative;
+  padding: 2.5rem 1rem; /* Aumenta el padding vertical */
+  background-color: #1e2a38;
+  border-radius: 10px;
+  margin-top: 20px;
+  overflow: hidden;
+  min-height: 180px;
+}
+.tournament-winners h2 strong{
+  position: relative;
+  z-index: 2;
+  font-size: 2.5rem;
+}
+.logo-background-winners {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -130%);
+  max-width: 70px; /* ajustá según tamaño deseado */
+  opacity: 0.65; /* para que no tape el texto */
+  z-index: 1;
+
+}
+.logo-background-container{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 400px; /* ajustá según tamaño deseado */
+  opacity: 0.10; /* para que no tape el texto */
+  z-index: 1;
+}
+.iconito{
+  margin: 0;
+}
+.fa-spinner {
+  color: #ffc107; /* Azul Bootstrap */
+  font-size: 24px;
+}
+@keyframes fa-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.slow-spin {
+  animation: fa-spin 4s infinite linear; /* 4 segundos por vuelta */
 }
