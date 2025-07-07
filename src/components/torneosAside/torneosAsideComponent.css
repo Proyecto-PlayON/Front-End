@@ -1,6 +1,6 @@
 .torneos-aside {
   
-  padding: 20px;
+  padding: 0;
   width: 100%;
   max-width: 400px;
   border-radius: 8px;
@@ -19,7 +19,14 @@
   list-style: none;
   padding: 0;
   margin: 0;
+  max-height: 900px;
+  overflow-y: auto;
+  
 }
+.torneos-aside .lista-torneos::-webkit-scrollbar {
+  display: none; /* Chrome, Safari y Edge Chromium */
+}
+
 
 .titulo-aside .lista-torneos li {
   background-color: #ffffff;
@@ -50,7 +57,12 @@
 }
 
 .torneos-aside .torneo-item:hover {
-  
+  background: var(--gradiente-tutifruti);
+  -webkit-background-clip: text;
+  color: transparent;
+  transform: scale(1.02);
+  box-shadow: 0 4px 8px rgba(219, 79, 208, 0.1);
+
 }
 /* Contenedor superior nombre + estado */
 .torneos-aside .torneo-item .torneo-header {

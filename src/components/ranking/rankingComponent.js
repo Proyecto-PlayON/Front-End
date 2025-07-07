@@ -17,6 +17,9 @@ export async function rankingComponent(ranking) {
         const diferencia = participante.anotacionesAFavor - participante.anotacionesEnContra;
 
         const fila = document.createElement('tr');
+        if (index === 0) {
+            fila.classList.add('top-rank');
+        }
         fila.innerHTML = `
             <td>${index + 1}</td>
             <td>${participante.participante.nombre}</td>

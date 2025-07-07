@@ -63,6 +63,7 @@
   justify-content: center;
   height: 300px;
   width: 100%;
+  margin-top: 5px;
 }
 .informacion-content .col-5 {
   padding: 1rem;

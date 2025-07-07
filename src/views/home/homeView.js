@@ -90,9 +90,9 @@ export async function homeView() {
             const fechaFin = new Date(torneo.fechaFinalizacion).toLocaleDateString();
 
             winnerDiv.innerHTML = `
-                <p class="mb-0"><strong>${torneo.nombre}</strong></p>
-                <p class="mb-0">🏆 ${torneo.nombreGanador}</p>
-                <p class="mb-0">${fechaFin}</p>
+                <p class="mb-0 col-4"><strong>${torneo.nombre}</strong></p>
+                <p class="mb-0 col-4">🏆 ${torneo.nombreGanador}</p>
+                <p class="mb-0 col-4">${fechaFin}</p>
             `;
 
             winnersContainer.appendChild(winnerDiv);

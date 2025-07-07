@@ -18,7 +18,7 @@
   max-width: 600px;
   background-color: var(--color-container-bg);
   color: var(--color-text-main);
-  padding: 20px;
+  padding: 20px 0;
   border-radius: 12px;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
 }
@@ -26,12 +26,13 @@
 .fixture-card h3 {
   text-align: center;
   color: var(--color-text-light);
+  
 }
 .fixture-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: var(--color-header-bg);
+  background-color: #00d9ffb9;
   padding: 10px 16px;
   border-radius: 8px;
   color: var(--color-text-light);
@@ -70,6 +71,7 @@
 
 .fixture-table tr:hover {
   background-color: var(--color-hover-row);
+  
 }
 
 td {
@@ -102,6 +104,11 @@ td {
   font-size: 16px;
   cursor: pointer;
 }
+.dropdown-toggle:hover {
+  color: var(--color-primary-bg);
+  transform: scale(1.05);
+  transition: transform 0.2s, color 0.2s;
+}
 
 .dropdown-menu {
   display: none;
@@ -115,6 +122,13 @@ td {
   z-index: 10;
   min-width: 120px;
 }
+.dropdown-menu {
+  max-height: 300px; /* o el valor que prefieras */
+  overflow-y: auto;
+}
+.dropdown-menu::-webkit-scrollbar {
+  display: none; /* Chrome, Safari */
+}
 
 .dropdown-item {
   padding: 8px 12px;
@@ -124,4 +138,22 @@ td {
 
 .dropdown-item:hover {
   background-color: var(--color-hover-row);
+  color: white;
+  background: var(--gradiente-tutifruti);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.bi-chevron-left{
+  color: white;
+  font-size: 1.2rem;
+}
+.bi-chevron-right{
+  color: white;
+  font-size: 1.2rem;
+}
+.bi-chevron-left:hover,
+.bi-chevron-right:hover {
+  color: var(--color-primary-bg);
+  transform: scale(1.2);
+  transition: transform 0.2s, color 0.2s;
 }

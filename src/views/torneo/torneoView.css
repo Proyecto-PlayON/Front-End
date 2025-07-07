@@ -4,8 +4,10 @@
     justify-content: center;
     padding: 20px;
     background-color: #162230;
+    background: linear-gradient(to bottom , #1e2a38, #111827);
+    
     border-radius: 20px;
-    margin-top: 20px;
+    
 }
 .torneo-container h2{
     margin: auto;
@@ -42,4 +44,8 @@
 .torneo-informacion-header-view h4.campeon{
     color: #ffffff;
     font-weight: bold;
+}
+.torneo-container-content-full-view{
+    margin-top: 20px;
+    
 }

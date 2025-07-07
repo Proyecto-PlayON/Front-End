@@ -12,6 +12,7 @@
   flex-direction: column;
   margin-top: 10px;
   position: relative;
+  min-height: 300px;
 }
 
 .tournament-header {
@@ -67,6 +68,10 @@
     position: relative;
     z-index: 2;
 }
+.winner-card p{
+  text-align: center;
+  margin: 0;
+}
 .home-bienvenida {
   text-align: left;
   margin-bottom: 5rem;
@@ -112,7 +117,8 @@
   border-radius: 10px;
   margin-top: 20px;
   overflow: hidden;
-  min-height: 180px;
+  min-height: 300px;
+
 }
 .tournament-winners h2 strong{
   position: relative;
@@ -140,6 +146,8 @@
 }
 .iconito{
   margin: 0;
+ 
+  
 }
 .fa-spinner {
   color: #ffc107; /* Azul Bootstrap */
