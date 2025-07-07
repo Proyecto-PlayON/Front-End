@@ -7,6 +7,11 @@ import { torneoView } from './views/torneo/torneoView.js';
 import { mapaComponent } from './components/mapa/mapaComponent.js';
 import { torneosAside } from './components/torneosAside/torneosAsideComponent.js';
 import { renderLoginWidget } from './components/loginWidget/loginWidgetComponent.js';
+import {removeBackgroundVideo } from './Utilities/removeBackGroundVideoUtils.js';
+
+
+
+
 
 const routes = {
   '/welcome': welcomeView,
@@ -94,3 +99,13 @@ document.addEventListener('click', async (event) => {
     await router();              
   }
 });
+
+//Para el videoBackGround
+window.addEventListener('hashchange', () => {
+  const route = window.location.hash;
+
+  if (route !== '/welcome') {
+    removeBackgroundVideo();
+  }
+});
+

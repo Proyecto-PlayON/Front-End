@@ -63,7 +63,10 @@
 .home-bienvenida {
   text-align: left;
   margin-bottom: 5rem;
-  font-size: 3.0rem;
+}
+
+.home-intro-box h2 {
+  font-size: 5rem;
   margin: 0;
 }
 .tournament-window {

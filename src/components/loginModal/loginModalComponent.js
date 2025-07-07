@@ -3,7 +3,6 @@ import { setupRegisterFormHandler } from "../registerModal/registerModalComponen
 import { showMessage } from "../showMessages/showMessages.js"; // asegurate de tenerlo exportado
 
 export async function setupLoginFormHandler() {
-
   const existingModal = document.querySelector('#loginModal');
   if (existingModal) {
     const modalInstance = bootstrap.Modal.getInstance(existingModal) || new bootstrap.Modal(existingModal);
