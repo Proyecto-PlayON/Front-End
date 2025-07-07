@@ -75,7 +75,13 @@ background: var(--gradiente-tutifruti);
   text-fill-color: transparent;
 }
 
-
+.maximo-y-minimo {
+  color: #ffffff;
+  font-size: 1.2rem;
+  text-align: center;
+  margin-top: 10px;
+  font-weight: bold;
+}
 
 /* -----------------------------------
    Contenedor principal contenido lateral (NO tocar flex ni gap)
@@ -227,9 +233,16 @@ tabla 1 iconos y botones
 
 #btn-inscribir:disabled {
   background: #ffffff;
+  color: #aaa; /* texto gris para dar aspecto inactivo */
   box-shadow: none;
   cursor: not-allowed;
-
+  border-color: transparent;
+  opacity: 0.7; /* un poco más opaco para marcar que está inactivo */
+}
+#btn-inscribir:disabled:hover {
+  background: #f5f5f5; /* un gris claro sutil en hover */
+  color: #aaa;
+  box-shadow: none;
   border-color: transparent;
 }
 
