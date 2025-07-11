@@ -7,7 +7,6 @@ export async function crearTorneoView() {
     const container = document.createElement('section');
     container.classList.add('content');
 
-    // Cargar el HTML
     const htmlResponse = await fetch('./views/crearTorneo/crearTorneoView.html');
     const htmlContent = await htmlResponse.text();
     container.innerHTML = htmlContent;
@@ -17,25 +16,22 @@ export async function crearTorneoView() {
     let puntosEmpate = container.querySelector('#puntosPorEmpate');
 
     permitirEmpatesCheckbox.addEventListener('change', () => {
-        // Si se desactiva el checkbox, desactivar el checkbox de permitir empates
         if (!permitirEmpatesCheckbox.checked) {
             puntosEmpate.disabled = true;
             puntosEmpate.value = '0';
         }
         else {
             puntosEmpate.disabled = false;
-            puntosEmpate.value = '1'; // Valor por defecto si se activa
+            puntosEmpate.value = '1'; 
         }
     });
 
-    // Evento que desactiva o activa el checkbox según la modalidad
     modalidadSelect.addEventListener('change', () => {
         const esEliminacion = modalidadSelect.value === 'eliminacion';
 
         permitirEmpatesCheckbox.checked = false;
         permitirEmpatesCheckbox.disabled = esEliminacion;
 
-        // Referencias a los inputs de puntos
         const puntosPorVictoriaInput = container.querySelector('#puntosPorVictoria');
         const puntosPorEmpateInput = container.querySelector('#puntosPorEmpate');
         const puntosPorDerrotaInput = container.querySelector('#puntosPorDerrota');
@@ -65,7 +61,7 @@ export async function crearTorneoView() {
     let input = container.querySelector("#ubicacion"); 
     let mapaTarget = container.querySelector(".mapa-container"); 
     mapaTarget.innerHTML = ''; 
-    mapaTarget.appendChild(mapaDefecto); // insertar mapa por defecto
+    mapaTarget.appendChild(mapaDefecto); 
 
     botonBuscar.addEventListener("click", async () => {
         const texto = input.value.trim();
@@ -77,12 +73,10 @@ export async function crearTorneoView() {
         const { latitud, longitud, nombre } = ubicacion;
         console.log("Ubicación seleccionada:", ubicacion);
 
-        // Cargar nuevo mapa
         const mapa = await mapaComponent(latitud, longitud, nombre);
 
-        // Reemplazar contenido de mapa-container
-        mapaTarget.innerHTML = '';        // limpiar contenido anterior
-        mapaTarget.appendChild(mapa);     // insertar nuevo mapa
+        mapaTarget.innerHTML = '';        
+        mapaTarget.appendChild(mapa);     
     });
 
 
@@ -91,7 +85,6 @@ export async function crearTorneoView() {
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
 
-        // Capturar los valores del formulario
         const nombre = container.querySelector('#nombre').value;
         const ubicacion = container.querySelector('#ubicacion').value;
         const fechaInicio = container.querySelector('#fechaInicio').value;
@@ -115,7 +108,6 @@ export async function crearTorneoView() {
             return;
         }
 
-        // Mapear modalidad a un ID (reemplazalo si es necesario)
         let modalidadId;
         if (modalidad === 'eliminacion') modalidadId = '1';
         else if (modalidad === 'puntos') modalidadId = '2';
@@ -140,19 +132,17 @@ export async function crearTorneoView() {
             puntosPorDerrota
         };
 
-        // Crear torneo
         const torneoService = new TorneoService();
         try {
             let torneoCreado = await torneoService.crearTorneo(torneo);
             let asideContainer = document.querySelector('#aside');
-            asideContainer.innerHTML = ''; // Limpiar el contenedor del aside
+            asideContainer.innerHTML = ''; 
             let asideContent = await torneosAside();
             asideContainer.appendChild(asideContent);
             showMessage("Torneo creado con éxito!!", "success");
             location.hash = `#/torneo?id=${torneoCreado.id}`;
             
 
-            // redirigir o limpiar formulario si querés
         } catch (error) {
             console.error("Error al crear torneo:", error);
             showMessage("Error al crear torneo...", "danger");

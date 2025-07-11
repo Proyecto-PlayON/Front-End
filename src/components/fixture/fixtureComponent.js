@@ -4,7 +4,6 @@ export async function fixtureComponent(fixture, torneo) {
     const container = document.createElement('section');
     container.classList.add('content');
 
-    // Cargar HTML
     const htmlResponse = await fetch('./components/fixture/fixtureComponent.html');
     const htmlContent = await htmlResponse.text();
     container.innerHTML = htmlContent;
@@ -17,27 +16,22 @@ export async function fixtureComponent(fixture, torneo) {
     const nextBtn = container.querySelectorAll(".nav-btn")[1];
     const tableBody = container.querySelector(".fixture-table tbody");
 
-    // Agrupar por ronda
     const rondasUnicas = [...new Set(fixture.map(f => f.ronda))].sort((a, b) => a - b);
     
-    // Buscar la primera ronda con partidos pendientes
     let rondaActualIndex = rondasUnicas.findIndex(ronda => {
         const partidosDeRonda = fixture.filter(p => p.ronda === ronda);
         return partidosDeRonda.some(p => p.estadoId === 1);
     });
 
-    // Si no se encontró ninguna con estadoId === 1, usar la última ronda
     if (rondaActualIndex === -1) {
         rondaActualIndex = rondasUnicas.length - 1;
     }
 
-    // Llenar dropdown
     menu.innerHTML = '';
     rondasUnicas.forEach(ronda => {
         const item = document.createElement("div");
         item.className = "dropdown-item";
 
-        // Ronda
         const numeroRondas = Math.max(...fixture.map(p => p.ronda));
         let textoRonda = '';
         if (torneo.modalidad.id === 2) {
@@ -63,19 +57,16 @@ export async function fixtureComponent(fixture, torneo) {
         menu.appendChild(item);
     });
 
-    // Mostrar u ocultar dropdown
     toggleButton.addEventListener("click", () => {
         menu.style.display = menu.style.display === "block" ? "none" : "block";
     });
 
-    // Cerrar si se hace click fuera
     document.addEventListener("click", (e) => {
         if (!dropdown.contains(e.target)) {
             menu.style.display = "none";
         }
     });
 
-    // Botones de navegación
     prevBtn.addEventListener("click", () => {
         if (rondaActualIndex > 0) {
             rondaActualIndex--;
@@ -92,7 +83,6 @@ export async function fixtureComponent(fixture, torneo) {
 
     function actualizarRonda() {
         const ronda = rondasUnicas[rondaActualIndex];
-        // Ronda
         const numeroRondas = Math.max(...fixture.map(p => p.ronda));
         let textoRonda = '';
         if (torneo.modalidad.id === 2) {

@@ -21,7 +21,6 @@ export async function torneoView() {
         return container;
     }
 
-    // Cargar el HTML de la vista
     const htmlResponse = await fetch('./views/torneo/torneoView.html');
     const htmlContent = await htmlResponse.text();
     container.innerHTML = htmlContent;
@@ -49,9 +48,8 @@ export async function torneoView() {
     if (storedTorneo && storedTorneo.estado.id !== torneo.estado.id) {
         
 
-        // El estado cambió => refrescar el aside
         let asideContainer = document.querySelector('#aside');
-        asideContainer.innerHTML = ''; // Limpiar el contenedor del aside
+        asideContainer.innerHTML = ''; 
         let asideContent = await torneosAside();
         asideContainer.appendChild(asideContent);
 
@@ -61,7 +59,6 @@ export async function torneoView() {
 
     }
 
-    // Actualizar sessionStorage
     sessionStorage.setItem(`torneo_${torneoId}`, JSON.stringify(torneo));
 
 

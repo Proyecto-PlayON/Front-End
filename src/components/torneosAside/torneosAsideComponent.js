@@ -11,9 +11,7 @@ export async function torneosAside() {
 
   let lista = container.querySelector('#lista-torneos');
   let titulo = container.querySelector('.titulo-aside');
-  // titulo.addEventListener('click', () => {
-  //   lista.classList.toggle('visible');
-  // });
+ 
 
   
   
@@ -37,7 +35,6 @@ export async function torneosAside() {
   const torneoHeader = li.querySelector('.torneo-header');
   console.log(torneo.estado.id);
    if(torneo.estado.id===2){
-      //torneoHeader.innerHTML(`<span class="estado-dot estado-${torneo.estado?.id || '0'}"></span>`);
     torneoHeader.innerHTML+= `<i class="fas fa-spinner slow-spin"></i>`;
    }
    else if(torneo.estado.id===3){

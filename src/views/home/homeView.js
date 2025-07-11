@@ -5,7 +5,6 @@ export async function homeView() {
     const container = document.createElement('section');
     container.classList.add('content-mis-torneos-home');
 
-    // Cargar el HTML de la vista
     try {
         const htmlResponse = await fetch('./views/home/homeView.html');
         const htmlContent = await htmlResponse.text();
@@ -18,7 +17,7 @@ export async function homeView() {
 
 
     const contenedor = container.querySelector("#tournament-container");
-    contenedor.innerHTML = ""; // limpiamos contenido anterior si hay
+    contenedor.innerHTML = ""; 
     const winnersContainer = container.querySelector("#winners-container");
     winnersContainer.innerHTML = "";
 
@@ -33,7 +32,6 @@ export async function homeView() {
         showMessage("Error al cargar tus torneos.", "danger");
         return container;
     }
-    // Ordenar por ID descendente (últimos creados primero)
     if (!torneos || torneos.length === 0) {
         contenedor.innerHTML = `<p class="text-center text-white my-3">No hay torneos creados aún.</p>`;
     } else {
@@ -77,8 +75,8 @@ export async function homeView() {
 
     const torneosConGanador = torneos
             .filter(t => t.idGanador && t.nombreGanador)
-            .sort((a, b) => new Date(b.fechaFinalizacion) - new Date(a.fechaFinalizacion)) // más recientes primero
-            .slice(0, 5); // mostrar solo 5
+            .sort((a, b) => new Date(b.fechaFinalizacion) - new Date(a.fechaFinalizacion)) 
+            .slice(0, 5); 
 
     if (torneosConGanador.length === 0) {
         winnersContainer.innerHTML = `<div class="text-center text-white my-3">No hay ganadores registrados aún.</div>`;

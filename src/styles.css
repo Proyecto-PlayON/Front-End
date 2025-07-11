@@ -32,7 +32,6 @@ body {
 
 }
 
-/* === VIDEO DE FONDO === */
 #video-fondo {
   position: fixed;
   inset: 0;
@@ -52,7 +51,6 @@ body {
   opacity: 0 !important;
 }
 
-/* === HEADER === */
 .header {
   display: flex;
   flex-direction: column;
@@ -72,7 +70,6 @@ body {
 }
 
 .header h1 {
-  /*font-family: 'Unispace', sans-serif;*/
   font-size: 6.6rem;
   font-weight: 600;
   letter-spacing: 4px;
@@ -84,7 +81,6 @@ body {
   text-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
 }
 
-/* === NAVIGATION TOP === */
 .nav-top {
   
   display: flex;
@@ -112,7 +108,6 @@ body {
 
 }
 
-/* === NAVIGATION BUTTONS === */
 .nav-link {
   position: relative;
   display: inline-block;
@@ -128,7 +123,7 @@ body {
   box-shadow: 0 0 10px rgba(255, 79, 166, 0.3);
   overflow: hidden;
   transition: transform 0.3s ease, border-color 0.3s ease;
-  min-width: 160px; /* Asegura que el texto no se corte */
+  min-width: 160px; 
   text-align: center;
 }
 
@@ -168,7 +163,6 @@ body {
   box-shadow: 0 0 18px rgba(255, 228, 0, 0.6);
 }
 
-/* === LINEA MULTICOLOR BAJO NAVEGACION === */
 .nav-top::after {
   content: "";
   position: absolute;
@@ -182,7 +176,6 @@ body {
   z-index: 2;
 }
 
-/* === CONTAINER PRINCIPAL === */
 .container-principal {
   margin: auto;
   width: 1990px;
@@ -194,7 +187,6 @@ body {
   margin-top: 2rem;
   margin-bottom: 2rem;
 }
-/* === MAIN === */
 .main {
   display: flex;
   justify-content: center;
@@ -213,7 +205,6 @@ body {
   to { opacity: 1; transform: translateY(0); }
 }
 
-/* === FOOTER === */
 .footer {
   display: grid;
   background-color: #1f1c1c;
@@ -227,7 +218,7 @@ body {
 }
 .footer-logo{
   display: flex;
-  gap: 0; /* Espacio entre logo y texto */
+  gap: 0; 
     align-items: center;
     justify-content: center;
 }
@@ -252,7 +243,6 @@ body {
   text-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
 }
 
-/* === ANIMACION MULTICOLOR === */
 @keyframes rayaTutifruti {
   0% { background-position: 0% 0%; }
   100% { background-position: 400% 0%; }
@@ -278,7 +268,7 @@ body {
   left: 0;
   width: 100vw;
   height: 100vh;
-  background: linear-gradient(to bottom, #5419dd98, #000000c5); /* púrpura a negro */
+  background: linear-gradient(to bottom, #5419dd98, #000000c5); 
   z-index: -1;
 }
 

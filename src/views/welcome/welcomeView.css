@@ -33,7 +33,6 @@
   line-height: 1.6;
 }
 
-/* === GRID === */
 .home-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -44,7 +43,6 @@
   transform: scale(1.4);
 }
 
-/* === TARJETAS === */
 .home-card {
   background: rgba(0, 0, 0, 0.726);
   border: 2px solid transparent;
@@ -79,7 +77,6 @@
   box-shadow: 0 0 18px rgba(155, 93, 229, 0.25);
 }
 
-/* === IMAGEN FINAL === */
 .home-image-wrapper {
   text-align: center;
 }

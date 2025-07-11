@@ -69,8 +69,8 @@
 #modal-resultado{
   color: white;
   backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px); /* para Safari */
-  background-color: #0d1a26e0; /* tono oscuro translúcido */
+  -webkit-backdrop-filter: blur(10px); 
+  background-color: #0d1a26e0; 
   border: 1px solid rgba(255, 255, 255, 0.3);
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
   border-radius: 16px;
@@ -79,7 +79,7 @@
 
 .modal-backdrop.show {
   backdrop-filter: blur(6px);
-  background-color: rgba(0, 0, 0, 0.1); /* opcional para oscurecer */
+  background-color: rgba(0, 0, 0, 0.1); 
 }
 .estado-icono{
   display:  flex;

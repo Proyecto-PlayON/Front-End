@@ -57,7 +57,7 @@ export async function avisoGanadorComponent(nombreGanador) {
             ticks: 60,
             origin: {
                 x: Math.random(),
-                y: Math.random() * 0.5, // parte superior
+                y: Math.random() * 0.5, 
             },
             scalar: 1.2,
             startVelocity: 30,
