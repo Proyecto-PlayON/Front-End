@@ -6,7 +6,7 @@ export function showMessage(message, type = 'success') {
   alert.role = 'alert';
   alert.style.minWidth = '300px';
   alert.style.boxShadow = '0 0 10px rgba(0,0,0,0.3)';
-  alert.style.pointerEvents = 'auto'; // permite clic en el botón cerrar
+  alert.style.pointerEvents = 'auto'; 
   alert.innerHTML = `
     ${message}
     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -14,7 +14,6 @@ export function showMessage(message, type = 'success') {
 
   container.appendChild(alert);
 
-  // Autoeliminar tras 3 segundos
   setTimeout(() => {
     alert.classList.remove('show');
     alert.classList.add('hide');

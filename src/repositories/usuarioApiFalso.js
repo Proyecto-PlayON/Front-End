@@ -1,3 +1,4 @@
+// simulacion de una API de usuario para pruebas
 export class UsuarioApiFalso {
     
     constructor() {

@@ -24,7 +24,7 @@
   
 }
 .torneos-aside .lista-torneos::-webkit-scrollbar {
-  display: none; /* Chrome, Safari y Edge Chromium */
+  display: none;
 }
 
 
@@ -64,14 +64,12 @@
   box-shadow: 0 4px 8px rgba(219, 79, 208, 0.1);
 
 }
-/* Contenedor superior nombre + estado */
 .torneos-aside .torneo-item .torneo-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-/* Nombre del torneo */
 .torneos-aside .torneo-item .nombre {
   font-weight: bold;
   font-size: 1.2rem;
@@ -82,7 +80,6 @@
   -webkit-text-fill-color: transparent;
 }
 
-/* Puntito de estado */
 .torneos-aside .estado-dot {
   width: 12px;
   height: 12px;
@@ -90,25 +87,18 @@
   display: inline-block;
 }
 
-/* Colores por estado */
 .torneos-aside .estado-1 {
   background-color: yellow;
 }
 
 .torneos-aside .estado-2 {
-  background-color: #00bcd4; /* celeste */
+  background-color: #00bcd4; 
 }
 
 .torneos-aside .estado-3 {
-  background-color: #4caf50; /* verde */
+  background-color: #4caf50; 
 }
 
-/* .torneos-aside .titulo-aside{
-  cursor: pointer;;
-}
-.torneos-aside .titulo-aside:hover {
-  color: #007b8a;
-} */
 
 .torneos-aside .lista-torneos.oculto{
   max-height: 0;
@@ -119,13 +109,12 @@
   list-style: none;
 }
 
-/* Cuando está visible */
 .torneos-aside .lista-torneos.visible {
-  max-height: 1000px; /* lo suficientemente alto para mostrar la lista completa */
+  max-height: 1000px; 
   padding-top: 0.5rem;
 }
 .fa-spinner {
-  color: #ffc107; /* Azul Bootstrap */
+  color: #ffc107;
   font-size: 24px;
 }
 @keyframes fa-spin {
@@ -134,5 +123,5 @@
 }
 
 .slow-spin {
-  animation: fa-spin 4s infinite linear; /* 4 segundos por vuelta */
+  animation: fa-spin 4s infinite linear; 
 }

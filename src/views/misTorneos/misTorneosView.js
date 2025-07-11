@@ -5,7 +5,6 @@ export async function misTorneosView() {
     const container = document.createElement('section');
     container.classList.add('content-mis-torneos-home');
 
-    // Cargar el HTML de la vista
     try {
         const htmlResponse = await fetch('./views/misTorneos/misTorneosView.html');
         const htmlContent = await htmlResponse.text();
@@ -18,7 +17,7 @@ export async function misTorneosView() {
 
 
     const contenedor = container.querySelector("#tournament-container");
-    contenedor.innerHTML = ""; // limpiamos contenido anterior si hay
+    contenedor.innerHTML = ""; 
 
     let torneoService = new TorneoService();
     let torneos = [];
@@ -36,10 +35,8 @@ export async function misTorneosView() {
         showMessage("Error al cargar tus torneos.", "danger");
         return container;
     }
-    // Ordenar por ID descendente (últimos creados primero)
     torneos.sort((a, b) => b.id - a.id);
 
-    // Tomar solo los últimos 5
     const ultimosTorneos = torneos.slice(0, 5);
 
     for (let torneo of ultimosTorneos) {
@@ -81,8 +78,8 @@ export async function misTorneosView() {
 
     const torneosConGanador = torneos
             .filter(t => t.idGanador && t.nombreGanador)
-            .sort((a, b) => new Date(b.fechaFinalizacion) - new Date(a.fechaFinalizacion)) // más recientes primero
-            .slice(0, 5); // mostrar solo 5
+            .sort((a, b) => new Date(b.fechaFinalizacion) - new Date(a.fechaFinalizacion)) 
+            .slice(0, 5); 
 
     const winnersContainer = container.querySelector("#winners-container");
 

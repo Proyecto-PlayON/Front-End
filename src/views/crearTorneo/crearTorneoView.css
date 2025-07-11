@@ -34,9 +34,7 @@ background: var(--gradiente-tutifruti);
 
   
 }
-/* -----------------------------------
-   CONTENEDOR PRINCIPAL DEL FORMULARIO
-------------------------------------- */
+
 .container-crear-torneo {
   background-color: #1e2a38;
   background: linear-gradient(to top, #1e2a38, #111827);
@@ -49,9 +47,7 @@ background: var(--gradiente-tutifruti);
 }
 
 
-/* -----------------------------------
-   HEADER DEL FORMULARIO (Título e imagen)
-------------------------------------- */
+
 .container-crear-torneo .formHeader {
   text-align: center;
   margin-bottom: 20px;
@@ -67,12 +63,10 @@ background: var(--gradiente-tutifruti);
 .container-crear-torneo .formHeader h1 {
   font-size: 50px;
   margin-bottom: 40px;
-  color: var(--azul); /* <- este color se puede cambiar */
+  color: var(--azul); 
 }
 
-/* -----------------------------------
-   CAMPOS DE ENTRADA Y ESTADOS
-------------------------------------- */
+
 .container-crear-torneo input.form-control {
   background-color: var(--gris-claro);
   border: none;
@@ -96,9 +90,7 @@ background: var(--gradiente-tutifruti);
   margin-top: 0.2rem;
 }
 
-/* -----------------------------------
-   SWITCH de opciones
-------------------------------------- */
+
 .container-crear-torneo .switch-container {
   display: flex;
   align-items: center;
@@ -112,9 +104,7 @@ background: var(--gradiente-tutifruti);
   margin-right: 0.5rem;
 }
 
-/* -----------------------------------
-   BOTONES GENERALES
-------------------------------------- */
+
 .container-crear-torneo .btn-primary,
 .ubicacion-container .btn-secondary {
    background: #007b8a;
@@ -150,9 +140,7 @@ background: var(--gradiente-tutifruti);
   font-size: 1rem;
 }
 
-/* -----------------------------------
-   ENLACES
-------------------------------------- */
+
 .container-crear-torneo a {
   color: var(--azul-hover);
   text-decoration: none;
@@ -162,9 +150,6 @@ background: var(--gradiente-tutifruti);
   text-decoration: underline;
 }
 
-/* -----------------------------------
-   ESTRUCTURA Y DISTRIBUCIÓN
-------------------------------------- */
 .container-crear-torneo .text-center {
   margin-top: 15px;
 }
@@ -181,9 +166,7 @@ background: var(--gradiente-tutifruti);
   box-sizing: border-box;
 }
 
-/* -----------------------------------
-   UBICACIÓN: buscador/mapa
-------------------------------------- */
+
 .ubicacion-container {
   overflow-x: hidden;
   padding: 0 10px 20px !important;
@@ -195,9 +178,7 @@ background: var(--gradiente-tutifruti);
   padding-right: 10px;
 }
 
-/* -----------------------------------
-   RESPONSIVE
-------------------------------------- */
+
 @media (max-width: 768px) {
   .container-crear-torneo .col-md-4,
   .container-crear-torneo .col-md-8 {

@@ -2,17 +2,14 @@ export async function rankingComponent(ranking) {
     const container = document.createElement('section');
     container.classList.add('content');
 
-    // Cargar el HTML de la tabla
     const htmlResponse = await fetch('./components/ranking/rankingComponent.html');
     const htmlContent = await htmlResponse.text();
     container.innerHTML = htmlContent;
 
-    // Seleccionar el tbody donde se insertarán los datos
     const tableBody = container.querySelector('tbody');
-    tableBody.innerHTML = ""; // limpiar contenido previo
+    tableBody.innerHTML = "";
 
     let index = 0;
-    // Generar filas para cada participante
     for(let participante of ranking) {
         const diferencia = participante.anotacionesAFavor - participante.anotacionesEnContra;
 

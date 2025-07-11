@@ -18,7 +18,6 @@ function getLoggedUser() {
   return loggedUser;
 }
 function renderLoginWidget() {
-  // Refrescar estado por si cambió el localStorage
   loggedUser = JSON.parse(localStorage.getItem('user')) || null;
 
   const loginWidget = document.getElementById("login-widget");
@@ -38,13 +37,13 @@ function renderLoginWidget() {
       localStorage.removeItem('token');
       renderLoginWidget();
       location.hash = "#/welcome";
-      showMessage("Sesión cerrada correctamente", "info"); // 👈 Mensaje al cerrar sesión
+      showMessage("Sesión cerrada correctamente", "info"); 
     };
   } else {
     button.textContent = "Login";
     button.className = "btn-login";
     button.onclick = () => {
-      setupLoginFormHandler(); // Se abre el modal
+      setupLoginFormHandler(); 
     };
   }
 

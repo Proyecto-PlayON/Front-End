@@ -7,7 +7,7 @@
   border-radius: 8px;
   margin-bottom: 0;
   
-  border-left: 6px solid var(--rosado); /* misma vibra que el botón */
+  border-left: 6px solid var(--rosado); 
   color: #ffffff;
  width: 100%;
   
@@ -62,20 +62,7 @@
 }
 
 
-/* 🔥 Barrita animada tutifruti 
-.login-widget::before {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: 68;
-  width: 8px;
-  height: 70%;
-  border-radius: 4px;
-  background: linear-gradient(180deg, var(--amarillo), var(--naranja), var(--rosado), var(--violeta), var(--azul), var(--amarillo));
-  background-size: 100% 400%;
-  animation: barritaTutifruti 3.5s linear infinite;
-  z-index: 1;
-}*/
+
 @keyframes barritaTutifruti {
   0% { background-position: 0% 0%; }
   100% { background-position: 0% 100%; }

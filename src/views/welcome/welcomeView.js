@@ -5,7 +5,6 @@ export async function welcomeView(){
     const container = document.createElement('section');
     container.classList.add('content');
 
-    // Cargar el HTML de la página
     const htmlResponse = await fetch('./views/welcome/welcomeView.html');
     const htmlContent = await htmlResponse.text();
     container.innerHTML = htmlContent;
@@ -22,7 +21,6 @@ if (!document.querySelector('.video-background')) {
   }
 
   
-  //para abrir el login al hacer click en los card
   setTimeout(() => {
     const cards = container.querySelectorAll('.home-card');
     cards.forEach(card => {

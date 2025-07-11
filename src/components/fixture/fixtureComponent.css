@@ -90,7 +90,7 @@ td {
 }
 
 .fixture-table td:nth-child(3) {
-  width: 10%; /* el guión separador "-" */
+  width: 10%; 
 }
 .dropdown {
   position: relative;
@@ -123,11 +123,11 @@ td {
   min-width: 120px;
 }
 .dropdown-menu {
-  max-height: 300px; /* o el valor que prefieras */
+  max-height: 300px; 
   overflow-y: auto;
 }
 .dropdown-menu::-webkit-scrollbar {
-  display: none; /* Chrome, Safari */
+  display: none; 
 }
 
 .dropdown-item {

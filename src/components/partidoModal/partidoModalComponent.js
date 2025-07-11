@@ -14,34 +14,26 @@ export async function mostrarModalPartido(partido, torneo, numeroRondas) {
 
   const modalElement = container.querySelector('#partidoModal');
 
-  // Título del modal con nombre del torneo
-  //container.querySelector('#partidoModalLabel').textContent = torneo.nombre;
-
-  // Participantes
-  //container.querySelector('#usuario1Nombre').textContent = partido.usuario1Nombre;
-  //container.querySelector('#usuario2Nombre').textContent = partido.usuario2Nombre;
+  
   container.querySelector('#nombreEquipo1').textContent = partido.usuario1Nombre;
   container.querySelector('#nombreEquipo2').textContent = partido.usuario2Nombre;
 
-  // Inputs de resultado
   const inputResultado1 = container.querySelector('#inputResultado1');
   const inputResultado2 = container.querySelector('#inputResultado2');
 
   const btnActualizar = container.querySelector('#btnActualizarResultado');
   btnActualizar.disabled = true;
 
-  // Habilitar el botón solo si ambos inputs son válidos
   function verificarInputs() {
     const r1 = inputResultado1.value;
     const r2 = inputResultado2.value;
     btnActualizar.disabled = !(r1 !== '' && r2 !== '' && !isNaN(r1) && !isNaN(r2));
   }
 
-  // Si el partido ya no está en estado "Pendiente", deshabilitar inputs y ocultar botón
   if (partido.estadoId !== 1) {
     inputResultado1.disabled = true;
     inputResultado2.disabled = true;
-    btnActualizar.classList.add('d-none'); // Oculta el botón
+    btnActualizar.classList.add('d-none'); 
   }
 
   inputResultado1.addEventListener('input', verificarInputs);
@@ -49,9 +41,8 @@ export async function mostrarModalPartido(partido, torneo, numeroRondas) {
 
   if (partido.resultadoUsuario1 !== null) inputResultado1.value = partido.resultadoUsuario1;
   if (partido.resultadoUsuario2 !== null) inputResultado2.value = partido.resultadoUsuario2;
-  verificarInputs(); // Por si ya vienen cargados
+  verificarInputs(); 
 
-  // Fecha y estado
   let fechaText = 'Sin definir';
   let fechaCentralText = 'Sin definir';
   let dia = '', mes = '', hora = '', minutos = '';
@@ -59,7 +50,7 @@ export async function mostrarModalPartido(partido, torneo, numeroRondas) {
   if (partido.fecha) {
     const fecha = new Date(partido.fecha);
 
-    if (!isNaN(fecha)) { // Verifica que sea una fecha válida
+    if (!isNaN(fecha)) { 
       dia = String(fecha.getDate()).padStart(2, '0');
       mes = String(fecha.getMonth() + 1).padStart(2, '0');
       hora = String(fecha.getHours()).padStart(2, '0');
@@ -73,7 +64,6 @@ export async function mostrarModalPartido(partido, torneo, numeroRondas) {
   container.querySelector('#fecha').textContent = fechaText;
   container.querySelector('#fechaCentral').textContent = fechaCentralText;
   
-  //container.querySelector('#estado').textContent = partido.estadoId === 1 ? 'Pendiente' : 'Finalizado';
   const estadoElemento = container.querySelector('.estado-icono');
   if(partido.estadoId===1){
 
@@ -85,7 +75,6 @@ export async function mostrarModalPartido(partido, torneo, numeroRondas) {
     estadoElemento.innerHTML = `<div class="estado" id="estado-finalizado">Finalizado</div>
             <i id="icono-fin" class="fa-solid fa-flag-checkered"></i>`;
   }
-  // Ronda
   let textoRonda = '';
   if (torneo.modalidad.id === 2) {
     textoRonda = `Ronda ${partido.ronda}`;
@@ -102,7 +91,6 @@ export async function mostrarModalPartido(partido, torneo, numeroRondas) {
   }
   container.querySelector('#ronda').textContent = textoRonda;
 
-  // Ganador y empate iniciales
   const ganador =
     partido.empate ? 'Empate' :
     partido.ganadorUsuario1 ? partido.usuario1Nombre :
@@ -111,7 +99,6 @@ export async function mostrarModalPartido(partido, torneo, numeroRondas) {
   container.querySelector('#ganador').textContent = ganador;
   container.querySelector('#empate').textContent = partido.empate ? 'Sí' : 'No';
 
-  // Evento actualizar
   btnActualizar.addEventListener('click', async () => {
     const resultado1 = parseInt(inputResultado1.value);
     const resultado2 = parseInt(inputResultado2.value);
@@ -125,11 +112,9 @@ export async function mostrarModalPartido(partido, torneo, numeroRondas) {
       const motorService = new MotorService();
       await motorService.actualizarPartido(partido.id, json);
       router();
-      // Cerrar el modal
       const bootstrapModal = bootstrap.Modal.getInstance(modalElement);
       bootstrapModal.hide();
   
-      // Mostrar mensaje de éxito
       showMessage("Resultado actualizado correctamente", "success");
 
     } catch (error) {
@@ -138,7 +123,6 @@ export async function mostrarModalPartido(partido, torneo, numeroRondas) {
     }
   });
 
-  // Mostrar modal
   const bootstrapModal = new bootstrap.Modal(modalElement);
   bootstrapModal.show();
 }

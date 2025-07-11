@@ -22,7 +22,7 @@ const routes = {
   '/torneo': torneoView,
   '/mapa': mapaComponent,
   '/torneos-aside': torneosAside,
-  '/': homeView, // Redirigir a home si no hay hash
+  '/': homeView, 
 };
 
 let isRouting = false;
@@ -55,15 +55,13 @@ export async function router() {
   }
 
   const asideContainer = document.querySelector('#aside');
-  // Mostrar u ocultar aside según si está logueado y en welcome
   if (!user && path === '/welcome') {
     aside.style.display = 'none';
     asideContainer.innerHTML = '';
-    asideRendered = false; // reseteamos si vuelve al login
+    asideRendered = false; 
   } else {
     aside.style.display = 'block';
 
-    // Solo lo cargamos si no se cargó antes
     if (!asideRendered) {
       asideContainer.innerHTML = '';
       const asideContent = await torneosAside();
@@ -75,7 +73,6 @@ export async function router() {
 
   const render = routes[path] || NotFound;
 
-  // Parsear parámetros
   const params = new URLSearchParams(queryString);
   const props = Object.fromEntries(params.entries());
 
@@ -87,7 +84,6 @@ export async function router() {
 }
 
 
-// Escuchar cambios de ruta
 window.addEventListener('hashchange', router);
 window.addEventListener('load', router);
 
@@ -100,7 +96,6 @@ document.addEventListener('click', async (event) => {
   }
 });
 
-//Para el videoBackGround
 window.addEventListener('hashchange', () => {
   const route = window.location.hash;
 

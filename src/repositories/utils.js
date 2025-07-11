@@ -11,9 +11,8 @@ export async function fetchConToken(url, options = {}) {
     try {
         const response = await fetch(url, { ...options, headers });
 
-        // ✅ Si no hay contenido, devolvemos null o un objeto vacío
         if (response.status === 204) {
-            return null; // o {}
+            return null; 
         }
 
         const contentType = response.headers.get('content-type');
@@ -23,11 +22,10 @@ export async function fetchConToken(url, options = {}) {
             data = await response.json();
         } else {
             const text = await response.text();
-            // Solo lanzar error si no fue exitoso
+            
             if (!response.ok) {
                 throw new Error(text || 'Ocurrió un error inesperado');
             }
-            // Si fue exitoso, aunque no tenga JSON
             return text;
         }
 

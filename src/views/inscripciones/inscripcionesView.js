@@ -39,7 +39,6 @@ export async function inscripcionesView() {
     const tablaBody = container.querySelector('#tabla-inscriptos tbody');
     const btnIniciar = container.querySelector('#btn-inscribir');
 
-    // Asignar mínimo y máximo al HTML
     const minimoEl = container.querySelector('.minimo-participantes');
     const maximoEl = container.querySelector('.maximo-pariticipantes'); 
 
@@ -77,7 +76,7 @@ export async function inscripcionesView() {
                     try {
                         await torneoService.eliminarInscripcion(insc.id);
                         await cargarInscriptosDesdeTorneo();
-                        await renderUsuarios(); // Volver a renderizar 
+                        await renderUsuarios(); 
                         showMessage("Participante eliminado", "info");
                     } catch (error) {
                         console.error(error);
@@ -101,14 +100,13 @@ export async function inscripcionesView() {
             const users = await usuarioService.getUsersFiltro(filtro);
             const torneoActualizado = await torneoService.getTorneoById(torneoId);
 
-            // Obtener IDs de usuarios ya inscriptos
             const idsInscriptos = torneoActualizado.inscripciones.map(insc => insc.usuarioId);
 
             playersContainer.innerHTML = '';
 
             for (let user of users) {
                 if (idsInscriptos.includes(user.id)) {
-                    continue; // Omitir si ya está inscripto
+                    continue; 
                 }
 
                 const div = document.createElement('div');
@@ -130,7 +128,7 @@ export async function inscripcionesView() {
                     try {
                         await torneoService.inscribir(payload);
                         await cargarInscriptosDesdeTorneo();
-                        await renderUsuarios(); // Volver a renderizar para quitarlo de la lista
+                        await renderUsuarios(); 
                         showMessage(`${user.name} inscrito correctamente`, "success");
                     } catch (error) {
                         console.error(error);
@@ -164,13 +162,12 @@ export async function inscripcionesView() {
             await torneoService.iniciarTorneo(torneoId);
             showMessage("Torneo iniciado ✅", "success");
             location.hash = `#/torneo?id=${torneoId}`;
-            router(); // Actualizar la vista
+            router(); 
         } catch (error) {
             console.error(error);
             showMessage("Error al iniciar el torneo", "danger");
         }
     });
-    // Carga inicial
     await renderUsuarios();
     await cargarInscriptosDesdeTorneo();
 
